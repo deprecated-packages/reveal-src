@@ -1,0 +1,9 @@
+{
+    "nane": "reveal/reveal-neon",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Reveal\\RevealNeon\\": "src"
+        }
+    }
+}

@@ -1,3 +1,6 @@
 {
-	"name": "reveal/reveal"
+	"name": "reveal/reveal",
+	"require-dev": {
+		"symplify/monorepo-builder": "^10.0"
+	}
 }
