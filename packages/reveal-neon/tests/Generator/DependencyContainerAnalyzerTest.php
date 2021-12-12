@@ -32,18 +32,14 @@ final class DependencyContainerAnalyzerTest extends TestCase
 
     public function provideData(): Iterator
     {
-        /** @var string $filePath */
-        $filePath = realpath(__DIR__ . '/../Generator/Fixture/missing_class.neon');
         $ruleError = RuleErrorBuilder::message('Class "NotHere" was not found')
-            ->file($filePath)
+            ->file(__DIR__ . '/Generator/Fixture/missing_class.neon')
             ->build();
-
         yield [__DIR__ . '/Fixture/missing_class.neon', [$ruleError]];
 
-        // ...
-
-        yield [__DIR__ . '/Fixture/invalid_constructor_argument_type.neon', [
-
-        ]];
+        $argumentRuleError = RuleErrorBuilder::message('Class "NotHere" was not found')
+            ->file(__DIR__ . '/Fixture/invalid_constructor_argument_type.neon')
+            ->build();
+        yield [__DIR__ . '/Fixture/invalid_constructor_argument_type.neon', [$argumentRuleError]];
     }
 }
