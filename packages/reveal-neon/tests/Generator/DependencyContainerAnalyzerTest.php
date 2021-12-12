@@ -27,7 +27,7 @@ final class DependencyContainerAnalyzerTest extends TestCase
     public function test(string $configFilepath, array $expectedRuleErrors): void
     {
         $ruleErrors = $this->dependencyContainerAnalyzer->analyseConfig($configFilepath);
-        $this->assertSame($expectedRuleErrors, $ruleErrors);
+        $this->assertEquals($expectedRuleErrors, $ruleErrors);
     }
 
     public function provideData(): Iterator
@@ -38,7 +38,8 @@ final class DependencyContainerAnalyzerTest extends TestCase
         $ruleError = RuleErrorBuilder::message('Class "NotHere" was not found')
             ->file($filePath)
             ->build();
-        yield [__DIR__ . '/Fixture/missing_class.neon', [[$ruleError]]];
+
+        yield [__DIR__ . '/Fixture/missing_class.neon', [$ruleError]];
 
         // @todo
         // yield [__DIR__ . '/Fixture/invalid_constructor_argument_type.neon', []];

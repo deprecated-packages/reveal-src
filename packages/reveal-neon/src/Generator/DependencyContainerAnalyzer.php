@@ -7,6 +7,7 @@ namespace Reveal\RevealNeon\Generator;
 use Nette\Configurator;
 use Nette\DI\ServiceCreationException;
 use Nette\Utils\Strings;
+use PHPStan\Rules\RuleError;
 use PHPStan\Rules\RuleErrorBuilder;
 
 /**
@@ -14,6 +15,9 @@ use PHPStan\Rules\RuleErrorBuilder;
  */
 final class DependencyContainerAnalyzer
 {
+    /**
+     * @return RuleError[]
+     */
     public function analyseConfig(string $servicesFilePath): array
     {
         $configurator = new Configurator();
