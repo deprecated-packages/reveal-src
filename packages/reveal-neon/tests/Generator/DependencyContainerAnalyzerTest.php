@@ -32,9 +32,8 @@ final class DependencyContainerAnalyzerTest extends TestCase
 
     public function provideData(): Iterator
     {
+        /** @var string $filePath */
         $filePath = realpath(__DIR__ . '/../Generator/Fixture/missing_class.neon');
-        Assert::fileExists($filePath);
-
         $ruleError = RuleErrorBuilder::message('Class "NotHere" was not found')
             ->file($filePath)
             ->build();
