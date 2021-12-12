@@ -60,7 +60,9 @@ final class DependencyContainerAnalyzer
         $cacheDirectory = $tempDirectory . '/cache/nette.configurator';
 
         $containerCachedFiles = glob($cacheDirectory . '/*.php');
+        Assert::isArray($containerCachedFiles);
         Assert::count($containerCachedFiles, 1);
+        Assert::keyExists($containerCachedFiles, 0);
 
         $containerCacheFile = $containerCachedFiles[0];
         dump($containerCacheFile);

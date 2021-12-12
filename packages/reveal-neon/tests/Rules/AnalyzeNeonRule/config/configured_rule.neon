@@ -1,0 +1,7 @@
+includes:
+    - ../../config/config.neon
+
+services:
+    -
+        class: Reveal\RevealNeon\Rules\AnalyzeNeonRule
+        tags: [phpstan.rules.rule]
