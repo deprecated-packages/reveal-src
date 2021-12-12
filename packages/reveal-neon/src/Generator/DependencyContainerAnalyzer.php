@@ -6,9 +6,11 @@ namespace Reveal\RevealNeon\Generator;
 
 use Nette\Configurator;
 use Nette\DI\ServiceCreationException;
+use Nette\Utils\FileSystem;
 use Nette\Utils\Strings;
 use PHPStan\Rules\RuleError;
 use PHPStan\Rules\RuleErrorBuilder;
+use Webmozart\Assert\Assert;
 
 /**
  * @see \Reveal\RevealNeon\Tests\Generator\DependencyContainerAnalyzerTest
@@ -33,6 +35,7 @@ final class DependencyContainerAnalyzer
         $configurator->addConfig($servicesFilePath);
 
         // clear to make sure we work with 1 file at a time
+        FileSystem::delete($tempDirectory);
 
         try {
             $container = $configurator->createContainer();
@@ -56,8 +59,11 @@ final class DependencyContainerAnalyzer
         // 1. get build container file path
         $cacheDirectory = $tempDirectory . '/cache/nette.configurator';
 
-        dump($cacheDirectory);
-        dump(glob($cacheDirectory . '/*.php'));
+        $containerCachedFiles = glob($cacheDirectory . '/*.php');
+        Assert::count($containerCachedFiles, 1);
+
+        $containerCacheFile = $containerCachedFiles[0];
+        dump($containerCacheFile);
         die;
 
         // 2. clean it from decoration code
