@@ -12,6 +12,13 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters->set(Option::PATHS, [
         __DIR__ . '/packages',
     ]);
+    $parameters->set(Option::SKIP, [
+        \PhpCsFixer\Fixer\PhpUnit\PhpUnitStrictFixer::class => [
+            // compare content of 2 objects, not identical object
+
+
+        ]
+    ]);
 
     // run and fix, one by one
     $containerConfigurator->import(SetList::COMMON);

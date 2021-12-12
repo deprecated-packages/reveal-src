@@ -1,10 +1,10 @@
 {
-    "nane": "reveal/reveal-neon",
     "license": "MIT",
     "require": {
         "php": "^8.1",
         "nette/di": "^3.0",
-        "nette/utils": "^3.0"
+        "nette/utils": "^3.2",
+        "nette/bootstrap": "^3.1"
     },
     "autoload": {
         "psr-4": {

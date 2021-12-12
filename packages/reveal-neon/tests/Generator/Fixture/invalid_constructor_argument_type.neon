@@ -1,0 +1,5 @@
+services:
+    -
+        class: Reveal\RevealNeon\Tests\Generator\Source\ExistingClassWithMethod
+        arguments:
+            name: 100
