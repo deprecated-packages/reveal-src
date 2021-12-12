@@ -1,12 +1,12 @@
 includes:
     - ../../../../config/config.neon
+    - ../../../../../../phpstan.neon
 
 services:
     -
         class: Reveal\RevealNeon\Rules\AnalyzeNeonRule
         tags: [phpstan.rules.rule]
 
-    # needed to active other rules
     -
         class: PHPStan\Rules\Methods\CallMethodsRule
         tags: [phpstan.rules.rule]

@@ -13,6 +13,7 @@ use PHPStan\Rules\Registry;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleError;
 use Reveal\RevealNeon\Generator\DependencyContainerAnalyzer;
+use Reveal\RevealNeon\Registry\MethodCallTypeFixerRegistry;
 use Symplify\Astral\NodeValue\NodeValueResolver;
 
 /**
@@ -32,7 +33,7 @@ final class AnalyzeNeonRule implements Rule
         private DependencyContainerAnalyzer $dependencyContainerAnalyzer,
         array $rules
     ) {
-        $this->currentRegistry = new Registry($rules);
+        $this->currentRegistry = new MethodCallTypeFixerRegistry($rules);
     }
 
     public function getNodeType(): string

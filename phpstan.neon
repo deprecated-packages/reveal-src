@@ -5,8 +5,8 @@ parameters:
         - ecs.php
         - packages
 
-    excludePaths:
-        - packages/reveal-neon/tests/Generator/Source
-        - packages/reveal-neon/src/Generator/local-temp
-    ignoreErrors:
-        - '#Method Reveal\\(.*?)Test\:\:provideData\(\) return type has no value type specified in iterable type Iterator#'
+#    excludePaths:
+#        - packages/reveal-neon/tests/Generator/Source
+#        - packages/reveal-neon/src/Generator/local-temp
+#    ignoreErrors:
+#        - '#Method Reveal\\(.*?)Test\:\:provideData\(\) return type has no value type specified in iterable type Iterator#'
