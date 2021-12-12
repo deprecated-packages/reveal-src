@@ -10,7 +10,7 @@
             "Reveal\\RevealNeon\\": "src"
         }
     },
-    "autoload": {
+    "autoload-dev": {
         "psr-4": {
             "Reveal\\RevealNeon\\Tests\\": "tests"
         }
