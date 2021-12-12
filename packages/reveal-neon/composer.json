@@ -1,13 +1,18 @@
 {
     "nane": "reveal/reveal-neon",
     "license": "MIT",
+    "require": {
+        "php": "^8.1",
+        "nette/di": "^3.0"
+    },
     "autoload": {
         "psr-4": {
             "Reveal\\RevealNeon\\": "src"
         }
     },
-    "require": {
-        "php": "^8.1",
-        "nette/di": "^3.0"
+    "autoload": {
+        "psr-4": {
+            "Reveal\\RevealNeon\\Tests\\": "tests"
+        }
     }
 }
