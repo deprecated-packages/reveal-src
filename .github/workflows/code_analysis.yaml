@@ -21,6 +21,10 @@ jobs:
                         run: composer phpstan
 
                     -
+                        name: 'Coding Standard'
+                        run: composer fix-cs
+
+                    -
                         name: 'Composer Validate'
                         run: composer validate
 
