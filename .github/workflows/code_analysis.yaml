@@ -26,7 +26,7 @@ jobs:
 
                     -
                         name: 'Composer Validate'
-                        run: composer validate
+                        run: composer validate --ansi
 
         name: ${{ matrix.actions.name }}
         runs-on: ubuntu-latest
