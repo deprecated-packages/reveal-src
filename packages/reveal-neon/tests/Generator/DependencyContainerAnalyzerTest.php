@@ -9,7 +9,6 @@ use PHPStan\Rules\RuleError;
 use PHPStan\Rules\RuleErrorBuilder;
 use PHPUnit\Framework\TestCase;
 use Reveal\RevealNeon\Generator\DependencyContainerAnalyzer;
-use Webmozart\Assert\Assert;
 
 final class DependencyContainerAnalyzerTest extends TestCase
 {

@@ -7,10 +7,8 @@ namespace Reveal\RevealNeon\Generator;
 use Nette\Configurator;
 use Nette\DI\ServiceCreationException;
 use Nette\Utils\Strings;
-use PHPStan\Analyser\FileAnalyser;
 use PHPStan\Rules\RuleError;
 use PHPStan\Rules\RuleErrorBuilder;
-use Symfony\Component\Finder\Finder;
 
 /**
  * @see \Reveal\RevealNeon\Tests\Generator\DependencyContainerAnalyzerTest
@@ -73,4 +71,3 @@ final class DependencyContainerAnalyzer
         return [];
     }
 }
-
