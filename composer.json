@@ -2,7 +2,8 @@
     "name": "reveal/reveal",
     "license": "sponsorware",
     "require": {
-        "php": "^8.1"
+        "php": "^8.1",
+        "nette/di": "^3.0"
     },
     "require-dev": {
         "symplify/monorepo-builder": "^10.0",

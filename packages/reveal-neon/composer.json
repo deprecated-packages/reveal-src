@@ -5,5 +5,9 @@
         "psr-4": {
             "Reveal\\RevealNeon\\": "src"
         }
+    },
+    "require": {
+        "php": "^8.1",
+        "nette/di": "^3.0"
     }
 }
