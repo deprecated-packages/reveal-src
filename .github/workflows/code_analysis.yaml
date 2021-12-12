@@ -21,6 +21,10 @@ jobs:
                         run: composer phpstan
 
                     -
+                        name: 'Tests'
+                        run: vendor/bin/phpunit
+
+                    -
                         name: 'Coding Standard'
                         run: composer fix-cs
 
