@@ -6,6 +6,7 @@
         "nette/utils": "^3.2",
         "nette/bootstrap": "^3.1",
         "phpstan/phpstan": "^1.2",
+        "symplify/astral": "^10.0",
         "webmozart/assert": "^1.10"
     },
     "require-dev": {

@@ -8,8 +8,11 @@ use Nette\Configurator;
 use Nette\DI\ServiceCreationException;
 use Nette\Utils\FileSystem;
 use Nette\Utils\Strings;
+use PHPStan\Rules\Registry;
 use PHPStan\Rules\RuleError;
+use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
+use Reveal\RevealNeon\PHPStan\FileAnalyserProvider;
 use Webmozart\Assert\Assert;
 
 /**
@@ -23,10 +26,15 @@ final class DependencyContainerAnalyzer
      */
     private const CLASS_NAME_REGEX = "#Class '(?<class_name>.*?)' not found#";
 
+    public function __construct(
+        private FileAnalyserProvider $fileAnalyserProvider,
+    ) {
+    }
+
     /**
      * @return RuleError[]
      */
-    public function analyseConfig(string $servicesFilePath): array
+    public function analyseConfig(string $servicesFilePath, Registry $registry): array
     {
         $configurator = new Configurator();
 
@@ -38,7 +46,7 @@ final class DependencyContainerAnalyzer
         FileSystem::delete($tempDirectory);
 
         try {
-            $container = $configurator->createContainer();
+            $configurator->createContainer();
         } catch (ServiceCreationException $serviceCreationException) {
             $match = Strings::match($serviceCreationException->getMessage(), self::CLASS_NAME_REGEX);
             if ($match !== null) {
@@ -65,7 +73,11 @@ final class DependencyContainerAnalyzer
         Assert::keyExists($containerCachedFiles, 0);
 
         $containerCacheFile = $containerCachedFiles[0];
-        dump($containerCacheFile);
+
+        $fileAnalyser = $this->fileAnalyserProvider->provide();
+
+        $result = $fileAnalyser->analyseFile($containerCacheFile, [], $registry, null);
+        dump($result->getErrors());
         die;
 
         // 2. clean it from decoration code

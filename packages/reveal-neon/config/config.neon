@@ -1,2 +1,6 @@
+includes:
+    - ../../../vendor/symplify/astral/config/services.neon
+
 services:
     - Reveal\RevealNeon\Generator\DependencyContainerAnalyzer
+    - Reveal\RevealNeon\PHPStan\FileAnalyserProvider
