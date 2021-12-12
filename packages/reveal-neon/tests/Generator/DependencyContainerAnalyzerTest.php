@@ -40,7 +40,10 @@ final class DependencyContainerAnalyzerTest extends TestCase
 
         yield [__DIR__ . '/Fixture/missing_class.neon', [$ruleError]];
 
-        // @todo
-        // yield [__DIR__ . '/Fixture/invalid_constructor_argument_type.neon', []];
+        // ...
+
+        yield [__DIR__ . '/Fixture/invalid_constructor_argument_type.neon', [
+
+        ]];
     }
 }
