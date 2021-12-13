@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\PHPStanTwigRules\Tests\Rules\NoTwigRenderUnusedVariableRule\Fixture;
+namespace Reveal\PHPStanTwigRules\Tests\Rules\NoTwigRenderUnusedVariableRule\Fixture;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +13,8 @@ final class SkipControllerRouter extends AbstractController
     public function index(RouterInterface $router): Response
     {
         // Passed "variable" variable is not used in the template
-        $url = $router->generate('route', ['variable' => 'value']);
+        $url = $router->generate('route', [
+            'variable' => 'value',
+        ]);
     }
 }

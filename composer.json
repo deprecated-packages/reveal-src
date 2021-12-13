@@ -6,29 +6,41 @@
         "nette/bootstrap": "^3.1",
         "nette/di": "^3.0",
         "nette/utils": "^3.2",
-        "php": "^8.1",
+        "php": ">=8.0",
         "phpstan/phpstan": "^1.2",
-        "webmozart/assert": "^1.10",
-        "symplify/astral": "^10.0"
+        "symplify/astral": "^10.1",
+        "symplify/package-builder": "^10.1",
+        "symplify/rule-doc-generator-contracts": "^10.1",
+        "symplify/smart-file-system": "^10.1",
+        "symplify/template-phpstan-compiler": "^10.1",
+        "twig/twig": "^3.3",
+        "webmozart/assert": "^1.10"
     },
     "require-dev": {
-        "symplify/monorepo-builder": "^10.0",
-        "symplify/easy-coding-standard": "^10.0",
-        "symplify/phpstan-extensions": "^10.0",
-        "symplify/phpstan-rules": "^10.0",
         "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan-webmozart-assert": "^1.0",
         "phpunit/phpunit": "^9.5",
-        "tracy/tracy": "^2.8",
-        "phpstan/phpstan-webmozart-assert": "^1.0"
+        "symfony/framework-bundle": "^5.4|^6.0",
+        "symplify/easy-ci": "^10.1",
+        "symplify/easy-coding-standard": "^10.0",
+        "symplify/easy-testing": "^10.1",
+        "symplify/monorepo-builder": "^10.0",
+        "symplify/phpstan-extensions": "^10.1",
+        "symplify/phpstan-rules": "^10.1",
+        "tracy/tracy": "^2.8"
     },
     "autoload": {
         "psr-4": {
-            "Reveal\\RevealNeon\\": "packages/reveal-neon/src"
+            "Reveal\\RevealNeon\\": "packages/reveal-neon/src",
+            "Symplify\\PHPStanTwigRules\\": "packages/phpstan-twig-rules/src",
+            "Symplify\\TwigPHPStanCompiler\\": "packages/twig-phpstan-compiler/src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Reveal\\RevealNeon\\Tests\\": "packages/reveal-neon/tests"
+            "Reveal\\RevealNeon\\Tests\\": "packages/reveal-neon/tests",
+            "Symplify\\PHPStanTwigRules\\Tests\\": "packages/phpstan-twig-rules/tests",
+            "Symplify\\TwigPHPStanCompiler\\Tests\\": "packages/twig-phpstan-compiler/tests"
         }
     },
     "scripts": {
@@ -40,5 +52,11 @@
         "propagate": "vendor/bin/monorepo-builder propagate --ansi",
         "validate-monorepo": "vendor/bin/monorepo-builder validate --ansi",
         "release": "vendor/bin/monorepo-builder release patch --ansi"
-    }
+    },
+    "replace": {
+        "symplify/phpstan-twig-rules": "self.version",
+        "symplify/twig-phpstan-compiler": "self.version"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

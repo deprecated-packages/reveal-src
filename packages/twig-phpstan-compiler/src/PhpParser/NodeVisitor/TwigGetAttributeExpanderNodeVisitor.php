@@ -19,9 +19,9 @@ use PHPStan\Type\Type;
 use PHPStan\Type\TypeCombinator;
 use PHPStan\Type\TypeWithClassName;
 use PHPStan\Type\UnionType;
+use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\PHPStanRules\Exception\ShouldNotHappenException;
-use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Symplify\TwigPHPStanCompiler\ObjectTypeMethodAnalyzer;
 use Symplify\TwigPHPStanCompiler\Reflection\PublicPropertyAnalyzer;
 

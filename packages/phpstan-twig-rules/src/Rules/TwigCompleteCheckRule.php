@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\PHPStanTwigRules\Rules;
+namespace Reveal\PHPStanTwigRules\Rules;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
@@ -10,20 +10,20 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Registry;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleError;
+use Reveal\PHPStanTwigRules\NodeAnalyzer\SymfonyRenderWithParametersMatcher;
+use Reveal\TemplatePHPStanCompiler\ErrorSkipper;
+use Reveal\TemplatePHPStanCompiler\PHPStan\FileAnalyserProvider;
+use Reveal\TemplatePHPStanCompiler\Reporting\TemplateErrorsFactory;
+use Reveal\TemplatePHPStanCompiler\TypeAnalyzer\TemplateVariableTypesResolver;
+use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
-use Symplify\PHPStanTwigRules\NodeAnalyzer\SymfonyRenderWithParametersMatcher;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Symplify\SmartFileSystem\SmartFileSystem;
-use Symplify\TemplatePHPStanCompiler\ErrorSkipper;
-use Symplify\TemplatePHPStanCompiler\PHPStan\FileAnalyserProvider;
-use Symplify\TemplatePHPStanCompiler\Reporting\TemplateErrorsFactory;
-use Symplify\TemplatePHPStanCompiler\TypeAnalyzer\TemplateVariableTypesResolver;
-use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Symplify\TwigPHPStanCompiler\TwigToPhpCompiler;
 
 /**
- * @see \Symplify\PHPStanTwigRules\Tests\Rules\TwigCompleteCheckRule\TwigCompleteCheckRuleTest
+ * @see \Reveal\PHPStanTwigRules\Tests\Rules\TwigCompleteCheckRule\TwigCompleteCheckRuleTest
  */
 final class TwigCompleteCheckRule extends AbstractSymplifyRule
 {

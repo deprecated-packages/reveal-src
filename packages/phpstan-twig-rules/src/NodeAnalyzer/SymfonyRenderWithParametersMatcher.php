@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Symplify\PHPStanTwigRules\NodeAnalyzer;
+namespace Reveal\PHPStanTwigRules\NodeAnalyzer;
 
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\ThisType;
+use Reveal\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
 use Twig\Environment;
 
 final class SymfonyRenderWithParametersMatcher

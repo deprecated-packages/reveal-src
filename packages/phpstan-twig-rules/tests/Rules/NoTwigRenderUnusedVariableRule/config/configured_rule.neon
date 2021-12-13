@@ -3,5 +3,5 @@ includes:
 
 services:
     -
-        class: Symplify\PHPStanTwigRules\Rules\NoTwigRenderUnusedVariableRule
+        class: Reveal\PHPStanTwigRules\Rules\NoTwigRenderUnusedVariableRule
         tags: [phpstan.rules.rule]

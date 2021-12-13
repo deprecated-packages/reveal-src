@@ -3,5 +3,5 @@ includes:
 
 services:
     -
-        class: Symplify\PHPStanTwigRules\Rules\NoTwigMissingVariableRule
+        class: Reveal\PHPStanTwigRules\Rules\NoTwigMissingVariableRule
         tags: [phpstan.rules.rule]

@@ -8,12 +8,12 @@ use Iterator;
 use PHPStan\DependencyInjection\Container;
 use PHPStan\Type\StringType;
 use PHPUnit\Framework\TestCase;
+use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Symplify\EasyTesting\DataProvider\StaticFixtureFinder;
 use Symplify\EasyTesting\DataProvider\StaticFixtureUpdater;
 use Symplify\EasyTesting\StaticFixtureSplitter;
 use Symplify\PHPStanExtensions\DependencyInjection\PHPStanContainerFactory;
 use Symplify\SmartFileSystem\SmartFileInfo;
-use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Symplify\TwigPHPStanCompiler\TwigToPhpCompiler;
 
 final class TwigToPhpCompilerTest extends TestCase

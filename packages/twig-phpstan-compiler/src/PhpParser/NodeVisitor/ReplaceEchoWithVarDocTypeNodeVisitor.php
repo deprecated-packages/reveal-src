@@ -11,7 +11,7 @@ use PhpParser\Node\Stmt\Echo_;
 use PhpParser\Node\Stmt\Nop;
 use PhpParser\NodeVisitorAbstract;
 use PHPStan\Type\ObjectType;
-use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
+use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Symplify\TwigPHPStanCompiler\TwigToPhpCompiler;
 use Symplify\TwigPHPStanCompiler\ValueObject\VarTypeDoc;
 

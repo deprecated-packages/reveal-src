@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Symplify\PHPStanTwigRules\Tests\Rules\NoTwigMissingVariableRule;
+namespace Reveal\PHPStanTwigRules\Tests\Rules\NoTwigMissingVariableRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use Reveal\PHPStanTwigRules\Rules\NoTwigMissingVariableRule;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
-use Symplify\PHPStanTwigRules\Rules\NoTwigMissingVariableRule;
 
 /**
  * @extends AbstractServiceAwareRuleTestCase<NoTwigMissingVariableRule>

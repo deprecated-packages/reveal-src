@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Symplify\PHPStanTwigRules\Tests\Rules\TwigCompleteCheckRule\Fixture;
+namespace Reveal\PHPStanTwigRules\Tests\Rules\TwigCompleteCheckRule\Fixture;
 
+use Reveal\PHPStanTwigRules\Tests\Rules\TwigCompleteCheckRule\Source\SomeType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symplify\PHPStanTwigRules\Tests\Rules\TwigCompleteCheckRule\Source\SomeType;
 
 final class FirstForeachMissing extends AbstractController
 {
@@ -18,7 +18,7 @@ final class FirstForeachMissing extends AbstractController
         $someTypes = [$someVariable];
 
         return $this->render($templateFilePath, [
-            'some_types' => $someTypes
+            'some_types' => $someTypes,
         ]);
     }
 }

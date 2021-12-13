@@ -1,13 +1,13 @@
 services:
     -
-        class: Symplify\PHPStanTwigRules\Rules\NoTwigMissingVariableRule
+        class: Reveal\PHPStanTwigRules\Rules\NoTwigMissingVariableRule
         tags: [phpstan.rules.rule]
 
     -
-        class: Symplify\PHPStanTwigRules\Rules\NoTwigRenderUnusedVariableRule
+        class: Reveal\PHPStanTwigRules\Rules\NoTwigRenderUnusedVariableRule
         tags: [phpstan.rules.rule]
 
     -
-        class: Symplify\PHPStanTwigRules\Rules\TwigCompleteCheckRule
+        class: Reveal\PHPStanTwigRules\Rules\TwigCompleteCheckRule
         tags: [phpstan.rules.rule]
 

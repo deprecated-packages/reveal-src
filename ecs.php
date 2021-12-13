@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use PhpCsFixer\Fixer\PhpUnit\PhpUnitStrictFixer;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symplify\EasyCodingStandard\ValueObject\Option;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
@@ -14,10 +15,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     ]);
 
     $parameters->set(Option::SKIP, [
-        \PhpCsFixer\Fixer\PhpUnit\PhpUnitStrictFixer::class => [
+        PhpUnitStrictFixer::class => [
             // compare content of 2 objects, not identical object
             __DIR__ . '/packages/reveal-neon/tests/Generator/DependencyContainerAnalyzerTest.php',
         ],
+
+        __DIR__ . '/packages/twig-phpstan-compiler/tests/TwigToPhpCompiler/FixtureWithTypes/',
     ]);
 
     // run and fix, one by one

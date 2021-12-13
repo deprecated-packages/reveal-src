@@ -4,7 +4,7 @@
 
 Variable "%s" is used in template but missing in `render()` method
 
-- class: [`Symplify\PHPStanTwigRules\Rules\NoTwigMissingVariableRule`](../src/Rules/NoTwigMissingVariableRule.php)
+- class: [`Reveal\PHPStanTwigRules\Rules\NoTwigMissingVariableRule`](../src/Rules/NoTwigMissingVariableRule.php)
 
 ```php
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -46,7 +46,7 @@ final class SomeController extends AbstractController
 
 Passed "%s" variable is not used in the template
 
-- class: [`Symplify\PHPStanTwigRules\Rules\NoTwigRenderUnusedVariableRule`](../src/Rules/NoTwigRenderUnusedVariableRule.php)
+- class: [`Reveal\PHPStanTwigRules\Rules\NoTwigRenderUnusedVariableRule`](../src/Rules/NoTwigRenderUnusedVariableRule.php)
 
 ```php
 use Twig\Environment;
@@ -78,7 +78,7 @@ $environment->render(__DIR__ . '/some_file.twig', [
 
 Complete analysis of PHP code generated from Twig template
 
-- class: [`Symplify\PHPStanTwigRules\Rules\TwigCompleteCheckRule`](../src/Rules/TwigCompleteCheckRule.php)
+- class: [`Reveal\PHPStanTwigRules\Rules\TwigCompleteCheckRule`](../src/Rules/TwigCompleteCheckRule.php)
 
 ```php
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

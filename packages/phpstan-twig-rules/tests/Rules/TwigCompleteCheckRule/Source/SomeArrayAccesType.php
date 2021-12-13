@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Symplify\PHPStanTwigRules\Tests\Rules\TwigCompleteCheckRule\Source;
+namespace Reveal\PHPStanTwigRules\Tests\Rules\TwigCompleteCheckRule\Source;
 
-final class SomeArrayAccesType implements  \ArrayAccess, \IteratorAggregate, \Countable
+final class SomeArrayAccesType implements \ArrayAccess, \IteratorAggregate, \Countable
 {
     public $children = [
         'some_child' => true,
