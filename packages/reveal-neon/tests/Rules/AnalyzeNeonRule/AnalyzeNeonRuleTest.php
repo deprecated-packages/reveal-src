@@ -31,6 +31,10 @@ final class AnalyzeNeonRuleTest extends AbstractServiceAwareRuleTestCase
             ExistingServiceWithConstructor::class
         );
         yield [__DIR__ . '/Fixture/GeneratedFakeImporter.php', [[$errorMessage, 40]]];
+
+        // @todo update line to neon one
+        // @todo update path to neon one
+        yield [__DIR__ . '/Fixture/GeneratedMissingClassFakeImporter.php', [['Class "NotHere" was not found', 6]]];
     }
 
     protected function getRule(): Rule

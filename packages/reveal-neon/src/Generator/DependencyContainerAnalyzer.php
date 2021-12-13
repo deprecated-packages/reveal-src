@@ -14,9 +14,6 @@ use PHPStan\Rules\RuleErrorBuilder;
 use Reveal\RevealNeon\PHPStan\FileAnalyserProvider;
 use Webmozart\Assert\Assert;
 
-/**
- * @see \Reveal\RevealNeon\Tests\Generator\DependencyContainerAnalyzerTest
- */
 final class DependencyContainerAnalyzer
 {
     /**
