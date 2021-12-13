@@ -19,6 +19,7 @@ parameters:
 
         # BC promise
         - '#PHPStan\\Rules\\Registry(.*?) is not covered by backward compatibility promise\. The (.*?) might change in a minor PHPStan version#'
+        - '#Method Reveal\\PHPStanTwigRules\\Rules\\TwigCompleteCheckRule\:\:__construct\(\) has parameter \$rules with generic interface PHPStan\\Rules\\Rule but does not specify its types\: TNodeType#'
         - '#Calling PHPStan\\DependencyInjection\\DerivativeContainerFactory\:\:create\(\) is not covered by backward compatibility promise\. The method might change in a minor PHPStan version#'
         - '#Calling PHPStan\\Analyser\\FileAnalyser(.*?) is not covered by backward compatibility promise\. The (.*?) might change in a minor PHPStan version#'
 
@@ -26,3 +27,6 @@ parameters:
         -
             message: '#Cannot cast mixed to string#'
             path: packages/twig-phpstan-compiler/tests/TwigToPhpCompiler/
+
+        # lost autoload?
+        - '#Class PhpCsFixer\\Fixer\\PhpUnit\\PhpUnitStrictFixer not found#'
