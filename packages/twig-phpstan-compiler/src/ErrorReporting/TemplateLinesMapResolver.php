@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Reveal\TwigPHPStanCompiler\ErrorReporting;
 
 use PhpParser\NodeTraverser;
-use Symplify\Astral\PhpParser\SmartPhpParser;
 use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\PhpToTemplateLinesNodeVisitor;
+use Symplify\Astral\PhpParser\SmartPhpParser;
 
 final class TemplateLinesMapResolver
 {

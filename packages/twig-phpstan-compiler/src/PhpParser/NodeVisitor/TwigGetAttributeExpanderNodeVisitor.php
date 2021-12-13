@@ -19,11 +19,11 @@ use PHPStan\Type\Type;
 use PHPStan\Type\TypeCombinator;
 use PHPStan\Type\TypeWithClassName;
 use PHPStan\Type\UnionType;
+use Reveal\TwigPHPStanCompiler\ObjectTypeMethodAnalyzer;
+use Reveal\TwigPHPStanCompiler\Reflection\PublicPropertyAnalyzer;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\PHPStanRules\Exception\ShouldNotHappenException;
 use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
-use Reveal\TwigPHPStanCompiler\ObjectTypeMethodAnalyzer;
-use Reveal\TwigPHPStanCompiler\Reflection\PublicPropertyAnalyzer;
 
 final class TwigGetAttributeExpanderNodeVisitor extends NodeVisitorAbstract
 {

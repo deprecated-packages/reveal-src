@@ -6,11 +6,11 @@ namespace Reveal\TwigPHPStanCompiler\NodeAnalyzer;
 
 use PhpParser\NodeFinder;
 use PhpParser\NodeTraverser;
+use Reveal\TwigPHPStanCompiler\TwigToPhpCompiler;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\TemplatePHPStanCompiler\Contract\UsedVariableNamesResolverInterface;
 use Symplify\TemplatePHPStanCompiler\NodeVisitor\TemplateVariableCollectingNodeVisitor;
 use Symplify\TemplatePHPStanCompiler\PhpParser\ParentNodeAwarePhpParser;
-use Reveal\TwigPHPStanCompiler\TwigToPhpCompiler;
 
 final class TwigVariableNamesResolver implements UsedVariableNamesResolverInterface
 {
