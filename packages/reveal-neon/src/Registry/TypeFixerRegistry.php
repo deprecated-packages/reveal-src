@@ -9,6 +9,7 @@ use PHPStan\Rules\Classes\InstantiationRule;
 use PHPStan\Rules\FunctionCallParametersCheck;
 use PHPStan\Rules\Methods\CallMethodsRule;
 use PHPStan\Rules\Registry;
+use PHPStan\Rules\Rule;
 use Symplify\PackageBuilder\Reflection\PrivatesAccessor;
 use Symplify\PHPStanRules\Rules\ForbiddenFuncCallRule;
 use Symplify\PHPStanRules\Rules\NoDynamicNameRule;

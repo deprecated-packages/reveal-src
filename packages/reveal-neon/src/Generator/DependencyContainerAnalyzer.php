@@ -78,7 +78,7 @@ final class DependencyContainerAnalyzer
         foreach ($result->getErrors() as $error) {
             $ruleErrors[] = RuleErrorBuilder::message($error->getMessage())
                 ->file($error->getFile())
-                ->line($error->getLine())
+                ->line((int) $error->getLine())
                 ->build();
         }
 
