@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\TwigPHPStanCompiler;
+namespace Reveal\TwigPHPStanCompiler;
 
 use Nette\Utils\Strings;
 use PhpParser\Node\Stmt;
@@ -16,18 +16,18 @@ use Symplify\PackageBuilder\Reflection\PrivatesAccessor;
 use Symplify\SmartFileSystem\SmartFileSystem;
 use Symplify\TemplatePHPStanCompiler\ValueObject\PhpFileContentsWithLineMap;
 use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
-use Symplify\TwigPHPStanCompiler\ErrorReporting\TemplateLinesMapResolver;
-use Symplify\TwigPHPStanCompiler\Exception\TwigPHPStanCompilerException;
-use Symplify\TwigPHPStanCompiler\PhpParser\NodeVisitor\CollectForeachedVariablesNodeVisitor;
-use Symplify\TwigPHPStanCompiler\PhpParser\NodeVisitor\ExpandForeachContextNodeVisitor;
-use Symplify\TwigPHPStanCompiler\PhpParser\NodeVisitor\RemoveUselessClassMethodsNodeVisitor;
-use Symplify\TwigPHPStanCompiler\PhpParser\NodeVisitor\ReplaceEchoWithVarDocTypeNodeVisitor;
-use Symplify\TwigPHPStanCompiler\PhpParser\NodeVisitor\TwigGetAttributeExpanderNodeVisitor;
-use Symplify\TwigPHPStanCompiler\PhpParser\NodeVisitor\UnwrapCoalesceContextNodeVisitor;
-use Symplify\TwigPHPStanCompiler\PhpParser\NodeVisitor\UnwrapContextVariableNodeVisitor;
-use Symplify\TwigPHPStanCompiler\PhpParser\NodeVisitor\UnwrapTwigEnsureTraversableNodeVisitor;
-use Symplify\TwigPHPStanCompiler\Reflection\PublicPropertyAnalyzer;
-use Symplify\TwigPHPStanCompiler\Twig\TolerantTwigEnvironment;
+use Reveal\TwigPHPStanCompiler\ErrorReporting\TemplateLinesMapResolver;
+use Reveal\TwigPHPStanCompiler\Exception\TwigPHPStanCompilerException;
+use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\CollectForeachedVariablesNodeVisitor;
+use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\ExpandForeachContextNodeVisitor;
+use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\RemoveUselessClassMethodsNodeVisitor;
+use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\ReplaceEchoWithVarDocTypeNodeVisitor;
+use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\TwigGetAttributeExpanderNodeVisitor;
+use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\UnwrapCoalesceContextNodeVisitor;
+use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\UnwrapContextVariableNodeVisitor;
+use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\UnwrapTwigEnsureTraversableNodeVisitor;
+use Reveal\TwigPHPStanCompiler\Reflection\PublicPropertyAnalyzer;
+use Reveal\TwigPHPStanCompiler\Twig\TolerantTwigEnvironment;
 use Twig\Lexer;
 use Twig\Loader\ArrayLoader;
 use Twig\Node\ModuleNode;
@@ -37,7 +37,7 @@ use Twig\Token;
 use Twig\TokenStream;
 
 /**
- * @see \Symplify\TwigPHPStanCompiler\Tests\TwigToPhpCompiler\TwigToPhpCompilerTest
+ * @see \Reveal\TwigPHPStanCompiler\Tests\TwigToPhpCompiler\TwigToPhpCompilerTest
  */
 final class TwigToPhpCompiler
 {

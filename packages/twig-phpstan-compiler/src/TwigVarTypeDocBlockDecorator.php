@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\TwigPHPStanCompiler;
+namespace Reveal\TwigPHPStanCompiler;
 
 use PhpParser\NodeTraverser;
 use PhpParser\PrettyPrinter\Standard;
@@ -10,7 +10,7 @@ use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\Astral\PhpParser\SmartPhpParser;
 use Symplify\TemplatePHPStanCompiler\NodeFactory\VarDocNodeFactory;
 use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
-use Symplify\TwigPHPStanCompiler\PhpParser\NodeVisitor\AppendExtractedVarTypesNodeVisitor;
+use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\AppendExtractedVarTypesNodeVisitor;
 
 final class TwigVarTypeDocBlockDecorator
 {

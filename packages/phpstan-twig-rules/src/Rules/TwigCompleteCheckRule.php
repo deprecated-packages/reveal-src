@@ -20,7 +20,7 @@ use Symplify\TemplatePHPStanCompiler\PHPStan\FileAnalyserProvider;
 use Symplify\TemplatePHPStanCompiler\Reporting\TemplateErrorsFactory;
 use Symplify\TemplatePHPStanCompiler\TypeAnalyzer\TemplateVariableTypesResolver;
 use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
-use Symplify\TwigPHPStanCompiler\TwigToPhpCompiler;
+use Reveal\TwigPHPStanCompiler\TwigToPhpCompiler;
 
 /**
  * @see \Reveal\PHPStanTwigRules\Tests\Rules\TwigCompleteCheckRule\TwigCompleteCheckRuleTest

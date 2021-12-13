@@ -1,11 +1,11 @@
 services:
-    - Symplify\TwigPHPStanCompiler\TwigToPhpCompiler
-    - Symplify\TwigPHPStanCompiler\TwigVarTypeDocBlockDecorator
-    - Symplify\TwigPHPStanCompiler\ObjectTypeMethodAnalyzer
-    - Symplify\TwigPHPStanCompiler\Reflection\PublicPropertyAnalyzer
+    - Reveal\TwigPHPStanCompiler\TwigToPhpCompiler
+    - Reveal\TwigPHPStanCompiler\TwigVarTypeDocBlockDecorator
+    - Reveal\TwigPHPStanCompiler\ObjectTypeMethodAnalyzer
+    - Reveal\TwigPHPStanCompiler\Reflection\PublicPropertyAnalyzer
 
     # node analyzer
-    - Symplify\TwigPHPStanCompiler\NodeAnalyzer\TwigVariableNamesResolver
-    - Symplify\TwigPHPStanCompiler\NodeAnalyzer\MissingTwigTemplateRenderVariableResolver
-    - Symplify\TwigPHPStanCompiler\NodeAnalyzer\UnusedTwigTemplateVariableAnalyzer
-    - Symplify\TwigPHPStanCompiler\ErrorReporting\TemplateLinesMapResolver
+    - Reveal\TwigPHPStanCompiler\NodeAnalyzer\TwigVariableNamesResolver
+    - Reveal\TwigPHPStanCompiler\NodeAnalyzer\MissingTwigTemplateRenderVariableResolver
+    - Reveal\TwigPHPStanCompiler\NodeAnalyzer\UnusedTwigTemplateVariableAnalyzer
+    - Reveal\TwigPHPStanCompiler\ErrorReporting\TemplateLinesMapResolver

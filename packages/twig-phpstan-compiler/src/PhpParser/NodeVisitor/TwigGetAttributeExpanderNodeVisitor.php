@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\TwigPHPStanCompiler\PhpParser\NodeVisitor;
+namespace Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr;
@@ -22,8 +22,8 @@ use PHPStan\Type\UnionType;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\PHPStanRules\Exception\ShouldNotHappenException;
 use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
-use Symplify\TwigPHPStanCompiler\ObjectTypeMethodAnalyzer;
-use Symplify\TwigPHPStanCompiler\Reflection\PublicPropertyAnalyzer;
+use Reveal\TwigPHPStanCompiler\ObjectTypeMethodAnalyzer;
+use Reveal\TwigPHPStanCompiler\Reflection\PublicPropertyAnalyzer;
 
 final class TwigGetAttributeExpanderNodeVisitor extends NodeVisitorAbstract
 {

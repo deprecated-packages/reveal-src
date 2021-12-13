@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\TwigPHPStanCompiler\PhpParser\NodeVisitor;
+namespace Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor;
 
 use Nette\Utils\Strings;
 use PhpParser\Node;

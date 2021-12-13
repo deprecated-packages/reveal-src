@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Symplify\TwigPHPStanCompiler\ErrorReporting;
+namespace Reveal\TwigPHPStanCompiler\ErrorReporting;
 
 use PhpParser\NodeTraverser;
 use Symplify\Astral\PhpParser\SmartPhpParser;
-use Symplify\TwigPHPStanCompiler\PhpParser\NodeVisitor\PhpToTemplateLinesNodeVisitor;
+use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\PhpToTemplateLinesNodeVisitor;
 
 final class TemplateLinesMapResolver
 {

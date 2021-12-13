@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\TwigPHPStanCompiler\PhpParser\NodeVisitor;
+namespace Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor;
 
 use Nette\Utils\Strings;
 use PhpParser\Node;
@@ -12,8 +12,8 @@ use PhpParser\Node\Stmt\Nop;
 use PhpParser\NodeVisitorAbstract;
 use PHPStan\Type\ObjectType;
 use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
-use Symplify\TwigPHPStanCompiler\TwigToPhpCompiler;
-use Symplify\TwigPHPStanCompiler\ValueObject\VarTypeDoc;
+use Reveal\TwigPHPStanCompiler\TwigToPhpCompiler;
+use Reveal\TwigPHPStanCompiler\ValueObject\VarTypeDoc;
 
 final class ReplaceEchoWithVarDocTypeNodeVisitor extends NodeVisitorAbstract
 {

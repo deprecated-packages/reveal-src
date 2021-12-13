@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\TwigPHPStanCompiler;
+namespace Reveal\TwigPHPStanCompiler;
 
 use PHPStan\Type\TypeWithClassName;
 

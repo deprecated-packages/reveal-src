@@ -1,4 +1,4 @@
-{# @var someValue \Symplify\TwigPHPStanCompiler\Tests\TwigToPhpCompiler\Source\SomeDocType  #}
+{# @var someValue \Reveal\TwigPHPStanCompiler\Tests\TwigToPhpCompiler\Source\SomeDocType  #}
 {{ someValue.name }}
 -----
 <?php
@@ -29,7 +29,7 @@ class __TwigTemplate_%s extends \Twig\Template
     protected function doDisplay(array $context, array $blocks = [])
     {
         extract($context);
-        /** @var Symplify\TwigPHPStanCompiler\Tests\TwigToPhpCompiler\Source\SomeDocType $someValue */
+        /** @var Reveal\TwigPHPStanCompiler\Tests\TwigToPhpCompiler\Source\SomeDocType $someValue */
         $macros = $this->macros;
         // line 2
         echo \twig_escape_filter($this->env, $someValue->getName(), "html", \null, \true);

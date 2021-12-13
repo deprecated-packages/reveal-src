@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\TwigPHPStanCompiler\ValueObject;
+namespace Reveal\TwigPHPStanCompiler\ValueObject;
 
 final class VarTypeDoc
 {

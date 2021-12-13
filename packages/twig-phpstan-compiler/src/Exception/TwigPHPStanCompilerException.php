@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\TwigPHPStanCompiler\Exception;
+namespace Reveal\TwigPHPStanCompiler\Exception;
 
 use Exception;
 

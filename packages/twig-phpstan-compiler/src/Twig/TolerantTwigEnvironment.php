@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\TwigPHPStanCompiler\Twig;
+namespace Reveal\TwigPHPStanCompiler\Twig;
 
 use Twig\Environment;
 use Twig\TwigFilter;
