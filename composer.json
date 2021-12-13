@@ -31,16 +31,16 @@
     },
     "autoload": {
         "psr-4": {
+            "Reveal\\PHPStanTwigRules\\": "packages/phpstan-twig-rules/src",
             "Reveal\\RevealNeon\\": "packages/reveal-neon/src",
-            "Symplify\\PHPStanTwigRules\\": "packages/phpstan-twig-rules/src",
-            "Symplify\\TwigPHPStanCompiler\\": "packages/twig-phpstan-compiler/src"
+            "Reveal\\TwigPHPStanCompiler\\": "packages/twig-phpstan-compiler/src"
         }
     },
     "autoload-dev": {
         "psr-4": {
+            "Reveal\\PHPStanTwigRules\\Tests\\": "packages/phpstan-twig-rules/tests",
             "Reveal\\RevealNeon\\Tests\\": "packages/reveal-neon/tests",
-            "Symplify\\PHPStanTwigRules\\Tests\\": "packages/phpstan-twig-rules/tests",
-            "Symplify\\TwigPHPStanCompiler\\Tests\\": "packages/twig-phpstan-compiler/tests"
+            "Reveal\\TwigPHPStanCompiler\\Tests\\": "packages/twig-phpstan-compiler/tests"
         }
     },
     "scripts": {

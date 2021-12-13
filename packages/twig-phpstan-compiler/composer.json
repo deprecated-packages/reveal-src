@@ -20,12 +20,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Symplify\\TwigPHPStanCompiler\\": "src"
+            "Reveal\\TwigPHPStanCompiler\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Symplify\\TwigPHPStanCompiler\\Tests\\": "tests"
+            "Reveal\\TwigPHPStanCompiler\\Tests\\": "tests"
         }
     },
     "extra": {

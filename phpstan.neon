@@ -8,6 +8,9 @@ parameters:
     excludePaths:
         - packages/reveal-neon/src/Generator/local-temp
         - packages/reveal-neon/tests/Rules/AnalyzeNeonRule/Source
+        - packages/twig-phpstan-compiler/tests/TwigToPhpCompiler/Source
+        - packages/phpstan-twig-rules/tests/Rules/TwigCompleteCheckRule/Source
+        - packages/*/tests/*/Fixture*
     ignoreErrors:
         - '#Method Reveal\\(.*?)Test\:\:provideData\(\) return type has no value type specified in iterable type Iterator#'
 
@@ -18,3 +21,8 @@ parameters:
         - '#PHPStan\\Rules\\Registry(.*?) is not covered by backward compatibility promise\. The (.*?) might change in a minor PHPStan version#'
         - '#Calling PHPStan\\DependencyInjection\\DerivativeContainerFactory\:\:create\(\) is not covered by backward compatibility promise\. The method might change in a minor PHPStan version#'
         - '#Calling PHPStan\\Analyser\\FileAnalyser(.*?) is not covered by backward compatibility promise\. The (.*?) might change in a minor PHPStan version#'
+
+        # known type in tests
+        -
+            message: '#Cannot cast mixed to string#'
+            path: packages/twig-phpstan-compiler/tests/TwigToPhpCompiler/

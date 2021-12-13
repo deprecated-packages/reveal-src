@@ -22,12 +22,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Symplify\\PHPStanTwigRules\\": "src"
+            "Reveal\\PHPStanTwigRules\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Symplify\\PHPStanTwigRules\\Tests\\": "tests"
+            "Reveal\\PHPStanTwigRules\\Tests\\": "tests"
         }
     },
     "extra": {

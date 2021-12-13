@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Symplify\TwigPHPStanCompiler\NodeAnalyzer;
 
 use PHPStan\Analyser\Scope;
-use Reveal\TemplatePHPStanCompiler\NodeAnalyzer\ParametersArrayAnalyzer;
-use Reveal\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
+use Symplify\TemplatePHPStanCompiler\NodeAnalyzer\ParametersArrayAnalyzer;
+use Symplify\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
 
 /**
  * @api

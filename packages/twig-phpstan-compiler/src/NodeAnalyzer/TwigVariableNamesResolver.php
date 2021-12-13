@@ -6,10 +6,10 @@ namespace Symplify\TwigPHPStanCompiler\NodeAnalyzer;
 
 use PhpParser\NodeFinder;
 use PhpParser\NodeTraverser;
-use Reveal\TemplatePHPStanCompiler\Contract\UsedVariableNamesResolverInterface;
-use Reveal\TemplatePHPStanCompiler\NodeVisitor\TemplateVariableCollectingNodeVisitor;
-use Reveal\TemplatePHPStanCompiler\PhpParser\ParentNodeAwarePhpParser;
 use Symplify\Astral\Naming\SimpleNameResolver;
+use Symplify\TemplatePHPStanCompiler\Contract\UsedVariableNamesResolverInterface;
+use Symplify\TemplatePHPStanCompiler\NodeVisitor\TemplateVariableCollectingNodeVisitor;
+use Symplify\TemplatePHPStanCompiler\PhpParser\ParentNodeAwarePhpParser;
 use Symplify\TwigPHPStanCompiler\TwigToPhpCompiler;
 
 final class TwigVariableNamesResolver implements UsedVariableNamesResolverInterface
