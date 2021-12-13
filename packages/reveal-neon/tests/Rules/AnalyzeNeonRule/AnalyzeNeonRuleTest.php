@@ -7,6 +7,7 @@ namespace Reveal\RevealNeon\Tests\Rules\AnalyzeNeonRule;
 use Iterator;
 use PHPStan\Rules\Rule;
 use Reveal\RevealNeon\Rules\AnalyzeNeonRule;
+use Reveal\RevealNeon\Tests\Rules\AnalyzeNeonRule\Source\ExistingServiceWithConstructor;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
@@ -25,8 +26,11 @@ final class AnalyzeNeonRuleTest extends AbstractServiceAwareRuleTestCase
 
     public function provideData(): Iterator
     {
-        $errorMessage = 'Specific error message';
-        yield [__DIR__ . '/Fixture/GeneratedFakeImporter.php', [[$errorMessage, 14]]];
+        $errorMessage = sprintf(
+            'Parameter #1 $name of class %s constructor expects string, int given.',
+            ExistingServiceWithConstructor::class
+        );
+        yield [__DIR__ . '/Fixture/GeneratedFakeImporter.php', [[$errorMessage, 40]]];
     }
 
     protected function getRule(): Rule

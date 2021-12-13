@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Reveal\RevealNeon\Registry;
 
 use PhpParser\Node;
-use PhpParser\Node\Expr\MethodCall;
+use PHPStan\Rules\Classes\InstantiationRule;
 use PHPStan\Rules\FunctionCallParametersCheck;
 use PHPStan\Rules\Methods\CallMethodsRule;
 use PHPStan\Rules\Registry;
@@ -14,7 +14,7 @@ use Symplify\PHPStanRules\Rules\ForbiddenFuncCallRule;
 use Symplify\PHPStanRules\Rules\NoDynamicNameRule;
 use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
 
-final class MethodCallTypeFixerRegistry extends Registry
+final class TypeFixerRegistry extends Registry
 {
     /**
      * @var array<class-string<DocumentedRuleInterface>>
@@ -40,21 +40,23 @@ final class MethodCallTypeFixerRegistry extends Registry
         $activeRules = parent::getRules($nodeType);
 
         // only fix in a weird test case setup
-        if (defined('PHPUNIT_COMPOSER_INSTALL') && $nodeType === MethodCall::class) {
+        if (defined('PHPUNIT_COMPOSER_INSTALL')) {
             $privatesAccessor = new PrivatesAccessor();
 
             foreach ($activeRules as $activeRule) {
-                if (! $activeRule instanceof CallMethodsRule) {
+                if (! $activeRule instanceof CallMethodsRule && ! $activeRule instanceof InstantiationRule) {
                     continue;
                 }
 
-                dump(get_class($activeRule));
-                die;
-
-                /** @var CallMethodsRule $activeRule */
-                /** @var FunctionCallParametersCheck $check */
-                $check = $privatesAccessor->getPrivateProperty($activeRule, 'parametersCheck');
-                $privatesAccessor->setPrivateProperty($check, 'checkArgumentTypes', true);
+                if ($activeRule instanceof CallMethodsRule) {
+                    /** @var FunctionCallParametersCheck $check */
+                    $check = $privatesAccessor->getPrivateProperty($activeRule, 'parametersCheck');
+                    $privatesAccessor->setPrivateProperty($check, 'checkArgumentTypes', true);
+                } elseif ($activeRule instanceof InstantiationRule) {
+                    /** @var FunctionCallParametersCheck $check */
+                    $check = $privatesAccessor->getPrivateProperty($activeRule, 'check');
+                    $privatesAccessor->setPrivateProperty($check, 'checkArgumentTypes', true);
+                }
             }
         }
 

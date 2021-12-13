@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Reveal\RevealNeon\Rules;
 
-use http\Client\Curl\User;
 use PhpParser\Node;
 use PhpParser\Node\Expr\BinaryOp\Concat;
 use PhpParser\Node\Expr\Include_;
@@ -13,7 +12,7 @@ use PHPStan\Rules\Registry;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleError;
 use Reveal\RevealNeon\Generator\DependencyContainerAnalyzer;
-use Reveal\RevealNeon\Registry\MethodCallTypeFixerRegistry;
+use Reveal\RevealNeon\Registry\TypeFixerRegistry;
 use Symplify\Astral\NodeValue\NodeValueResolver;
 
 /**
@@ -33,7 +32,7 @@ final class AnalyzeNeonRule implements Rule
         private DependencyContainerAnalyzer $dependencyContainerAnalyzer,
         array $rules
     ) {
-        $this->currentRegistry = new MethodCallTypeFixerRegistry($rules);
+        $this->currentRegistry = new TypeFixerRegistry($rules);
     }
 
     public function getNodeType(): string
@@ -64,13 +63,6 @@ final class AnalyzeNeonRule implements Rule
             return [];
         }
 
-        dump($filePath);
-
-        $errors = $this->dependencyContainerAnalyzer->analyseConfig($filePath, $this->currentRegistry);
-
-        dump($errors);
-        die;
-
-        return [];
+        return $this->dependencyContainerAnalyzer->analyseConfig($filePath, $this->currentRegistry);
     }
 }

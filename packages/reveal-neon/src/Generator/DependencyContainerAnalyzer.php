@@ -8,12 +8,10 @@ use Nette\Configurator;
 use Nette\DI\ServiceCreationException;
 use Nette\Utils\FileSystem;
 use Nette\Utils\Strings;
-use PhpParser\Node\Expr\New_;
 use PHPStan\Rules\Registry;
 use PHPStan\Rules\RuleError;
 use PHPStan\Rules\RuleErrorBuilder;
 use Reveal\RevealNeon\PHPStan\FileAnalyserProvider;
-use Symplify\PackageBuilder\Reflection\PrivatesAccessor;
 use Webmozart\Assert\Assert;
 
 /**
@@ -44,10 +42,10 @@ final class DependencyContainerAnalyzer
         $configurator->addConfig($servicesFilePath);
 
         // clear to make sure we work with 1 file at a time
-//        FileSystem::delete($tempDirectory);
+        FileSystem::delete($tempDirectory);
 
         try {
-//            $configurator->createContainer();
+            $configurator->createContainer();
         } catch (ServiceCreationException $serviceCreationException) {
             $match = Strings::match($serviceCreationException->getMessage(), self::CLASS_NAME_REGEX);
             if ($match !== null) {
@@ -77,24 +75,20 @@ final class DependencyContainerAnalyzer
 
         $fileAnalyser = $this->fileAnalyserProvider->provide();
 
-        $privatesAccessor = new PrivatesAccessor();
-        $rulesCount = $privatesAccessor->getPrivateProperty($registry, 'rules');
-        dump(count($rulesCount));
-
-
         $result = $fileAnalyser->analyseFile($containerCacheFile, [], $registry, null);
 
-        dump($result->getErrors());
-        die;
+        $ruleErrors = [];
+        foreach ($result->getErrors() as $error) {
+            $ruleErrors[] = RuleErrorBuilder::message($error->getMessage())
+                ->file($error->getFile())
+                ->line($error->getLine())
+                ->build();
+        }
 
         // 2. clean it from decoration code
 
         // 3. analyse the clean file
 
-        // @todo analyse errors
-        dump('___');
-        die;
-
-        return [];
+        return $ruleErrors;
     }
 }
