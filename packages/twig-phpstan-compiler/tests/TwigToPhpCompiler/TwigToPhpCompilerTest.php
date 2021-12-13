@@ -75,7 +75,8 @@ final class TwigToPhpCompilerTest extends TestCase
     {
         $configs = [
             __DIR__ . '/../../../../packages/twig-phpstan-compiler/config/services.neon',
-            __DIR__ . '/../../../../packages/phpstan-rules/config/services/services.neon',
+            __DIR__ . '/../../../../vendor/symplify/astral/config/services.neon',
+            __DIR__ . '/../../../../vendor/symplify/template-phpstan-compiler/config/services.neon',
         ];
 
         $phpStanContainerFactory = new PHPStanContainerFactory();
