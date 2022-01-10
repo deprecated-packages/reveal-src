@@ -11,14 +11,12 @@ parameters:
         - packages/twig-phpstan-compiler/tests/TwigToPhpCompiler/Source
         - packages/phpstan-twig-rules/tests/Rules/TwigCompleteCheckRule/Source
         - packages/*/tests/*/Fixture*
+
     ignoreErrors:
         - '#Method Reveal\\(.*?)Test\:\:provideData\(\) return type has no value type specified in iterable type Iterator#'
 
-        # generics mash-up
-        - '#Method Reveal\\RevealNeon\\Rules\\AnalyzeNeonRule\:\:__construct\(\) has parameter \$rules with generic interface PHPStan\\Rules\\Rule but does not specify its types\: TNodeType#'
-
         # BC promise
-        - '#Method Reveal\\PHPStanTwigRules\\Rules\\TwigCompleteCheckRule\:\:__construct\(\) has parameter \$rules with generic interface PHPStan\\Rules\\Rule but does not specify its types\: TNodeType#'
+        - '#(.*?) interface PHPStan\\Rules\\Rule but does not specify its types\: TNodeType#'
 
         - '#(.*?) is not covered by backward compatibility promise\. The (.*?) might change in a minor PHPStan version#'
 
