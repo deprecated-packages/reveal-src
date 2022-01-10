@@ -11,6 +11,8 @@ use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Stmt;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Echo_;
+use PhpParser\Node\Stmt\Expression;
+use PhpParser\Node\Stmt\Nop;
 use PhpParser\NodeTraverser;
 use PhpParser\NodeVisitorAbstract;
 use Symplify\Astral\Naming\SimpleNameResolver;
@@ -43,7 +45,24 @@ final class ExtractDoDisplayStmtsNodeVisitor extends NodeVisitorAbstract
 
         foreach ($node->stmts as $stmt) {
             if ($this->isMacrosAssign($stmt)) {
+                $docComment = $stmt->getDocComment();
+                if ($docComment === null) {
+                    continue;
+                }
+                // keep @var doc types
+                $nop = new Nop();
+                $nop->setDocComment($docComment);
+                $this->doDisplayStmts[] = $nop;
                 continue;
+            }
+
+            if ($stmt instanceof Expression) {
+                if ($stmt->expr instanceof FuncCall) {
+                    $funcCall = $stmt->expr;
+                    if ($this->simpleNameResolver->isName($funcCall, 'extract')) {
+                        continue;
+                    }
+                }
             }
 
             // unwrap "echo twig_escape_filter(..., $variable);"
@@ -73,7 +92,7 @@ final class ExtractDoDisplayStmtsNodeVisitor extends NodeVisitorAbstract
 
     private function isMacrosAssign(Stmt $stmt): bool
     {
-        if (! $stmt instanceof Stmt\Expression) {
+        if (! $stmt instanceof Expression) {
             return false;
         }
 

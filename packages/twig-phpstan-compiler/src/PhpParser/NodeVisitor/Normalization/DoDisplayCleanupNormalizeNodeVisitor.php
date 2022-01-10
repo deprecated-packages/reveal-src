@@ -32,6 +32,13 @@ final class DoDisplayCleanupNormalizeNodeVisitor extends NodeVisitorAbstract imp
             return null;
         }
 
+        if ($node->expr instanceof Node\Expr\FuncCall) {
+            $funcCall = $node->expr;
+            if ($this->simpleNameResolver->isName($funcCall->name, 'extract')) {
+                return NodeTraverser::REMOVE_NODE;
+            }
+        }
+
         $expr = $node->expr;
         if ($expr instanceof Assign) {
             if ($expr->var instanceof Variable) {

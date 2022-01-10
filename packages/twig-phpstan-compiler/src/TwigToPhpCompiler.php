@@ -155,10 +155,18 @@ final class TwigToPhpCompiler
 
         // get do display method contents
 
+        $phpContent = $this->printerStandard->prettyPrintFile($stmts);
+        $fileContent = $this->twigVarTypeDocBlockDecorator->decorateTwigContentWithTypes($phpContent, $variablesAndTypes);
+
+        $stmts = $this->parser->parse($fileContent);
+        if ($stmts === null) {
+            throw new TwigPHPStanCompilerException();
+        }
+
         $stmts = $this->extractDoDisplayStmts($stmts);
 
-        $phpContent = $this->printerStandard->prettyPrintFile($stmts);
-        return $this->twigVarTypeDocBlockDecorator->decorateTwigContentWithTypes($phpContent, $variablesAndTypes);
+        $printerStandard = new Standard();
+        return $printerStandard->prettyPrintFile($stmts) . PHP_EOL;
     }
 
     /**
