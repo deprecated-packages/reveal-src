@@ -44,7 +44,6 @@ final class TwigCompleteCheckRule extends AbstractSymplifyRule
         '#Do not use chained method calls\. Put each on separated lines#',
         // ob_start contents magic on {% set %} ...
         '#Anonymous function should have native return typehint "string"#',
-        '#Parameter "blocks" cannot have default value#',
     ];
 
     private Registry $registry;

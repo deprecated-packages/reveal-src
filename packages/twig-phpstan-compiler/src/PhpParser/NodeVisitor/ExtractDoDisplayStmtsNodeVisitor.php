@@ -13,7 +13,6 @@ use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Echo_;
 use PhpParser\Node\Stmt\Expression;
 use PhpParser\Node\Stmt\Nop;
-use PhpParser\NodeTraverser;
 use PhpParser\NodeVisitorAbstract;
 use Symplify\Astral\Naming\SimpleNameResolver;
 
@@ -42,7 +41,7 @@ final class ExtractDoDisplayStmtsNodeVisitor extends NodeVisitorAbstract
             return null;
         }
 
-        if (! $this->simpleNameResolver->isName($node, 'doDisplay')) {
+        if (! $this->simpleNameResolver->isNames($node, ['doDisplay', 'block_*'])) {
             return null;
         }
 
@@ -63,12 +62,10 @@ final class ExtractDoDisplayStmtsNodeVisitor extends NodeVisitorAbstract
                 continue;
             }
 
-            if ($stmt instanceof Expression) {
-                if ($stmt->expr instanceof FuncCall) {
-                    $funcCall = $stmt->expr;
-                    if ($this->simpleNameResolver->isName($funcCall, 'extract')) {
-                        continue;
-                    }
+            if ($stmt instanceof Expression && $stmt->expr instanceof FuncCall) {
+                $funcCall = $stmt->expr;
+                if ($this->simpleNameResolver->isName($funcCall, 'extract')) {
+                    continue;
                 }
             }
 
@@ -86,7 +83,7 @@ final class ExtractDoDisplayStmtsNodeVisitor extends NodeVisitorAbstract
             $this->doDisplayStmts[] = $stmt;
         }
 
-        return NodeTraverser::STOP_TRAVERSAL;
+        return null;
     }
 
     /**

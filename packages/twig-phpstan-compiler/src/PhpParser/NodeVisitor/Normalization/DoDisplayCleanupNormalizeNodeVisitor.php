@@ -6,6 +6,7 @@ namespace Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\Normalization;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\Assign;
+use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Stmt\Expression;
 use PhpParser\Node\Stmt\Unset_;
@@ -24,6 +25,15 @@ final class DoDisplayCleanupNormalizeNodeVisitor extends NodeVisitorAbstract imp
 
     public function leaveNode(Node $node)
     {
+        if ($node instanceof Expression) {
+            $expr = $node->expr;
+            if ($expr instanceof MethodCall) {
+                if ($this->simpleNameResolver->isName($expr->name, 'displayBlock')) {
+                    return NodeTraverser::REMOVE_NODE;
+                }
+            }
+        }
+
         if ($node instanceof Unset_) {
             return NodeTraverser::REMOVE_NODE;
         }

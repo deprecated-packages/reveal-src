@@ -25,9 +25,9 @@ final class NoTwigMissingVariableRuleTest extends AbstractServiceAwareRuleTestCa
 
     public function provideData(): Iterator
     {
-//        yield [__DIR__ . '/Fixture/SomeMissingVariableController.php', [
-//            [sprintf(NoTwigMissingVariableRule::ERROR_MESSAGE, 'missing_variable'), 14],
-//        ]];
+        yield [__DIR__ . '/Fixture/SomeMissingVariableController.php', [
+            [sprintf(NoTwigMissingVariableRule::ERROR_MESSAGE, 'missing_variable'), 14],
+        ]];
 
         yield [__DIR__ . '/Fixture/SkipUsedVariable.php', []];
         yield [__DIR__ . '/Fixture/SkipForeachVariable.php', []];
