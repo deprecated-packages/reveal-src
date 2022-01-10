@@ -41,7 +41,6 @@ final class TwigCompleteCheckRule extends AbstractSymplifyRule
         '#Method __TwigTemplate(.*?)::doDisplay\(\) throws checked exception Twig\\\\Error\\\\RuntimeError#',
         '#Call to method (getSourceContext|loadTemplate)\(\) on an unknown class __TwigTemplate(.*?)#',
         '#Use separate function calls with readable variable names#',
-        '#Property __TwigTemplate_(.*?)\:\:\$source is never read, only written#',
         '#Separate function "array_merge\(\)" in method call to standalone row to improve readability#',
         '#Function "extract\(\)" cannot be used/left in the code#',
         '#Array method calls \[\$this, "method"\] are not allowed\. Use explicit method instead to help PhpStorm, PHPStan and Rector understand your code#',

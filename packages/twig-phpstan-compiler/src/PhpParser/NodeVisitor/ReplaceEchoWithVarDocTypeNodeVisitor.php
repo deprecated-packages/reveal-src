@@ -11,7 +11,7 @@ use PhpParser\Node\Stmt\Echo_;
 use PhpParser\Node\Stmt\Nop;
 use PhpParser\NodeVisitorAbstract;
 use PHPStan\Type\ObjectType;
-use Reveal\TwigPHPStanCompiler\TwigToPhpCompiler;
+use Reveal\TwigPHPStanCompiler\DocBlock\NonVarTypeDocBlockCleaner;
 use Reveal\TwigPHPStanCompiler\ValueObject\VarTypeDoc;
 use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 
@@ -45,7 +45,7 @@ final class ReplaceEchoWithVarDocTypeNodeVisitor extends NodeVisitorAbstract
 
         $string = $node->exprs[0];
 
-        $match = Strings::match($string->value, TwigToPhpCompiler::TWIG_VAR_TYPE_DOCBLOCK_REGEX);
+        $match = Strings::match($string->value, NonVarTypeDocBlockCleaner::TWIG_VAR_TYPE_DOCBLOCK_REGEX);
         if ($match === null) {
             return null;
         }

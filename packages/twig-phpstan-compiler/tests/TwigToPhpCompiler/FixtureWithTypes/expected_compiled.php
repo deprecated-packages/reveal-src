@@ -19,7 +19,6 @@ class __TwigTemplate_%s extends \Twig\Template
     public function __construct(\Twig\Environment $env)
     {
         parent::__construct($env);
-        $this->source = $this->getSourceContext();
         $this->parent = \false;
         $this->blocks = [];
     }
