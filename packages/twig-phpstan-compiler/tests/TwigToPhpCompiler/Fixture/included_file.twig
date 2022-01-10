@@ -3,5 +3,4 @@
 <?php
 
 // line 1
-$posts = $posts;
-include_once "_some_file.twig";
+\load_template("_some_file.twig", ["posts" => $posts]);

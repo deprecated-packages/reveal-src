@@ -13,3 +13,4 @@ services:
 
     # node visitors
     - Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\ExtractDoDisplayStmtsNodeVisitor
+    - Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\Normalization\LoadTemplateNormalizeNodeVisitor

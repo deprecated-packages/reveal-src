@@ -6,9 +6,11 @@ namespace Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\Assign;
+use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Stmt;
 use PhpParser\Node\Stmt\ClassMethod;
+use PhpParser\Node\Stmt\Echo_;
 use PhpParser\NodeTraverser;
 use PhpParser\NodeVisitorAbstract;
 use Symplify\Astral\Naming\SimpleNameResolver;
@@ -44,18 +46,16 @@ final class ExtractDoDisplayStmtsNodeVisitor extends NodeVisitorAbstract
                 continue;
             }
 
-            // unwrap echo twig_escape_filter()
-            if ($stmt instanceof Stmt\Echo_) {
+            // unwrap "echo twig_escape_filter(..., $variable);"
+            // to "echo $variable;"
+            if ($stmt instanceof Echo_) {
                 $onlyExpr = $stmt->exprs[0];
-                if ($onlyExpr instanceof Node\Expr\FuncCall && $this->simpleNameResolver->isName($onlyExpr, 'twig_escape_filter')) {
+                if ($onlyExpr instanceof FuncCall && $this->simpleNameResolver->isName($onlyExpr, 'twig_escape_filter')) {
                     $funcCall = $onlyExpr;
 
                     $stmt->exprs = [$funcCall->getArgs()[1]->value];
                 }
             }
-
-            // inline $this->loadTemplate() to include_once
-            // @todo
 
             $this->doDisplayStmts[] = $stmt;
         }
