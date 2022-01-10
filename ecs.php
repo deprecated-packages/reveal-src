@@ -14,6 +14,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         __DIR__ . '/packages',
     ]);
 
+    $parameters->set(Option::PARALLEL, true);
+
     $parameters->set(Option::SKIP, [
         PhpUnitStrictFixer::class => [
             // compare content of 2 objects, not identical object
@@ -24,6 +26,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     ]);
 
     // run and fix, one by one
+    $containerConfigurator->import(SetList::CLEAN_CODE);
     $containerConfigurator->import(SetList::COMMON);
     $containerConfigurator->import(SetList::PSR_12);
 };

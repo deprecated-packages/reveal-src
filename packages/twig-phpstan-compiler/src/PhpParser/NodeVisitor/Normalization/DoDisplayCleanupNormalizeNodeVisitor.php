@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\Normalization;
 
 use PhpParser\Node;
+use PhpParser\Node\Expr;
+use PhpParser\Node\Expr\ArrayDimFetch;
 use PhpParser\Node\Expr\Assign;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Stmt\Expression;
+use PhpParser\Node\Stmt\Foreach_;
 use PhpParser\Node\Stmt\Unset_;
 use PhpParser\NodeTraverser;
 use PhpParser\NodeVisitorAbstract;
@@ -31,6 +34,22 @@ final class DoDisplayCleanupNormalizeNodeVisitor extends NodeVisitorAbstract imp
                 if ($this->simpleNameResolver->isName($expr->name, 'displayBlock')) {
                     return NodeTraverser::REMOVE_NODE;
                 }
+            }
+
+            if ($expr instanceof Assign && $this->isContextVariable($expr->expr)) {
+                return NodeTraverser::REMOVE_NODE;
+            }
+        }
+
+        if ($node instanceof Foreach_) {
+            if ($node->keyVar instanceof ArrayDimFetch) {
+                $arrayDimFetch = $node->keyVar;
+                if ($this->isContextVariable($arrayDimFetch->var)) {
+                    // remove $context['...'] key
+                    $node->keyVar = null;
+                }
+
+                return $node;
             }
         }
 
@@ -60,5 +79,14 @@ final class DoDisplayCleanupNormalizeNodeVisitor extends NodeVisitorAbstract imp
         }
 
         return null;
+    }
+
+    private function isContextVariable(Expr $expr): bool
+    {
+        if (! $expr instanceof Variable) {
+            return false;
+        }
+
+        return $this->simpleNameResolver->isName($expr, 'context');
     }
 }
