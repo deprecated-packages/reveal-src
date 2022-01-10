@@ -1,11 +1,26 @@
 services:
     defaultAnalysisParser:
-        factory: @cachedCurrentPhpVersionRichParser
+        factory: @pathRoutingParser
         arguments!: []
 
-    cachedCurrentPhpVersionRichParser:
+    cachedRectorParser:
         class: PHPStan\Parser\CachedParser
         arguments:
-             originalParser: @currentPhpVersionRichParser
-             cachedNodesByStringCountMax: 1024
+            originalParser: @customParser
+            cachedNodesByStringCountMax: %cache.nodesByStringCountMax%
+        autowired: false
+
+    pathRoutingParser:
+        class: PHPStan\Parser\PathRoutingParser
+        arguments:
+            currentPhpVersionRichParser: @cachedRectorParser
+            currentPhpVersionSimpleParser: @cachedRectorParser
+            php8Parser: @php8Parser
+        autowired: false
+
+    customParser:
+        class: PHPStan\Parser\RichParser
+        arguments:
+            parser: @currentPhpVersionPhpParser
+            lexer: @currentPhpVersionLexer
         autowired: no
