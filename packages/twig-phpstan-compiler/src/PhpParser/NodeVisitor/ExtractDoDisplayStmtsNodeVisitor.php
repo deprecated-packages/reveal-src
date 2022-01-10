@@ -44,6 +44,7 @@ final class ExtractDoDisplayStmtsNodeVisitor extends NodeVisitorAbstract
                 continue;
             }
 
+            // unwrap echo twig_escape_filter()
             if ($stmt instanceof Stmt\Echo_) {
                 $onlyExpr = $stmt->exprs[0];
                 if ($onlyExpr instanceof Node\Expr\FuncCall && $this->simpleNameResolver->isName($onlyExpr, 'twig_escape_filter')) {
@@ -52,6 +53,9 @@ final class ExtractDoDisplayStmtsNodeVisitor extends NodeVisitorAbstract
                     $stmt->exprs = [$funcCall->getArgs()[1]->value];
                 }
             }
+
+            // inline $this->loadTemplate() to include_once
+            // @todo
 
             $this->doDisplayStmts[] = $stmt;
         }
