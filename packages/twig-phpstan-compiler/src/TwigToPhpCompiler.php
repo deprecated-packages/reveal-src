@@ -6,7 +6,6 @@ namespace Reveal\TwigPHPStanCompiler;
 
 use PhpParser\Node\Stmt;
 use PhpParser\NodeTraverser;
-use PhpParser\NodeVisitor\NodeConnectingVisitor;
 use PhpParser\NodeVisitorAbstract;
 use PhpParser\Parser;
 use PhpParser\ParserFactory;
@@ -54,6 +53,7 @@ final class TwigToPhpCompiler
         private NonVarTypeDocBlockCleaner $nonVarTypeDocBlockCleaner,
         private ExtractDoDisplayStmtsNodeVisitor $extractDoDisplayStmtsNodeVisitor,
         private LoadTemplateNormalizeNodeVisitor $loadTemplateNormalizeNodeVisitor,
+        private \Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\Normalization\LoadParentTemplateNormalizeNodeVisitor $loadParentTemplateNormalizeNodeVisitor,
     ) {
         // avoids unneeded caching from phpstan parser, we need to change content of same file based on provided variable types
         $parserFactory = new ParserFactory();
@@ -117,9 +117,6 @@ final class TwigToPhpCompiler
             throw new TwigPHPStanCompilerException();
         }
 
-        // connect parent types
-        $this->traverseStmtsWithVisitors($stmts, [new NodeConnectingVisitor()]);
-
         // -1. remove useless class methods
         $removeUselessClassMethodsNodeVisitor = new RemoveUselessClassMethodsNodeVisitor();
         $this->traverseStmtsWithVisitors($stmts, [$removeUselessClassMethodsNodeVisitor]);
@@ -150,7 +147,9 @@ final class TwigToPhpCompiler
 
         $this->traverseStmtsWithVisitors($stmts, [$twigGetAttributeExpanderNodeVisitor]);
 
+        // clean content
         $this->traverseStmtsWithVisitors($stmts, [$this->loadTemplateNormalizeNodeVisitor]);
+        $this->traverseStmtsWithVisitors($stmts, [$this->loadParentTemplateNormalizeNodeVisitor]);
 
         // get do display method contents
 
