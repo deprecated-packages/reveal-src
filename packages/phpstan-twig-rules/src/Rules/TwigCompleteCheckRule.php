@@ -38,20 +38,13 @@ final class TwigCompleteCheckRule extends AbstractSymplifyRule
      * @var string[]
      */
     private const ERROR_IGNORES = [
-        '#Method __TwigTemplate(.*?)::doDisplay\(\) throws checked exception Twig\\\\Error\\\\RuntimeError#',
-        '#Call to method (getSourceContext|loadTemplate)\(\) on an unknown class __TwigTemplate(.*?)#',
         '#Use separate function calls with readable variable names#',
         '#Separate function "array_merge\(\)" in method call to standalone row to improve readability#',
-        '#Function "extract\(\)" cannot be used/left in the code#',
         '#Array method calls \[\$this, "method"\] are not allowed\. Use explicit method instead to help PhpStorm, PHPStan and Rector understand your code#',
-        '#Access to property \$(parent|source|macros|blocks) on an unknown class __TwigTemplate_(.*?)#',
-        '#Class __TwigTemplate_(.*?) was not found while trying to analyse it \- discovering symbols is probably not configured properly#',
         '#Do not use chained method calls\. Put each on separated lines#',
-        '#Access to property \$env on an unknown class __TwigTemplate_(.*?)#',
         // ob_start contents magic on {% set %} ...
         '#Anonymous function should have native return typehint "string"#',
         '#Parameter "blocks" cannot have default value#',
-        '#Separate function "twig_array_merge\(\)" in method call to standalone row to improve readability#',
     ];
 
     private Registry $registry;
