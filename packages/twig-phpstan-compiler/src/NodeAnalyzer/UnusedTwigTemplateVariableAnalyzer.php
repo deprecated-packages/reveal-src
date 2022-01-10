@@ -6,7 +6,7 @@ namespace Reveal\TwigPHPStanCompiler\NodeAnalyzer;
 
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
-use Symplify\TemplatePHPStanCompiler\NodeAnalyzer\MethodCallArrayResolver;
+use Reveal\TemplatePHPStanCompiler\NodeAnalyzer\MethodCallArrayResolver;
 
 /**
  * @api

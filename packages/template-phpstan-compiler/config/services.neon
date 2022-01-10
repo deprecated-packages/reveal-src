@@ -1,0 +1,15 @@
+services:
+    - Reveal\TemplatePHPStanCompiler\PHPStan\FileAnalyserProvider
+
+    - Reveal\TemplatePHPStanCompiler\NodeFactory\VarDocNodeFactory
+
+    - Reveal\TemplatePHPStanCompiler\NodeAnalyzer\MethodCallArrayResolver
+    - Reveal\TemplatePHPStanCompiler\NodeAnalyzer\ParametersArrayAnalyzer
+    - Reveal\TemplatePHPStanCompiler\NodeAnalyzer\TemplateFilePathResolver
+
+    - Reveal\TemplatePHPStanCompiler\TypeAnalyzer\TemplateVariableTypesResolver
+
+    - Reveal\TemplatePHPStanCompiler\PhpParser\ParentNodeAwarePhpParser
+    - Reveal\TemplatePHPStanCompiler\Reporting\TemplateErrorsFactory
+
+    - Reveal\TemplatePHPStanCompiler\ErrorSkipper

@@ -11,9 +11,9 @@ use PhpParser\Node\Stmt\Echo_;
 use PhpParser\Node\Stmt\Nop;
 use PhpParser\NodeVisitorAbstract;
 use PHPStan\Type\ObjectType;
+use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Reveal\TwigPHPStanCompiler\DocBlock\NonVarTypeDocBlockCleaner;
 use Reveal\TwigPHPStanCompiler\ValueObject\VarTypeDoc;
-use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 
 final class ReplaceEchoWithVarDocTypeNodeVisitor extends NodeVisitorAbstract
 {

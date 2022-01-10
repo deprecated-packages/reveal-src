@@ -11,16 +11,16 @@ use PHPStan\Rules\Registry;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleError;
 use Reveal\PHPStanTwigRules\NodeAnalyzer\SymfonyRenderWithParametersMatcher;
+use Reveal\TemplatePHPStanCompiler\ErrorSkipper;
+use Reveal\TemplatePHPStanCompiler\PHPStan\FileAnalyserProvider;
+use Reveal\TemplatePHPStanCompiler\Reporting\TemplateErrorsFactory;
+use Reveal\TemplatePHPStanCompiler\TypeAnalyzer\TemplateVariableTypesResolver;
+use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Reveal\TwigPHPStanCompiler\TwigToPhpCompiler;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Symplify\SmartFileSystem\SmartFileSystem;
-use Symplify\TemplatePHPStanCompiler\ErrorSkipper;
-use Symplify\TemplatePHPStanCompiler\PHPStan\FileAnalyserProvider;
-use Symplify\TemplatePHPStanCompiler\Reporting\TemplateErrorsFactory;
-use Symplify\TemplatePHPStanCompiler\TypeAnalyzer\TemplateVariableTypesResolver;
-use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 
 /**
  * @see \Reveal\PHPStanTwigRules\Tests\Rules\TwigCompleteCheckRule\TwigCompleteCheckRuleTest

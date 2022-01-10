@@ -8,13 +8,13 @@ use Iterator;
 use PHPStan\DependencyInjection\Container;
 use PHPStan\Type\StringType;
 use PHPUnit\Framework\TestCase;
+use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Reveal\TwigPHPStanCompiler\TwigToPhpCompiler;
 use Symplify\EasyTesting\DataProvider\StaticFixtureFinder;
 use Symplify\EasyTesting\DataProvider\StaticFixtureUpdater;
 use Symplify\EasyTesting\StaticFixtureSplitter;
 use Symplify\PHPStanExtensions\DependencyInjection\PHPStanContainerFactory;
 use Symplify\SmartFileSystem\SmartFileInfo;
-use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 
 final class TwigToPhpCompilerTest extends TestCase
 {
@@ -76,7 +76,7 @@ final class TwigToPhpCompilerTest extends TestCase
         $configs = [
             __DIR__ . '/../../../../packages/twig-phpstan-compiler/config/services.neon',
             __DIR__ . '/../../../../vendor/symplify/astral/config/services.neon',
-            __DIR__ . '/../../../../vendor/symplify/template-phpstan-compiler/config/services.neon',
+            __DIR__ . '/../../../../packages/template-phpstan-compiler/config/services.neon',
         ];
 
         $phpStanContainerFactory = new PHPStanContainerFactory();

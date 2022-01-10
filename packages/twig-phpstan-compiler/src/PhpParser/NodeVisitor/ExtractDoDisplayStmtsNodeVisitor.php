@@ -29,6 +29,13 @@ final class ExtractDoDisplayStmtsNodeVisitor extends NodeVisitorAbstract
     ) {
     }
 
+    public function beforeTraverse(array $nodes)
+    {
+        $this->doDisplayStmts = [];
+
+        return $nodes;
+    }
+
     public function enterNode(Node $node)
     {
         if (! $node instanceof ClassMethod) {
