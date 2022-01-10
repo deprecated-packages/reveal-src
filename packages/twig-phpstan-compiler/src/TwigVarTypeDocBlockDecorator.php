@@ -6,11 +6,11 @@ namespace Reveal\TwigPHPStanCompiler;
 
 use PhpParser\NodeTraverser;
 use PhpParser\PrettyPrinter\Standard;
+use Reveal\TemplatePHPStanCompiler\NodeFactory\VarDocNodeFactory;
+use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\AppendExtractedVarTypesNodeVisitor;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\Astral\PhpParser\SmartPhpParser;
-use Symplify\TemplatePHPStanCompiler\NodeFactory\VarDocNodeFactory;
-use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 
 final class TwigVarTypeDocBlockDecorator
 {

@@ -11,16 +11,16 @@ use PHPStan\Rules\Registry;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleError;
 use Reveal\PHPStanTwigRules\NodeAnalyzer\SymfonyRenderWithParametersMatcher;
+use Reveal\TemplatePHPStanCompiler\ErrorSkipper;
+use Reveal\TemplatePHPStanCompiler\PHPStan\FileAnalyserProvider;
+use Reveal\TemplatePHPStanCompiler\Reporting\TemplateErrorsFactory;
+use Reveal\TemplatePHPStanCompiler\TypeAnalyzer\TemplateVariableTypesResolver;
+use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Reveal\TwigPHPStanCompiler\TwigToPhpCompiler;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Symplify\SmartFileSystem\SmartFileSystem;
-use Symplify\TemplatePHPStanCompiler\ErrorSkipper;
-use Symplify\TemplatePHPStanCompiler\PHPStan\FileAnalyserProvider;
-use Symplify\TemplatePHPStanCompiler\Reporting\TemplateErrorsFactory;
-use Symplify\TemplatePHPStanCompiler\TypeAnalyzer\TemplateVariableTypesResolver;
-use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 
 /**
  * @see \Reveal\PHPStanTwigRules\Tests\Rules\TwigCompleteCheckRule\TwigCompleteCheckRuleTest
@@ -38,21 +38,12 @@ final class TwigCompleteCheckRule extends AbstractSymplifyRule
      * @var string[]
      */
     private const ERROR_IGNORES = [
-        '#Method __TwigTemplate(.*?)::doDisplay\(\) throws checked exception Twig\\\\Error\\\\RuntimeError#',
-        '#Call to method (getSourceContext|loadTemplate)\(\) on an unknown class __TwigTemplate(.*?)#',
         '#Use separate function calls with readable variable names#',
-        '#Property __TwigTemplate_(.*?)\:\:\$source is never read, only written#',
         '#Separate function "array_merge\(\)" in method call to standalone row to improve readability#',
-        '#Function "extract\(\)" cannot be used/left in the code#',
         '#Array method calls \[\$this, "method"\] are not allowed\. Use explicit method instead to help PhpStorm, PHPStan and Rector understand your code#',
-        '#Access to property \$(parent|source|macros|blocks) on an unknown class __TwigTemplate_(.*?)#',
-        '#Class __TwigTemplate_(.*?) was not found while trying to analyse it \- discovering symbols is probably not configured properly#',
         '#Do not use chained method calls\. Put each on separated lines#',
-        '#Access to property \$env on an unknown class __TwigTemplate_(.*?)#',
         // ob_start contents magic on {% set %} ...
         '#Anonymous function should have native return typehint "string"#',
-        '#Parameter "blocks" cannot have default value#',
-        '#Separate function "twig_array_merge\(\)" in method call to standalone row to improve readability#',
     ];
 
     private Registry $registry;

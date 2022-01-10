@@ -4,17 +4,21 @@ declare(strict_types=1);
 
 namespace Reveal\TwigPHPStanCompiler;
 
-use Nette\Utils\Strings;
 use PhpParser\Node\Stmt;
 use PhpParser\NodeTraverser;
-use PhpParser\NodeVisitorAbstract;
+use PhpParser\NodeVisitor;
 use PhpParser\Parser;
 use PhpParser\ParserFactory;
 use PhpParser\PrettyPrinter\Standard;
+use Reveal\TemplatePHPStanCompiler\ValueObject\PhpFileContentsWithLineMap;
+use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
+use Reveal\TwigPHPStanCompiler\Contract\NodeVisitor\NormalizingNodeVisitorInterface;
+use Reveal\TwigPHPStanCompiler\DocBlock\NonVarTypeDocBlockCleaner;
 use Reveal\TwigPHPStanCompiler\ErrorReporting\TemplateLinesMapResolver;
 use Reveal\TwigPHPStanCompiler\Exception\TwigPHPStanCompilerException;
 use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\CollectForeachedVariablesNodeVisitor;
 use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\ExpandForeachContextNodeVisitor;
+use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\ExtractDoDisplayStmtsNodeVisitor;
 use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\RemoveUselessClassMethodsNodeVisitor;
 use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\ReplaceEchoWithVarDocTypeNodeVisitor;
 use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\TwigGetAttributeExpanderNodeVisitor;
@@ -24,46 +28,34 @@ use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\UnwrapTwigEnsureTraversable
 use Reveal\TwigPHPStanCompiler\Reflection\PublicPropertyAnalyzer;
 use Reveal\TwigPHPStanCompiler\Twig\TolerantTwigEnvironment;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\PackageBuilder\Reflection\PrivatesAccessor;
 use Symplify\SmartFileSystem\SmartFileSystem;
-use Symplify\TemplatePHPStanCompiler\ValueObject\PhpFileContentsWithLineMap;
-use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Twig\Lexer;
 use Twig\Loader\ArrayLoader;
 use Twig\Node\ModuleNode;
 use Twig\Node\Node;
 use Twig\Source;
-use Twig\Token;
-use Twig\TokenStream;
 
 /**
  * @see \Reveal\TwigPHPStanCompiler\Tests\TwigToPhpCompiler\TwigToPhpCompilerTest
  */
 final class TwigToPhpCompiler
 {
-    /**
-     * @var string
-     * @see https://regex101.com/r/dsL5Ou/1
-     */
-    public const TWIG_VAR_TYPE_DOCBLOCK_REGEX = '#\{\#\s+@var\s+(?<name>.*?)\s+(?<type>.*?)\s+\#}#';
-
-    /**
-     * @var string
-     * @see https://regex101.com/r/shHvbH/1
-     */
-    private const COMMENT_START_REGEX = '#(\s+)?\{\##';
-
     private Parser $parser;
 
+    /**
+     * @param NormalizingNodeVisitorInterface[] $normalizingNodeVisitors
+     */
     public function __construct(
         private SmartFileSystem $smartFileSystem,
         private Standard $printerStandard,
         private TwigVarTypeDocBlockDecorator $twigVarTypeDocBlockDecorator,
         private SimpleNameResolver $simpleNameResolver,
         private ObjectTypeMethodAnalyzer $objectTypeMethodAnalyzer,
-        private PrivatesAccessor $privatesAccessor,
         private PublicPropertyAnalyzer $publicPropertyAnalyzer,
-        private TemplateLinesMapResolver $templateLinesMapResolver
+        private TemplateLinesMapResolver $templateLinesMapResolver,
+        private NonVarTypeDocBlockCleaner $nonVarTypeDocBlockCleaner,
+        private ExtractDoDisplayStmtsNodeVisitor $extractDoDisplayStmtsNodeVisitor,
+        private array $normalizingNodeVisitors
     ) {
         // avoids unneeded caching from phpstan parser, we need to change content of same file based on provided variable types
         $parserFactory = new ParserFactory();
@@ -112,7 +104,7 @@ final class TwigToPhpCompiler
 
         $tokenStream = $tolerantTwigEnvironment->tokenize(new Source($fileContent, $filePath));
 
-        $clearTokenStream = $this->removeNonVarTypeDocCommentTokens($tokenStream);
+        $clearTokenStream = $this->nonVarTypeDocBlockCleaner->cleanTokenStream($tokenStream);
 
         return $tolerantTwigEnvironment->parse($clearTokenStream);
     }
@@ -157,13 +149,29 @@ final class TwigToPhpCompiler
 
         $this->traverseStmtsWithVisitors($stmts, [$twigGetAttributeExpanderNodeVisitor]);
 
+        foreach ($this->normalizingNodeVisitors as $normalizingNodeVisitor) {
+            $this->traverseStmtsWithVisitors($stmts, [$normalizingNodeVisitor]);
+        }
+
+        // get do display method contents
+
         $phpContent = $this->printerStandard->prettyPrintFile($stmts);
-        return $this->twigVarTypeDocBlockDecorator->decorateTwigContentWithTypes($phpContent, $variablesAndTypes);
+        $fileContent = $this->twigVarTypeDocBlockDecorator->decorateTwigContentWithTypes($phpContent, $variablesAndTypes);
+
+        $stmts = $this->parser->parse($fileContent);
+        if ($stmts === null) {
+            throw new TwigPHPStanCompilerException();
+        }
+
+        $stmts = $this->extractDoDisplayStmts($stmts);
+
+        $printerStandard = new Standard();
+        return $printerStandard->prettyPrintFile($stmts) . PHP_EOL;
     }
 
     /**
      * @param Stmt[] $stmts
-     * @param NodeVisitorAbstract[] $nodeVisitors
+     * @param NodeVisitor[] $nodeVisitors
      */
     private function traverseStmtsWithVisitors(array $stmts, array $nodeVisitors): void
     {
@@ -199,31 +207,16 @@ final class TwigToPhpCompiler
         $this->traverseStmtsWithVisitors($stmts, [$expandForeachContextNodeVisitor]);
     }
 
-    private function removeNonVarTypeDocCommentTokens(TokenStream $tokenStream): TokenStream
+    /**
+     * @param Stmt[] $stmts
+     * @return Stmt[]
+     */
+    private function extractDoDisplayStmts(array $stmts): array
     {
-        /** @var Token[] $tokens */
-        $tokens = $this->privatesAccessor->getPrivateProperty($tokenStream, 'tokens');
+        $nodeTraverser = new NodeTraverser();
+        $nodeTraverser->addVisitor($this->extractDoDisplayStmtsNodeVisitor);
+        $nodeTraverser->traverse($stmts);
 
-        foreach ($tokens as $key => $token) {
-            if ($token->getType() !== Token::TEXT_TYPE) {
-                continue;
-            }
-
-            // is comment text?
-            if (! Strings::match($token->getValue(), self::COMMENT_START_REGEX)) {
-                continue;
-            }
-
-            $match = Strings::match($token->getValue(), self::TWIG_VAR_TYPE_DOCBLOCK_REGEX);
-            if ($match !== null) {
-                continue;
-            }
-
-            unset($tokens[$key]);
-        }
-
-        $tokens = array_values($tokens);
-
-        return new TokenStream($tokens, $tokenStream->getSourceContext());
+        return $this->extractDoDisplayStmtsNodeVisitor->getDoDisplayStmts();
     }
 }

@@ -33,6 +33,7 @@
         "psr-4": {
             "Reveal\\PHPStanTwigRules\\": "packages/phpstan-twig-rules/src",
             "Reveal\\RevealNeon\\": "packages/reveal-neon/src",
+            "Reveal\\TemplatePHPStanCompiler\\": "packages/template-phpstan-compiler/src",
             "Reveal\\TwigPHPStanCompiler\\": "packages/twig-phpstan-compiler/src"
         }
     },
@@ -40,6 +41,7 @@
         "psr-4": {
             "Reveal\\PHPStanTwigRules\\Tests\\": "packages/phpstan-twig-rules/tests",
             "Reveal\\RevealNeon\\Tests\\": "packages/reveal-neon/tests",
+            "Reveal\\TemplatePHPStanCompiler\\Tests\\": "packages/template-phpstan-compiler/tests",
             "Reveal\\TwigPHPStanCompiler\\Tests\\": "packages/twig-phpstan-compiler/tests"
         }
     },
@@ -57,11 +59,11 @@
         "symplify/phpstan-twig-rules": "self.version",
         "symplify/twig-phpstan-compiler": "self.version"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "config": {
         "allow-plugins": {
             "phpstan/extension-installer": true
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

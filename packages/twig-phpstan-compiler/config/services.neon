@@ -3,9 +3,17 @@ services:
     - Reveal\TwigPHPStanCompiler\TwigVarTypeDocBlockDecorator
     - Reveal\TwigPHPStanCompiler\ObjectTypeMethodAnalyzer
     - Reveal\TwigPHPStanCompiler\Reflection\PublicPropertyAnalyzer
+    - Reveal\TwigPHPStanCompiler\DocBlock\NonVarTypeDocBlockCleaner
 
     # node analyzer
     - Reveal\TwigPHPStanCompiler\NodeAnalyzer\TwigVariableNamesResolver
     - Reveal\TwigPHPStanCompiler\NodeAnalyzer\MissingTwigTemplateRenderVariableResolver
     - Reveal\TwigPHPStanCompiler\NodeAnalyzer\UnusedTwigTemplateVariableAnalyzer
     - Reveal\TwigPHPStanCompiler\ErrorReporting\TemplateLinesMapResolver
+
+    # node visitors
+    - Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\ExtractDoDisplayStmtsNodeVisitor
+    - Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\Normalization\LoadTemplateNormalizeNodeVisitor
+    - Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\Normalization\LoadParentTemplateNormalizeNodeVisitor
+    - Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\Normalization\DoDisplayCleanupNormalizeNodeVisitor
+    - Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\Normalization\UnwrapEscapeFilterNormalizeNodeVisitor
