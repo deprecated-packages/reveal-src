@@ -6,17 +6,17 @@ namespace Reveal\TwigPHPStanCompiler;
 
 use PhpParser\Node\Stmt;
 use PhpParser\NodeTraverser;
-use PhpParser\NodeVisitorAbstract;
+use PhpParser\NodeVisitor;
 use PhpParser\Parser;
 use PhpParser\ParserFactory;
 use PhpParser\PrettyPrinter\Standard;
+use Reveal\TwigPHPStanCompiler\Contract\NodeVisitor\NormalizingNodeVisitorInterface;
 use Reveal\TwigPHPStanCompiler\DocBlock\NonVarTypeDocBlockCleaner;
 use Reveal\TwigPHPStanCompiler\ErrorReporting\TemplateLinesMapResolver;
 use Reveal\TwigPHPStanCompiler\Exception\TwigPHPStanCompilerException;
 use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\CollectForeachedVariablesNodeVisitor;
 use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\ExpandForeachContextNodeVisitor;
 use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\ExtractDoDisplayStmtsNodeVisitor;
-use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\Normalization\LoadTemplateNormalizeNodeVisitor;
 use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\RemoveUselessClassMethodsNodeVisitor;
 use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\ReplaceEchoWithVarDocTypeNodeVisitor;
 use Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\TwigGetAttributeExpanderNodeVisitor;
@@ -42,6 +42,9 @@ final class TwigToPhpCompiler
 {
     private Parser $parser;
 
+    /**
+     * @param NormalizingNodeVisitorInterface[] $normalizingNodeVisitors
+     */
     public function __construct(
         private SmartFileSystem $smartFileSystem,
         private Standard $printerStandard,
@@ -52,8 +55,7 @@ final class TwigToPhpCompiler
         private TemplateLinesMapResolver $templateLinesMapResolver,
         private NonVarTypeDocBlockCleaner $nonVarTypeDocBlockCleaner,
         private ExtractDoDisplayStmtsNodeVisitor $extractDoDisplayStmtsNodeVisitor,
-        private LoadTemplateNormalizeNodeVisitor $loadTemplateNormalizeNodeVisitor,
-        private \Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\Normalization\LoadParentTemplateNormalizeNodeVisitor $loadParentTemplateNormalizeNodeVisitor,
+        private array $normalizingNodeVisitors
     ) {
         // avoids unneeded caching from phpstan parser, we need to change content of same file based on provided variable types
         $parserFactory = new ParserFactory();
@@ -147,9 +149,9 @@ final class TwigToPhpCompiler
 
         $this->traverseStmtsWithVisitors($stmts, [$twigGetAttributeExpanderNodeVisitor]);
 
-        // clean content
-        $this->traverseStmtsWithVisitors($stmts, [$this->loadTemplateNormalizeNodeVisitor]);
-        $this->traverseStmtsWithVisitors($stmts, [$this->loadParentTemplateNormalizeNodeVisitor]);
+        foreach ($this->normalizingNodeVisitors as $normalizingNodeVisitor) {
+            $this->traverseStmtsWithVisitors($stmts, [$normalizingNodeVisitor]);
+        }
 
         // get do display method contents
 
@@ -161,7 +163,7 @@ final class TwigToPhpCompiler
 
     /**
      * @param Stmt[] $stmts
-     * @param NodeVisitorAbstract[] $nodeVisitors
+     * @param NodeVisitor[] $nodeVisitors
      */
     private function traverseStmtsWithVisitors(array $stmts, array $nodeVisitors): void
     {

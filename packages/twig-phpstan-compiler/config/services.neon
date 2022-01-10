@@ -15,3 +15,5 @@ services:
     - Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\ExtractDoDisplayStmtsNodeVisitor
     - Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\Normalization\LoadTemplateNormalizeNodeVisitor
     - Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\Normalization\LoadParentTemplateNormalizeNodeVisitor
+    - Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\Normalization\DoDisplayCleanupNormalizeNodeVisitor
+    - Reveal\TwigPHPStanCompiler\PhpParser\NodeVisitor\Normalization\UnwrapEscapeFilterNormalizeNodeVisitor

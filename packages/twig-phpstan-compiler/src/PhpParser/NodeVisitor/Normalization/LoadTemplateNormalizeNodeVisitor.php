@@ -10,9 +10,10 @@ use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Name;
 use PhpParser\NodeVisitorAbstract;
+use Reveal\TwigPHPStanCompiler\Contract\NodeVisitor\NormalizingNodeVisitorInterface;
 use Symplify\Astral\Naming\SimpleNameResolver;
 
-final class LoadTemplateNormalizeNodeVisitor extends NodeVisitorAbstract
+final class LoadTemplateNormalizeNodeVisitor extends NodeVisitorAbstract implements NormalizingNodeVisitorInterface
 {
     public function __construct(
         private SimpleNameResolver $simpleNameResolver

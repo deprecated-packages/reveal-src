@@ -9,11 +9,13 @@ use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Name;
+use PhpParser\Node\Stmt\Expression;
 use PhpParser\NodeTraverser;
 use PhpParser\NodeVisitorAbstract;
+use Reveal\TwigPHPStanCompiler\Contract\NodeVisitor\NormalizingNodeVisitorInterface;
 use Symplify\Astral\Naming\SimpleNameResolver;
 
-final class LoadParentTemplateNormalizeNodeVisitor extends NodeVisitorAbstract
+final class LoadParentTemplateNormalizeNodeVisitor extends NodeVisitorAbstract implements NormalizingNodeVisitorInterface
 {
     public function __construct(
         private SimpleNameResolver $simpleNameResolver
@@ -22,18 +24,20 @@ final class LoadParentTemplateNormalizeNodeVisitor extends NodeVisitorAbstract
 
     public function leaveNode(Node $node)
     {
-        if (! $node instanceof Node\Stmt\Expression) {
+        if (! $node instanceof Expression) {
             return null;
         }
 
         $expr = $node->expr;
-        if ($expr instanceof MethodCall) {
-            if ($this->simpleNameResolver->isName($expr->name, 'display')) {
-                return NodeTraverser::REMOVE_NODE;
-            }
+        if (! $expr instanceof MethodCall) {
+            return null;
         }
 
-        return null;
+        if (! $this->simpleNameResolver->isName($expr->name, 'display')) {
+            return null;
+        }
+
+        return NodeTraverser::REMOVE_NODE;
     }
 
     public function enterNode(\PhpParser\Node $node)
