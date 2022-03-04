@@ -26,4 +26,9 @@ final class SomeValueObject
     {
         return $this->name . ' ' . $this->surname;
     }
+
+    protected function getTitle(): string
+    {
+        return 'Phd';
+    }
 }
