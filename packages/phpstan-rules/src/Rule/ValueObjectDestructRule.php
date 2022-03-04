@@ -14,6 +14,7 @@ use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\ObjectType;
 use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
+use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
@@ -26,7 +27,7 @@ final class ValueObjectDestructRule implements Rule, DocumentedRuleInterface
     /**
      * @var string
      */
-    public const ERROR_MESSAGE = 'Instead of caling all public methods of object, pass it directly';
+    public const ERROR_MESSAGE = 'Instead of calling all public methods of value object, pass it directly';
 
     /**
      * @var array<string, string[]>
@@ -75,7 +76,19 @@ final class ValueObjectDestructRule implements Rule, DocumentedRuleInterface
 
     public function getRuleDefinition(): RuleDefinition
     {
-        return new RuleDefinition(self::ERROR_MESSAGE, []);
+        return new RuleDefinition(self::ERROR_MESSAGE, [
+            new CodeSample(
+                <<<'CODE_SAMPLE'
+$person = new Name('Matthias');
+$this->process($person->getName());
+CODE_SAMPLE
+                ,
+                <<<'CODE_SAMPLE'
+$person = new Name('Matthias');
+$this->process($person);
+CODE_SAMPLE
+            ),
+        ]);
     }
 
     /**
