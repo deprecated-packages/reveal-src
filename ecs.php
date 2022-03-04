@@ -17,6 +17,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters->set(Option::PARALLEL, true);
 
     $parameters->set(Option::SKIP, [
+        '*/Source/*',
         PhpUnitStrictFixer::class => [
             // compare content of 2 objects, not identical object
             __DIR__ . '/packages/reveal-neon/tests/Generator/DependencyContainerAnalyzerTest.php',
