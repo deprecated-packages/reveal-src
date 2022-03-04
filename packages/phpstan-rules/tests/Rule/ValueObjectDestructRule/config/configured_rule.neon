@@ -1,0 +1,4 @@
+services:
+    -
+        class: Reveal\PHPStanRules\Rule\ValueObjectDestructRule
+        tags: [phpstan.rules.rule]
