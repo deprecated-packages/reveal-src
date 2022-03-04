@@ -21,4 +21,9 @@ final class SomeValueObject
     {
         return $this->surname;
     }
+
+    private function getFullname(): string
+    {
+        return $this->name . ' ' . $this->surname;
+    }
 }
