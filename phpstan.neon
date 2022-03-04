@@ -11,6 +11,7 @@ parameters:
         - packages/twig-phpstan-compiler/tests/TwigToPhpCompiler/Source
         - packages/phpstan-twig-rules/tests/Rules/TwigCompleteCheckRule/Source
         - packages/*/tests/*/Fixture*
+        - '*/Source/*'
 
     ignoreErrors:
         - '#Method Reveal\\(.*?)Test\:\:provideData\(\) return type has no value type specified in iterable type Iterator#'
