@@ -1,5 +1,5 @@
 {
-    "name": "symplify/phpstan-twig-rules",
+    "name": "reveal/reveal-twig",
     "type": "phpstan-extension",
     "description": "Rules for static analysis of TWIG templates and TWIG render() methods",
     "license": "MIT",

@@ -1,6 +1,7 @@
 {
-    "license": "MIT",
     "name": "reveal/reveal-neon",
+    "type": "phpstan-extension",
+    "license": "MIT",
     "require": {
         "php": ">=8.1",
         "nette/di": "^3.0",
