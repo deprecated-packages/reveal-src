@@ -10,7 +10,7 @@
         "symplify/rule-doc-generator-contracts": "^10.0",
         "symplify/package-builder": "^10.0",
         "symplify/smart-file-system": "^10.0",
-        "symplify/twig-phpstan-compiler": "^10.1",
+        "reveal/twig-phpstan-compiler": "^10.1",
         "phpstan/phpstan": "^1.4"
     },
     "require-dev": {
@@ -61,7 +61,6 @@
         "symplify/config-transformer": "<10.0.2",
         "symplify/easy-ci": "<10.0.2",
         "symplify/coding-standard": "<10.0.2",
-        "symplify/twig-phpstan-compiler": "<9.4.70",
         "symplify/latte-phpstan-compiler": "<10.0.2",
         "symplify/template-phpstan-compiler": "<10.0.2",
         "symplify/phpstan-latte-rules": "<10.0.2",

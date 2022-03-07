@@ -53,7 +53,6 @@
         "symplify/config-transformer": "<10.0.2",
         "symplify/easy-ci": "<10.0.2",
         "symplify/coding-standard": "<10.0.2",
-        "symplify/twig-phpstan-compiler": "<9.4.70",
         "symplify/latte-phpstan-compiler": "<10.0.2",
         "symplify/template-phpstan-compiler": "<10.0.2",
         "symplify/phpstan-latte-rules": "<10.0.2",

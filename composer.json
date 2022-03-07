@@ -12,8 +12,8 @@
         "symplify/package-builder": "^10.0",
         "symplify/rule-doc-generator-contracts": "^10.0",
         "symplify/smart-file-system": "^10.0",
-        "symplify/template-phpstan-compiler": "^10.0",
-        "symplify/twig-phpstan-compiler": "^10.1",
+        "reveal/template-phpstan-compiler": "dev-main",
+        "reveal/twig-phpstan-compiler": "dev-main",
         "twig/twig": "^3.3",
         "webmozart/assert": "^1.10"
     },
@@ -64,8 +64,7 @@
         "reveal/reveal-twig": "self.version",
         "reveal/template-phpstan-compiler": "self.version",
         "reveal/twig-phpstan-compiler": "self.version",
-        "symplify/phpstan-twig-rules": "self.version",
-        "symplify/twig-phpstan-compiler": "self.version"
+        "reveal/latte-phpstan-compiler": "self.version"
     },
     "config": {
         "allow-plugins": {
