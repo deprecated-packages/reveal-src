@@ -56,7 +56,11 @@ jobs:
 
             -
                 name: "Downgrade to PHP 7.1"
-                run: vendor/bin/rector process ${{ matrix.package }}/src --config build/config/rector-downgrade.php --ansi
+                run: vendor/bin/rector process packages/${{ matrix.package }}/src --config build/config/rector-downgrade.php --ansi
+
+            -
+                name: "Update composer.json PHP version"
+                run: php bin/update-composer-json.php packages/${{ matrix.package }}/composer.json
 
             # no tag
             -
