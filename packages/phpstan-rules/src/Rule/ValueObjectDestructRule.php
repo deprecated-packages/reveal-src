@@ -13,16 +13,13 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\ObjectType;
-use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @implements Rule<CallLike>
  *
  * @see \Reveal\PHPStanRules\Tests\Rule\ValueObjectDestructRule\ValueObjectDestructRuleTest
  */
-final class ValueObjectDestructRule implements Rule, DocumentedRuleInterface
+final class ValueObjectDestructRule implements Rule
 {
     /**
      * @var string
@@ -72,23 +69,6 @@ final class ValueObjectDestructRule implements Rule, DocumentedRuleInterface
         }
 
         return [];
-    }
-
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition(self::ERROR_MESSAGE, [
-            new CodeSample(
-                <<<'CODE_SAMPLE'
-$person = new Name('Matthias');
-$this->process($person->getName());
-CODE_SAMPLE
-                ,
-                <<<'CODE_SAMPLE'
-$person = new Name('Matthias');
-$this->process($person);
-CODE_SAMPLE
-            ),
-        ]);
     }
 
     /**
