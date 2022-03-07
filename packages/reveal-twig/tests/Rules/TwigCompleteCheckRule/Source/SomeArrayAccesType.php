@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Reveal\PHPStanTwigRules\Tests\Rules\TwigCompleteCheckRule\Source;
+namespace Reveal\RevealTwig\Tests\Rules\TwigCompleteCheckRule\Source;
 
 final class SomeArrayAccesType implements \ArrayAccess, \IteratorAggregate, \Countable
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Reveal\PHPStanTwigRules\Tests\Rules\TwigCompleteCheckRule\Fixture;
+namespace Reveal\RevealTwig\Tests\Rules\TwigCompleteCheckRule\Fixture;
 
-use Reveal\PHPStanTwigRules\Tests\Rules\TwigCompleteCheckRule\Source\SomeType;
+use Reveal\RevealTwig\Tests\Rules\TwigCompleteCheckRule\Source\SomeType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 

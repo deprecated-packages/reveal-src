@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Reveal\PHPStanTwigRules\Rules;
+namespace Reveal\RevealTwig\Rules;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
@@ -10,7 +10,7 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Registry;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleError;
-use Reveal\PHPStanTwigRules\NodeAnalyzer\SymfonyRenderWithParametersMatcher;
+use Reveal\RevealTwig\NodeAnalyzer\SymfonyRenderWithParametersMatcher;
 use Reveal\TemplatePHPStanCompiler\ErrorSkipper;
 use Reveal\TemplatePHPStanCompiler\PHPStan\FileAnalyserProvider;
 use Reveal\TemplatePHPStanCompiler\Reporting\TemplateErrorsFactory;
@@ -23,7 +23,7 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Symplify\SmartFileSystem\SmartFileSystem;
 
 /**
- * @see \Reveal\PHPStanTwigRules\Tests\Rules\TwigCompleteCheckRule\TwigCompleteCheckRuleTest
+ * @see \Reveal\RevealTwig\Tests\Rules\TwigCompleteCheckRule\TwigCompleteCheckRuleTest
  */
 final class TwigCompleteCheckRule extends AbstractSymplifyRule
 {

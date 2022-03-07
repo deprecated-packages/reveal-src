@@ -22,12 +22,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Reveal\\PHPStanTwigRules\\": "src"
+            "Reveal\\RevealTwig\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Reveal\\PHPStanTwigRules\\Tests\\": "tests"
+            "Reveal\\RevealTwig\\Tests\\": "tests"
         }
     },
     "extra": {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Reveal\PHPStanTwigRules\NodeAnalyzer;
+namespace Reveal\RevealTwig\NodeAnalyzer;
 
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;

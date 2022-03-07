@@ -9,7 +9,7 @@ parameters:
 
 services:
     -
-        class: Reveal\PHPStanTwigRules\Rules\TwigCompleteCheckRule
+        class: Reveal\RevealTwig\Rules\TwigCompleteCheckRule
         tags: [phpstan.rules.rule]
 
     -

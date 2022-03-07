@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Reveal\PHPStanTwigRules\Tests\Rules\TwigCompleteCheckRule;
+namespace Reveal\RevealTwig\Tests\Rules\TwigCompleteCheckRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
-use Reveal\PHPStanTwigRules\Rules\TwigCompleteCheckRule;
-use Reveal\PHPStanTwigRules\Tests\Rules\TwigCompleteCheckRule\Source\SomeType;
+use Reveal\RevealTwig\Rules\TwigCompleteCheckRule;
+use Reveal\RevealTwig\Tests\Rules\TwigCompleteCheckRule\Source\SomeType;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**

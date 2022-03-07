@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Reveal\PHPStanTwigRules\Tests\Rules\NoTwigRenderUnusedVariableRule\Fixture;
+namespace Reveal\RevealTwig\Tests\Rules\NoTwigRenderUnusedVariableRule\Fixture;
 
 use Twig\Environment;
 

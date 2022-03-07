@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Reveal\PHPStanTwigRules\Tests\Rules\NoTwigRenderUnusedVariableRule;
+namespace Reveal\RevealTwig\Tests\Rules\NoTwigRenderUnusedVariableRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
-use Reveal\PHPStanTwigRules\Rules\NoTwigRenderUnusedVariableRule;
+use Reveal\RevealTwig\Rules\NoTwigRenderUnusedVariableRule;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**

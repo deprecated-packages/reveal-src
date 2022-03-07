@@ -1,3 +1,3 @@
 services:
-    - Reveal\PHPStanTwigRules\NodeAnalyzer\TwigRenderTemplateWithParametersMatcher
-    - Reveal\PHPStanTwigRules\NodeAnalyzer\SymfonyRenderWithParametersMatcher
+    - Reveal\RevealTwig\NodeAnalyzer\TwigRenderTemplateWithParametersMatcher
+    - Reveal\RevealTwig\NodeAnalyzer\SymfonyRenderWithParametersMatcher

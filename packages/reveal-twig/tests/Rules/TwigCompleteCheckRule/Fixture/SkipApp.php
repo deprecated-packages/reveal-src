@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Reveal\PHPStanTwigRules\Tests\Rules\TwigCompleteCheckRule\Fixture;
+namespace Reveal\RevealTwig\Tests\Rules\TwigCompleteCheckRule\Fixture;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 

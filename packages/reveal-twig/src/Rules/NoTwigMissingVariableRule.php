@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Reveal\PHPStanTwigRules\Rules;
+namespace Reveal\RevealTwig\Rules;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
-use Reveal\PHPStanTwigRules\NodeAnalyzer\SymfonyRenderWithParametersMatcher;
+use Reveal\RevealTwig\NodeAnalyzer\SymfonyRenderWithParametersMatcher;
 use Reveal\TwigPHPStanCompiler\NodeAnalyzer\MissingTwigTemplateRenderVariableResolver;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
@@ -15,7 +15,7 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @api
- * @see \Reveal\PHPStanTwigRules\Tests\Rules\NoTwigMissingVariableRule\NoTwigMissingVariableRuleTest
+ * @see \Reveal\RevealTwig\Tests\Rules\NoTwigMissingVariableRule\NoTwigMissingVariableRuleTest
  */
 final class NoTwigMissingVariableRule extends AbstractSymplifyRule
 {

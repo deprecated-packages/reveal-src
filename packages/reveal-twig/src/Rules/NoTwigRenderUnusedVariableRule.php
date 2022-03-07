@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Reveal\PHPStanTwigRules\Rules;
+namespace Reveal\RevealTwig\Rules;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
-use Reveal\PHPStanTwigRules\NodeAnalyzer\SymfonyRenderWithParametersMatcher;
+use Reveal\RevealTwig\NodeAnalyzer\SymfonyRenderWithParametersMatcher;
 use Reveal\TwigPHPStanCompiler\NodeAnalyzer\UnusedTwigTemplateVariableAnalyzer;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
- * @see \Reveal\PHPStanTwigRules\Tests\Rules\NoTwigRenderUnusedVariableRule\NoTwigRenderUnusedVariableRuleTest
+ * @see \Reveal\RevealTwig\Tests\Rules\NoTwigRenderUnusedVariableRule\NoTwigRenderUnusedVariableRuleTest
  */
 final class NoTwigRenderUnusedVariableRule extends AbstractSymplifyRule
 {

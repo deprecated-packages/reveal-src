@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Reveal\PHPStanTwigRules\Tests\Rules\NoTwigMissingVariableRule\Fixture;
+namespace Reveal\RevealTwig\Tests\Rules\NoTwigMissingVariableRule\Fixture;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
