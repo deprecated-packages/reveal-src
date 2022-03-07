@@ -7,11 +7,8 @@ parameters:
 
     excludePaths:
         - packages/reveal-neon/src/Generator/local-temp
-        - packages/reveal-neon/tests/Rules/AnalyzeNeonRule/Source
-        - packages/twig-phpstan-compiler/tests/TwigToPhpCompiler/Source
-        - packages/phpstan-twig-rules/tests/Rules/TwigCompleteCheckRule/Source
         - packages/*/tests/*/Fixture*
-        - '*/Source/*'
+        - */tests/*/Source/*
 
     reportUnmatchedIgnoredErrors: false
 
