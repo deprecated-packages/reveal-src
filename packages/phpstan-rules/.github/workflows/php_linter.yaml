@@ -16,4 +16,4 @@ jobs:
 
             -   run: composer global require php-parallel-lint/php-parallel-lint
 
-            -   run: /home/runner/.composer/vendor/bin/parallel-lint src
+            -   run: /home/runner/.composer/vendor/bin/parallel-lint src tests
