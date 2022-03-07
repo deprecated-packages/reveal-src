@@ -6,13 +6,14 @@ namespace Reveal\PHPStanRules\Tests\Rule\ValueObjectDestructRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Reveal\PHPStanRules\Rule\ValueObjectDestructRule;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
+use Reveal\PHPStanRules\Tests\TestRuleFactory;
 
 /**
- * @extends AbstractServiceAwareRuleTestCase<ValueObjectDestructRule>
+ * @extends RuleTestCase<ValueObjectDestructRule>
  */
-final class ValueObjectDestructRuleTest extends AbstractServiceAwareRuleTestCase
+final class ValueObjectDestructRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()
@@ -32,9 +33,7 @@ final class ValueObjectDestructRuleTest extends AbstractServiceAwareRuleTestCase
 
     protected function getRule(): Rule
     {
-        return $this->getRuleFromConfig(
-            ValueObjectDestructRule::class,
-            __DIR__ . '/config/configured_rule.neon'
-        );
+        $testRuleFactory = new TestRuleFactory();
+        return $testRuleFactory->getServiceFromConfig(__DIR__ . '/config/configured_rule.neon', ValueObjectDestructRule::class);
     }
 }
