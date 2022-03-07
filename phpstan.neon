@@ -13,13 +13,14 @@ parameters:
         - packages/*/tests/*/Fixture*
         - '*/Source/*'
 
-    ignoreErrors:
-        - '#Method Reveal\\(.*?)Test\:\:provideData\(\) return type has no value type specified in iterable type Iterator#'
+    reportUnmatchedIgnoredErrors: false
 
+    ignoreErrors:
         # BC promise
         - '#(.*?) interface PHPStan\\Rules\\Rule but does not specify its types\: TNodeType#'
-
         - '#(.*?) is not covered by backward compatibility promise\. The (.*?) might change in a minor PHPStan version#'
+
+        - '#Parameter \#2 \$expectedErrors of method PHPStan\\Testing\\RuleTestCase(.*?) expects array<int, array\{0\: string, 1\: int, 2\?\: string\}>, (.*?) given#'
 
         # known type in tests
         -
