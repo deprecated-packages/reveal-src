@@ -1,6 +1,6 @@
 # PHPStan Twig Rules
 
-[![Downloads](https://img.shields.io/packagist/dt/symplify/phpstan-twig-rules.svg?style=flat-square)](https://packagist.org/packages/symplify/phpstan-twig-rules/stats)
+[![Downloads](https://img.shields.io/packagist/dt/reveal/reveal-twig.svg?style=flat-square)](https://packagist.org/packages/reveal/reveal-twig/stats)
 
 Rules for static analysis of TWIG templates and TWIG render() methods
 
@@ -9,7 +9,7 @@ Rules for static analysis of TWIG templates and TWIG render() methods
 ## Install
 
 ```bash
-composer require symplify/phpstan-twig-rules --dev
+composer require reveal/reveal-twig --dev
 ```
 
 ## Usage
