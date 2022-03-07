@@ -8,12 +8,12 @@
         "nette/di": "^3.0",
         "nette/utils": "^3.2",
         "phpstan/phpstan": "^1.4",
+        "reveal/template-phpstan-compiler": "dev-main",
+        "reveal/twig-phpstan-compiler": "dev-main",
         "symplify/astral": "^10.0",
         "symplify/package-builder": "^10.0",
         "symplify/rule-doc-generator-contracts": "^10.0",
         "symplify/smart-file-system": "^10.0",
-        "reveal/template-phpstan-compiler": "dev-main",
-        "reveal/twig-phpstan-compiler": "dev-main",
         "twig/twig": "^3.3",
         "webmozart/assert": "^1.10"
     },
@@ -59,12 +59,12 @@
         "release": "vendor/bin/monorepo-builder release patch --ansi"
     },
     "replace": {
+        "reveal/latte-phpstan-compiler": "self.version",
         "reveal/phpstan-rules": "self.version",
         "reveal/reveal-neon": "self.version",
         "reveal/reveal-twig": "self.version",
         "reveal/template-phpstan-compiler": "self.version",
-        "reveal/twig-phpstan-compiler": "self.version",
-        "reveal/latte-phpstan-compiler": "self.version"
+        "reveal/twig-phpstan-compiler": "self.version"
     },
     "config": {
         "allow-plugins": {

@@ -10,7 +10,7 @@
         "phpstan/phpstan": "^1.4",
         "symplify/package-builder": "^10.0",
         "symplify/smart-file-system": "^10.0",
-        "symplify/template-phpstan-compiler": "^10.0"
+        "reveal/template-phpstan-compiler": "dev-main"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
