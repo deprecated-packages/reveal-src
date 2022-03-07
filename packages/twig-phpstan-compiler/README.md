@@ -16,8 +16,8 @@ composer require reaveal/twig-phpstan-compiler
 
 ## Report Issues
 
-In case you are experiencing a bug or want to request a new feature head over to the [Symplify monorepo issue tracker](https://github.com/symplify/symplify/issues)
+In case you are experiencing a bug or want to request a new feature head over to the [monorepo issue tracker](https://github.com/revealphp/reveal/issues)
 
 ## Contribute
 
-The sources of this package are contained in the Symplify monorepo. We welcome contributions for this package on [symplify/symplify](https://github.com/symplify/symplify).
+The sources of this package are contained in the Reveal monorepo. We welcome contributions for this package on [revealphp/reveal](https://github.com/revealphp/reveal).
