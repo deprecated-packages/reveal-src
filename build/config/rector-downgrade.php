@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Rector\Core\Configuration\Option;
 use Rector\DowngradePhp72\Rector\ClassMethod\DowngradeParameterTypeWideningRector;
+use Rector\DowngradePhp74\Rector\ClassMethod\DowngradeCovariantReturnTypeRector;
 use Rector\Set\ValueObject\DowngradeLevelSetList;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -11,7 +12,12 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters = $containerConfigurator->parameters();
-    $parameters->set(Option::PARALLEL, false);
+    $parameters->set(Option::SKIP, [
+        // should be skipped - fix in rectordev-main
+        DowngradeCovariantReturnTypeRector::class => [
+            'tests/Rule/ValueObjectDestructRule/ValueObjectDestructRuleTest.php'
+        ],
+    ]);
 
     $containerConfigurator->import(DowngradeLevelSetList::DOWN_TO_PHP_71);
 
@@ -21,4 +27,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             LoaderInterface::class => ['load'],
             Loader::class => ['import'],
         ]);
+
+
 };
