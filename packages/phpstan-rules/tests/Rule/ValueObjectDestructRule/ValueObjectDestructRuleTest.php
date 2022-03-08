@@ -30,6 +30,7 @@ final class ValueObjectDestructRuleTest extends RuleTestCase
 
         yield [__DIR__ . '/Fixture/SkipUsedJustOne.php', []];
         yield [__DIR__ . '/Fixture/SkipSingleMethod.php', []];
+        yield [__DIR__ . '/Fixture/SkipSingleMethodCalledTwice.php', []];
     }
 
     protected function getRule(): Rule
