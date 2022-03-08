@@ -59,6 +59,11 @@ final class ValueObjectDestructRule implements Rule
                 continue;
             }
 
+            // at least 2 methods
+            if (count($methodNames) === 1) {
+                continue;
+            }
+
             $methodNames = array_unique($methodNames);
 
             $publicMethodsNames = $this->resolveClassPublicMethodNames($className);
