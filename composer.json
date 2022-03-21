@@ -60,7 +60,6 @@
         "release": "vendor/bin/monorepo-builder release patch --ansi"
     },
     "replace": {
-        "reveal/latte-phpstan-compiler": "self.version",
         "reveal/phpstan-rules": "self.version",
         "reveal/reveal-neon": "self.version",
         "reveal/reveal-twig": "self.version",

@@ -14,6 +14,8 @@ use PHPStan\Rules\Rule;
  * @implements Rule<ClassMethod>
  *
  * @see \Reveal\SymfonyPHPStanRules\Tests\Rule\RequireInvokableControllerRule\RequireInvokableControllerRuleTest
+ *
+ * Simple port of https://github.com/symplify/phpstan-rules/blob/main/packages/symfony/src/Rules/RequireInvokableControllerRule.php with minimum dependencies
  */
 final class RequireInvokableControllerRule implements Rule
 {

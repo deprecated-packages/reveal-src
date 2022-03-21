@@ -30,7 +30,7 @@ final class AnalyzeNeonRuleTest extends AbstractServiceAwareRuleTestCase
             'Parameter #1 $name of class %s constructor expects string, int given.',
             ExistingServiceWithConstructor::class
         );
-        yield [__DIR__ . '/Fixture/GeneratedFakeImporter.php', [[$errorMessage, 40]]];
+        yield [__DIR__ . '/Fixture/GeneratedFakeImporter.php', [[$errorMessage, 37]]];
 
         // @todo update line to neon one
         // @todo update path to neon one

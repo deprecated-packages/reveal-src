@@ -10,7 +10,7 @@
         "symplify/rule-doc-generator-contracts": "^10.0",
         "symplify/package-builder": "^10.0",
         "symplify/smart-file-system": "^10.0",
-        "reveal/twig-phpstan-compiler": "^10.1",
+        "reveal/twig-phpstan-compiler": "dev-main",
         "phpstan/phpstan": "^1.4"
     },
     "require-dev": {
