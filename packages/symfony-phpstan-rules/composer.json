@@ -8,6 +8,7 @@
         "phpstan/phpstan": "^1.4"
     },
     "require-dev": {
+        "symfony/framework-bundle": "^6.0",
         "phpunit/phpunit": "^7.5|^9.5"
     },
     "autoload": {
