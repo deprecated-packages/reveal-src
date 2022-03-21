@@ -4,6 +4,3 @@ composer.lock
 
 # phpunit
 .phpunit.result.cache
-
-# tests
-packages/reveal-neon/src/Generator/local-temp

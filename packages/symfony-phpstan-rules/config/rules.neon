@@ -1,0 +1,2 @@
+rules:
+    - Reveal\SymfonyPHPStanRules\Rule\RequireInvokableControllerRule
