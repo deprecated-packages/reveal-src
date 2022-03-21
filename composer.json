@@ -34,6 +34,7 @@
             "Reveal\\PHPStanRules\\": "packages/phpstan-rules/src",
             "Reveal\\RevealNeon\\": "packages/reveal-neon/src",
             "Reveal\\RevealTwig\\": "packages/reveal-twig/src",
+            "Reveal\\SymfonyPHPStanRules\\": "packages/symfony-phpstan-rules/src",
             "Reveal\\TemplatePHPStanCompiler\\": "packages/template-phpstan-compiler/src",
             "Reveal\\TwigPHPStanCompiler\\": "packages/twig-phpstan-compiler/src"
         }
@@ -43,6 +44,7 @@
             "Reveal\\PHPStanRules\\Tests\\": "packages/phpstan-rules/tests",
             "Reveal\\RevealNeon\\Tests\\": "packages/reveal-neon/tests",
             "Reveal\\RevealTwig\\Tests\\": "packages/reveal-twig/tests",
+            "Reveal\\SymfonyPHPStanRules\\Tests\\": "packages/symfony-phpstan-rules/tests",
             "Reveal\\TemplatePHPStanCompiler\\Tests\\": "packages/template-phpstan-compiler/tests",
             "Reveal\\TwigPHPStanCompiler\\Tests\\": "packages/twig-phpstan-compiler/tests"
         }
@@ -62,6 +64,7 @@
         "reveal/phpstan-rules": "self.version",
         "reveal/reveal-neon": "self.version",
         "reveal/reveal-twig": "self.version",
+        "reveal/symfony-phpstan-rules": "self.version",
         "reveal/template-phpstan-compiler": "self.version",
         "reveal/twig-phpstan-compiler": "self.version"
     },

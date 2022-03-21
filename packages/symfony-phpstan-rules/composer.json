@@ -1,0 +1,35 @@
+{
+    "name": "reveal/symfony-phpstan-rules",
+    "type": "phpstan-extension",
+    "description": "Advanced PHPStan rules for Symfony projects",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.1",
+        "phpstan/phpstan": "^1.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5|^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Reveal\\SymfonyPHPStanRules\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Reveal\\SymfonyPHPStanRules\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "10.1-dev"
+        },
+        "phpstan": {
+            "includes": [
+                "config/rules.neon"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
