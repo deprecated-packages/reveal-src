@@ -1,5 +1,0 @@
-services:
-    -
-        class: Reveal\RevealNeon\Tests\Rules\AnalyzeNeonRule\Source\ExistingServiceWithConstructor
-        arguments:
-            name: 1000
