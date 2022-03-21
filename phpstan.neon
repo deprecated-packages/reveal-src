@@ -6,7 +6,6 @@ parameters:
         - packages
 
     excludePaths:
-        - packages/reveal-neon/src/Generator/local-temp
         - packages/*/tests/*/Fixture*
         - */tests/*/Source/*
 
