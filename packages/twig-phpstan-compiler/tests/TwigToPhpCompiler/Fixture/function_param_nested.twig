@@ -1,0 +1,7 @@
+{{ func(var).method }}
+-----
+<?php
+
+// line 1
+echo \twig_get_attribute($this->env, $this->source, \call_user_func_array($this->env->getFunction('func')->getCallable(), [$var]), "method", [], "any", \false, \false, \false, 1);
+echo "\n";

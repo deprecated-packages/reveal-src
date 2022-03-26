@@ -121,6 +121,11 @@ final class TwigGetAttributeExpanderNodeVisitor extends NodeVisitorAbstract
     private function resolveVariableName(FuncCall $funcCall): string|null
     {
         // @todo match with provided type
+
+        if (! array_key_exists(2, $funcCall->getArgs())) {
+            return null;
+        }
+
         $variable = $funcCall->getArgs()[2]
             ->value;
 
