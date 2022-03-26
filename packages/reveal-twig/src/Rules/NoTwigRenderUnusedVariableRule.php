@@ -7,16 +7,17 @@ namespace Reveal\RevealTwig\Rules;
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
 use Reveal\RevealTwig\NodeAnalyzer\SymfonyRenderWithParametersMatcher;
 use Reveal\TwigPHPStanCompiler\NodeAnalyzer\UnusedTwigTemplateVariableAnalyzer;
-use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
+ * @implements Rule<MethodCall>
  * @see \Reveal\RevealTwig\Tests\Rules\NoTwigRenderUnusedVariableRule\NoTwigRenderUnusedVariableRuleTest
  */
-final class NoTwigRenderUnusedVariableRule extends AbstractSymplifyRule
+final class NoTwigRenderUnusedVariableRule implements Rule
 {
     /**
      * @var string
@@ -30,18 +31,18 @@ final class NoTwigRenderUnusedVariableRule extends AbstractSymplifyRule
     }
 
     /**
-     * @return array<class-string<Node>>
+     * @return class-string<Node>
      */
-    public function getNodeTypes(): array
+    public function getNodeType(): string
     {
-        return [MethodCall::class];
+        return MethodCall::class;
     }
 
     /**
      * @param MethodCall $node
      * @return string[]
      */
-    public function process(Node $node, Scope $scope): array
+    public function processNode(Node $node, Scope $scope): array
     {
         $renderTemplatesWithParameters = $this->symfonyRenderWithParametersMatcher->matchTwigRender($node, $scope);
 

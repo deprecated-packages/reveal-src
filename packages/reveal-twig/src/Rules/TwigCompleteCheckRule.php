@@ -17,15 +17,15 @@ use Reveal\TemplatePHPStanCompiler\Reporting\TemplateErrorsFactory;
 use Reveal\TemplatePHPStanCompiler\TypeAnalyzer\TemplateVariableTypesResolver;
 use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Reveal\TwigPHPStanCompiler\TwigToPhpCompiler;
-use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Symplify\SmartFileSystem\SmartFileSystem;
 
 /**
+ * @implements Rule<MethodCall>
  * @see \Reveal\RevealTwig\Tests\Rules\TwigCompleteCheckRule\TwigCompleteCheckRuleTest
  */
-final class TwigCompleteCheckRule extends AbstractSymplifyRule
+final class TwigCompleteCheckRule implements Rule
 {
     /**
      * @var string
@@ -65,18 +65,18 @@ final class TwigCompleteCheckRule extends AbstractSymplifyRule
     }
 
     /**
-     * @return array<class-string<Node>>
+     * @return class-string<Node>
      */
-    public function getNodeTypes(): array
+    public function getNodeType(): string
     {
-        return [MethodCall::class];
+        return MethodCall::class;
     }
 
     /**
      * @param MethodCall $node
      * @return array<string|RuleError>
      */
-    public function process(Node $node, Scope $scope): array
+    public function processNode(Node $node, Scope $scope): array
     {
         // 1. find twig template file path with array
         $renderTemplatesWithParameters = $this->symfonyRenderWithParametersMatcher->matchTwigRender($node, $scope);
