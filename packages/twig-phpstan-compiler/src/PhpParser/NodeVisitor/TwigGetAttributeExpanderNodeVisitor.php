@@ -123,6 +123,11 @@ final class TwigGetAttributeExpanderNodeVisitor extends NodeVisitorAbstract
         // @todo match with provided type
         $variable = $funcCall->getArgs()[2]
             ->value;
+
+        if ($variable instanceof FuncCall) {
+            return $this->resolveVariableName($variable);
+        }
+
         if (! $variable instanceof Variable) {
             throw new ShouldNotHappenException();
         }
