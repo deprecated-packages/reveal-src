@@ -66,13 +66,13 @@
         "release": "vendor/bin/monorepo-builder release patch --ansi"
     },
     "replace": {
-        "reveal/latte-phpstan-compiler": "self.version",
-        "reveal/phpstan-rules": "self.version",
-        "reveal/reveal-latte": "self.version",
-        "reveal/reveal-twig": "self.version",
-        "reveal/symfony-phpstan-rules": "self.version",
-        "reveal/template-phpstan-compiler": "self.version",
-        "reveal/twig-phpstan-compiler": "self.version"
+        "reveal/latte-phpstan-compiler": "0.1",
+        "reveal/phpstan-rules": "0.1",
+        "reveal/reveal-latte": "0.1",
+        "reveal/reveal-twig": "0.1",
+        "reveal/symfony-phpstan-rules": "0.1",
+        "reveal/template-phpstan-compiler": "0.1",
+        "reveal/twig-phpstan-compiler": "0.1"
     },
     "config": {
         "sort-packages": true,
