@@ -1,0 +1,16 @@
+services:
+    -
+        class: Reveal\RevealLatte\Rules\LatteCompleteCheckRule
+        tags: [phpstan.rules.rule]
+
+    -
+        class: Reveal\RevealLatte\Rules\NoNetteRenderUnusedVariableRule
+        tags: [phpstan.rules.rule]
+
+    -
+        class: Reveal\RevealLatte\Rules\NoNetteRenderMissingVariableRule
+        tags: [phpstan.rules.rule]
+
+    -
+        class: Reveal\RevealLatte\Rules\NoUnusedNetteCreateComponentMethodRule
+        tags: [phpstan.rules.rule]
