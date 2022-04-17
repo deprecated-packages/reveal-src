@@ -2,12 +2,12 @@
 
 Compile latte template to PHPStan-compatible PHP code to allow its static analysis
 
-[![Downloads total](https://img.shields.io/packagist/dt/reaveal/latte-phpstan-compiler.svg?style=flat-square)](https://packagist.org/packages/reaveal/latte-phpstan-compiler/stats)
+[![Downloads total](https://img.shields.io/packagist/dt/reveal/latte-phpstan-compiler.svg?style=flat-square)](https://packagist.org/packages/reveal/latte-phpstan-compiler/stats)
 
 ## Install
 
 ```bash
-composer require reaveal/latte-phpstan-compiler
+composer require reveal/latte-phpstan-compiler
 ```
 
 ## Usage

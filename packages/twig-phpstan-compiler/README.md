@@ -2,12 +2,12 @@
 
 Compile twig template to PHPStan-compatible PHP code to allow its static analysis
 
-[![Downloads total](https://img.shields.io/packagist/dt/reaveal/twig-phpstan-compiler.svg?style=flat-square)](https://packagist.org/packages/reaveal/twig-phpstan-compiler/stats)
+[![Downloads total](https://img.shields.io/packagist/dt/reveal/twig-phpstan-compiler.svg?style=flat-square)](https://packagist.org/packages/reveal/twig-phpstan-compiler/stats)
 
 ## Install
 
 ```bash
-composer require reaveal/twig-phpstan-compiler
+composer require reveal/twig-phpstan-compiler
 ```
 
 ## Usage

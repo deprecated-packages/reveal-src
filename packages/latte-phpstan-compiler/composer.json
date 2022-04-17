@@ -1,5 +1,5 @@
 {
-    "name": "reaveal/latte-phpstan-compiler",
+    "name": "reveal/latte-phpstan-compiler",
     "type": "phpstan-extension",
     "description": "Compile latte template to PHPStan-compatible PHP code to allow its static analysis",
     "license": "MIT",
@@ -11,7 +11,7 @@
         "phpstan/phpstan": "^1.4",
         "symplify/astral": "^10.0",
         "symplify/package-builder": "^10.2",
-        "symplify/template-phpstan-compiler": "^10.3"
+        "reveal/template-phpstan-compiler": "^0.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.5|^9.5",
@@ -31,7 +31,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-main": "10.3-dev"
+            "dev-main": "0.2-dev"
         },
         "phpstan": {
             "includes": [
@@ -63,7 +63,6 @@
         "symplify/easy-ci": "<10.2.2",
         "symplify/coding-standard": "<10.2.2",
         "symplify/package-builder": "<10.0.9",
-        "reveal/reveal-latte": "<10.2.2",
         "symplify/easy-parallel": "<10.2.2",
         "symplify/neon-config-dumper": "<10.2.2"
     },

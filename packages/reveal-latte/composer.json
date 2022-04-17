@@ -1,5 +1,5 @@
 {
-    "name": "reveal/phpstan-latte-rules",
+    "name": "reveal/reveal-latte",
     "type": "phpstan-extension",
     "description": "Rules for static analysis of Latte templates and Latte render() methods",
     "license": "MIT",
@@ -11,7 +11,7 @@
         "symplify/rule-doc-generator-contracts": "^10.2",
         "symplify/package-builder": "^10.2",
         "symplify/smart-file-system": "^10.2",
-        "reaveal/latte-phpstan-compiler": "^10.3"
+        "reveal/latte-phpstan-compiler": "^0.2"
     },
     "require-dev": {
         "nette/application": "^3.1",
@@ -34,7 +34,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-main": "10.3-dev"
+            "dev-main": "0.2-dev"
         },
         "phpstan": {
             "includes": [
@@ -61,8 +61,6 @@
         "symplify/config-transformer": "<10.2.2",
         "symplify/easy-ci": "<10.2.2",
         "symplify/coding-standard": "<10.2.2",
-        "reaveal/latte-phpstan-compiler": "<9.4.70",
-        "symplify/template-phpstan-compiler": "<10.2.2",
         "symplify/rule-doc-generator": "<10.2.2",
         "symplify/php-config-printer": "<10.2.2",
         "symplify/symplify-kernel": "<10.2.2",

@@ -14,7 +14,6 @@
         "symplify/package-builder": "^10.2",
         "symplify/rule-doc-generator-contracts": "^10.2",
         "symplify/smart-file-system": "^10.2",
-        "symplify/template-phpstan-compiler": "^10.3",
         "twig/twig": "^3.3",
         "webmozart/assert": "^1.10"
     },
@@ -67,7 +66,7 @@
         "release": "vendor/bin/monorepo-builder release patch --ansi"
     },
     "replace": {
-        "reaveal/latte-phpstan-compiler": "self.version",
+        "reveal/latte-phpstan-compiler": "self.version",
         "reveal/phpstan-rules": "self.version",
         "reveal/reveal-latte": "self.version",
         "reveal/reveal-twig": "self.version",
