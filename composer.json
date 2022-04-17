@@ -1,6 +1,6 @@
 {
     "name": "reveal/reveal",
-    "license": "proprietary",
+    "license": "MIT",
     "description": "Reveal Static bugs in Configs Files and Templates",
     "require": {
         "php": ">=8.1",
