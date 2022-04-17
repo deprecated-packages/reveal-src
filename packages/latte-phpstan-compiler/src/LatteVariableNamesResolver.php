@@ -10,9 +10,9 @@ use PhpParser\NodeTraverser;
 use Reveal\LattePHPStanCompiler\RelatedFileResolver\IncludedSnippetTemplateFileResolver;
 use Reveal\LattePHPStanCompiler\RelatedFileResolver\ParentLayoutTemplateFileResolver;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\TemplatePHPStanCompiler\Contract\UsedVariableNamesResolverInterface;
-use Symplify\TemplatePHPStanCompiler\NodeVisitor\TemplateVariableCollectingNodeVisitor;
-use Symplify\TemplatePHPStanCompiler\PhpParser\ParentNodeAwarePhpParser;
+use Reveal\TemplatePHPStanCompiler\Contract\UsedVariableNamesResolverInterface;
+use Reveal\TemplatePHPStanCompiler\NodeVisitor\TemplateVariableCollectingNodeVisitor;
+use Reveal\TemplatePHPStanCompiler\PhpParser\ParentNodeAwarePhpParser;
 
 final class LatteVariableNamesResolver implements UsedVariableNamesResolverInterface
 {

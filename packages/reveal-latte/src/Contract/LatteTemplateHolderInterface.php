@@ -7,7 +7,7 @@ namespace Reveal\RevealLatte\Contract;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
-use Symplify\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
+use Reveal\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
 
 interface LatteTemplateHolderInterface
 {

@@ -10,8 +10,8 @@ use Reveal\LattePHPStanCompiler\Exception\LattePHPStanCompilerException;
 use Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor\AppendExtractedVarTypesNodeVisitor;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\Astral\PhpParser\SmartPhpParser;
-use Symplify\TemplatePHPStanCompiler\NodeFactory\VarDocNodeFactory;
-use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
+use Reveal\TemplatePHPStanCompiler\NodeFactory\VarDocNodeFactory;
+use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 
 final class LatteVarTypeDocBlockDecorator
 {

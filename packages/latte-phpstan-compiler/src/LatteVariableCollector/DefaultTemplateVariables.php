@@ -10,7 +10,7 @@ use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
 use Reveal\LattePHPStanCompiler\Contract\LatteVariableCollectorInterface;
 use stdClass;
-use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
+use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 
 final class DefaultTemplateVariables implements LatteVariableCollectorInterface
 {

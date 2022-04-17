@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Reveal\LattePHPStanCompiler\Contract;
 
-use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
+use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 
 interface LatteVariableCollectorInterface
 {

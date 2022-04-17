@@ -12,7 +12,7 @@ use Reveal\RevealLatte\Contract\LatteTemplateHolderInterface;
 use Reveal\RevealLatte\NodeAnalyzer\LatteTemplateWithParametersMatcher;
 use Reveal\RevealLatte\NodeAnalyzer\TemplateRenderAnalyzer;
 use Reveal\RevealLatte\TypeAnalyzer\ComponentMapResolver;
-use Symplify\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
+use Reveal\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
 
 final class TemplateRenderMethodCall implements LatteTemplateHolderInterface
 {

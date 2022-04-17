@@ -21,7 +21,7 @@ use Symplify\EasyTesting\StaticFixtureSplitter;
 use Symplify\PHPStanExtensions\DependencyInjection\PHPStanContainerFactory;
 use Symplify\SmartFileSystem\SmartFileInfo;
 use Symplify\SmartFileSystem\SmartFileSystem;
-use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
+use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 
 final class LatteToPhpCompilerTest extends TestCase
 {

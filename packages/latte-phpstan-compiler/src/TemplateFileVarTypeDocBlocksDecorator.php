@@ -13,9 +13,9 @@ use PHPStan\Type\ObjectType;
 use Reveal\LattePHPStanCompiler\Contract\LatteVariableCollectorInterface;
 use Reveal\LattePHPStanCompiler\Latte\Tokens\PhpToLatteLineNumbersResolver;
 use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
-use Symplify\TemplatePHPStanCompiler\TypeAnalyzer\TemplateVariableTypesResolver;
-use Symplify\TemplatePHPStanCompiler\ValueObject\PhpFileContentsWithLineMap;
-use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
+use Reveal\TemplatePHPStanCompiler\TypeAnalyzer\TemplateVariableTypesResolver;
+use Reveal\TemplatePHPStanCompiler\ValueObject\PhpFileContentsWithLineMap;
+use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 
 /**
  * @api

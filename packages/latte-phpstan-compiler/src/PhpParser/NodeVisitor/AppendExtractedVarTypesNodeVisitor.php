@@ -10,8 +10,8 @@ use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Expression;
 use PhpParser\NodeVisitorAbstract;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\TemplatePHPStanCompiler\NodeFactory\VarDocNodeFactory;
-use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
+use Reveal\TemplatePHPStanCompiler\NodeFactory\VarDocNodeFactory;
+use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 
 final class AppendExtractedVarTypesNodeVisitor extends NodeVisitorAbstract
 {

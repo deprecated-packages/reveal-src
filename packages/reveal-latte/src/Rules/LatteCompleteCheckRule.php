@@ -16,11 +16,11 @@ use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Symplify\SmartFileSystem\SmartFileSystem;
-use Symplify\TemplatePHPStanCompiler\ErrorSkipper;
-use Symplify\TemplatePHPStanCompiler\PHPStan\FileAnalyserProvider;
-use Symplify\TemplatePHPStanCompiler\Reporting\TemplateErrorsFactory;
-use Symplify\TemplatePHPStanCompiler\Rules\TemplateRulesRegistry;
-use Symplify\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
+use Reveal\TemplatePHPStanCompiler\ErrorSkipper;
+use Reveal\TemplatePHPStanCompiler\PHPStan\FileAnalyserProvider;
+use Reveal\TemplatePHPStanCompiler\Reporting\TemplateErrorsFactory;
+use Reveal\TemplatePHPStanCompiler\Rules\TemplateRulesRegistry;
+use Reveal\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
 use Throwable;
 
 /**

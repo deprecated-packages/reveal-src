@@ -7,7 +7,7 @@ namespace Reveal\LattePHPStanCompiler\NodeAnalyzer;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use Reveal\LattePHPStanCompiler\LatteVariableNamesResolver;
-use Symplify\TemplatePHPStanCompiler\NodeAnalyzer\MethodCallArrayResolver;
+use Reveal\TemplatePHPStanCompiler\NodeAnalyzer\MethodCallArrayResolver;
 
 /**
  * @api

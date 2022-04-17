@@ -17,7 +17,7 @@ use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\PHPStanRules\Exception\ShouldNotHappenException;
 use Symplify\SmartFileSystem\SmartFileSystem;
-use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
+use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 
 /**
  * @see \Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\LatteToPhpCompilerTest

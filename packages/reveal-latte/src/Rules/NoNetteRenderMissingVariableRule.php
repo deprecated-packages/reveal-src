@@ -13,7 +13,7 @@ use Reveal\RevealLatte\NodeAnalyzer\TemplateRenderAnalyzer;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
-use Symplify\TemplatePHPStanCompiler\NodeAnalyzer\TemplateFilePathResolver;
+use Reveal\TemplatePHPStanCompiler\NodeAnalyzer\TemplateFilePathResolver;
 
 /**
  * @see \Reveal\RevealLatte\Tests\Rules\NoNetteRenderMissingVariableRule\NoNetteRenderMissingVariableRuleTest

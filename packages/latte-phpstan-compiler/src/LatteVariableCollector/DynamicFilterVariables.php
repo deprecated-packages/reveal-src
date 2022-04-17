@@ -9,7 +9,7 @@ use PHPStan\Type\ObjectType;
 use ReflectionClass;
 use ReflectionException;
 use Reveal\LattePHPStanCompiler\Contract\LatteVariableCollectorInterface;
-use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
+use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 
 final class DynamicFilterVariables implements LatteVariableCollectorInterface
 {
