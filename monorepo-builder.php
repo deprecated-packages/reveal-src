@@ -11,4 +11,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters->set(Option::PACKAGE_DIRECTORIES, [
         __DIR__ . '/packages',
     ]);
+
+    $parameters->set(Option::DEFAULT_BRANCH_NAME, 'main');
 };

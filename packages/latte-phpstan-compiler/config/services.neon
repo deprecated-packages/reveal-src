@@ -1,0 +1,64 @@
+parameters:
+    latteFilters: []
+    presenterFactoryMapping: []
+
+parametersSchema:
+    latteFilters: array()
+    presenterFactoryMapping: array()
+
+services:
+    # latte
+    - Latte\Parser
+
+    - Reveal\LattePHPStanCompiler\LatteToPhpCompiler
+    - Reveal\LattePHPStanCompiler\TemplateFileVarTypeDocBlocksDecorator
+
+    - Reveal\LattePHPStanCompiler\Latte\UnknownMacroAwareLatteCompiler
+    - Reveal\LattePHPStanCompiler\Latte\Tokens\PhpToLatteLineNumbersResolver
+    - Reveal\LattePHPStanCompiler\Latte\Macros\LatteMacroFaker
+
+    - Reveal\LattePHPStanCompiler\LatteVarTypeDocBlockDecorator
+
+    # links
+    -
+        class: Reveal\LattePHPStanCompiler\Nette\PresenterFactoryFaker
+        arguments:
+            mapping: %presenterFactoryMapping%
+
+    - Reveal\LattePHPStanCompiler\LinkProcessor\LinkProcessorFactory
+    - Reveal\LattePHPStanCompiler\LinkProcessor\PresenterActionLinkProcessor
+
+    # latte lines
+    - Reveal\LattePHPStanCompiler\Latte\LineCommentCorrector
+    - Reveal\LattePHPStanCompiler\Latte\LineCommentMatcher
+    - Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor\LatteLineNumberNodeVisitor
+
+    # variables
+    - Reveal\LattePHPStanCompiler\LatteVariableCollector\DefaultTemplateVariables
+    -
+        class: Reveal\LattePHPStanCompiler\LatteVariableCollector\DynamicFilterVariables
+        arguments:
+            latteFilters: %latteFilters%
+
+    # filters
+    -
+        class: Reveal\LattePHPStanCompiler\Latte\Filters\FilterMatcher
+        arguments:
+            latteFilters: %latteFilters%
+
+    # php traversing
+    - Reveal\LattePHPStanCompiler\NodeVisitor\TemplateIncludesNameNodeVisitor
+    - Reveal\LattePHPStanCompiler\NodeVisitor\ParentLayoutNameNodeVisitor
+    - Reveal\LattePHPStanCompiler\LatteVariableNamesResolver
+
+    - Reveal\LattePHPStanCompiler\NodeAnalyzer\UnusedNetteTemplateRenderVariableResolver
+    - Reveal\LattePHPStanCompiler\NodeAnalyzer\MissingLatteTemplateRenderVariableResolver
+
+    - Reveal\LattePHPStanCompiler\RelatedFileResolver\ParentLayoutTemplateFileResolver
+    - Reveal\LattePHPStanCompiler\RelatedFileResolver\IncludedSnippetTemplateFileResolver
+
+    # node visitors
+    - Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor\MagicFilterToExplicitCallNodeVisitor
+    - Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor\InstanceofRenderableNodeVisitor
+    - Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor\NClassNodeVisitor
+    - Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor\LinkNodeVisitor

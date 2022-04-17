@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-use PhpCsFixer\Fixer\PhpUnit\PhpUnitStrictFixer;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symplify\EasyCodingStandard\ValueObject\Option;
+use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $parameters = $containerConfigurator->parameters();
-    $parameters->set(Option::PATHS, [
+return static function (ECSConfig $ecsConfig): void {
+    $ecsConfig->paths([
         __DIR__ . '/ecs.php',
         __DIR__ . '/packages',
     ]);
 
-    $parameters->set(Option::SKIP, [
+    $ecsConfig->skip([
         '*/Source/*',
         __DIR__ . '/packages/twig-phpstan-compiler/tests/TwigToPhpCompiler/FixtureWithTypes/',
+        __DIR__ . '/packages/latte-phpstan-compiler/tests/LatteToPhpCompiler/Fixture*',
     ]);
 
     // run and fix, one by one
-    $containerConfigurator->import(SetList::CLEAN_CODE);
-    $containerConfigurator->import(SetList::COMMON);
-    $containerConfigurator->import(SetList::PSR_12);
+    $ecsConfig->sets([
+        SetList::CLEAN_CODE,
+        SetList::COMMON,
+        SetList::PSR_12,
+    ]);
 };

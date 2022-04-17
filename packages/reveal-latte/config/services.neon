@@ -1,0 +1,13 @@
+services:
+    - Reveal\RevealLatte\LatteUsedControlResolver
+    - Reveal\RevealLatte\NodeAnalyzer\LatteTemplateWithParametersMatcher
+    - Reveal\RevealLatte\NodeAnalyzer\ComponentClassMethodTypeAnalyzer
+
+    # node analyzer
+    - Reveal\RevealLatte\NodeAnalyzer\TemplateRenderAnalyzer
+
+    - Reveal\RevealLatte\TypeAnalyzer\ComponentMapResolver
+    - Reveal\RevealLatte\NodeAnalyzer\UsedLocalComponentNamesResolver
+
+    - Reveal\RevealLatte\LatteTemplateHolder\TemplateRenderMethodCall
+    - Reveal\RevealLatte\LatteTemplateHolder\NetteApplicationUIPresenter

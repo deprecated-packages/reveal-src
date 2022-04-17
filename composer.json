@@ -1,37 +1,43 @@
 {
     "name": "reveal/reveal",
-    "license": "proprietary",
+    "license": "MIT",
     "description": "Reveal Static bugs in Configs Files and Templates",
     "require": {
         "php": ">=8.1",
+        "latte/latte": "^2.11",
+        "nette/application": "^3.1",
         "nette/bootstrap": "^3.1",
         "nette/di": "^3.0",
         "nette/utils": "^3.2",
         "phpstan/phpstan": "^1.4",
         "symplify/astral": "^10.0",
-        "symplify/package-builder": "^10.0",
-        "symplify/rule-doc-generator-contracts": "^10.0",
-        "symplify/smart-file-system": "^10.0",
+        "symplify/package-builder": "^10.2",
+        "symplify/rule-doc-generator-contracts": "^10.2",
+        "symplify/smart-file-system": "^10.2",
         "twig/twig": "^3.3",
         "webmozart/assert": "^1.10"
     },
     "require-dev": {
+        "nette/forms": "^3.1",
+        "nette/security": "^3.1",
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-webmozart-assert": "^1.0",
         "phpunit/phpunit": "^7.5|^9.5",
         "rector/rector": "^0.12.17",
         "symfony/framework-bundle": "^6.0",
-        "symplify/easy-ci": "^10.0",
+        "symplify/easy-ci": "^10.2",
         "symplify/easy-coding-standard": "^10.1",
-        "symplify/easy-testing": "^10.0",
+        "symplify/easy-testing": "^10.2",
         "symplify/monorepo-builder": "^10.1",
-        "symplify/phpstan-extensions": "^10.0",
-        "symplify/phpstan-rules": "^10.0",
+        "symplify/phpstan-extensions": "^10.2",
+        "symplify/phpstan-rules": "^10.2",
         "tracy/tracy": "^2.8"
     },
     "autoload": {
         "psr-4": {
+            "Reveal\\LattePHPStanCompiler\\": "packages/latte-phpstan-compiler/src",
             "Reveal\\PHPStanRules\\": "packages/phpstan-rules/src",
+            "Reveal\\RevealLatte\\": "packages/reveal-latte/src",
             "Reveal\\RevealTwig\\": "packages/reveal-twig/src",
             "Reveal\\SymfonyPHPStanRules\\": "packages/symfony-phpstan-rules/src",
             "Reveal\\TemplatePHPStanCompiler\\": "packages/template-phpstan-compiler/src",
@@ -40,7 +46,9 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "Reveal\\LattePHPStanCompiler\\Tests\\": "packages/latte-phpstan-compiler/tests",
             "Reveal\\PHPStanRules\\Tests\\": "packages/phpstan-rules/tests",
+            "Reveal\\RevealLatte\\Tests\\": "packages/reveal-latte/tests",
             "Reveal\\RevealTwig\\Tests\\": "packages/reveal-twig/tests",
             "Reveal\\SymfonyPHPStanRules\\Tests\\": "packages/symfony-phpstan-rules/tests",
             "Reveal\\TemplatePHPStanCompiler\\Tests\\": "packages/template-phpstan-compiler/tests",
@@ -58,11 +66,13 @@
         "release": "vendor/bin/monorepo-builder release patch --ansi"
     },
     "replace": {
-        "reveal/phpstan-rules": "self.version",
-        "reveal/reveal-twig": "self.version",
-        "reveal/symfony-phpstan-rules": "self.version",
-        "reveal/template-phpstan-compiler": "self.version",
-        "reveal/twig-phpstan-compiler": "self.version"
+        "reveal/latte-phpstan-compiler": "0.1",
+        "reveal/phpstan-rules": "0.1",
+        "reveal/reveal-latte": "0.1",
+        "reveal/reveal-twig": "0.1",
+        "reveal/symfony-phpstan-rules": "0.1",
+        "reveal/template-phpstan-compiler": "0.1",
+        "reveal/twig-phpstan-compiler": "0.1"
     },
     "config": {
         "sort-packages": true,
