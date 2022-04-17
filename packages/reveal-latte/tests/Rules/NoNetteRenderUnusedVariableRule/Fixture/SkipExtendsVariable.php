@@ -11,7 +11,7 @@ final class SkipExtendsVariable extends Control
     public function render()
     {
         $this->template->render(__DIR__ . '/../Source/template_with_extends.latte', [
-            'use_me' => 'some_value'
+            'use_me' => 'some_value',
         ]);
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\Tests\LatteToPhpCompiler;
+namespace Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler;
 
 use Iterator;
 use Nette\Application\UI\Presenter;
@@ -11,13 +11,13 @@ use PHPStan\DependencyInjection\Container;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
 use PHPUnit\Framework\TestCase;
+use Reveal\LattePHPStanCompiler\LatteToPhpCompiler;
+use Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\FooPresenter;
+use Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\SomeNameControl;
+use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
 use Symplify\EasyTesting\DataProvider\StaticFixtureFinder;
 use Symplify\EasyTesting\DataProvider\StaticFixtureUpdater;
 use Symplify\EasyTesting\StaticFixtureSplitter;
-use Symplify\LattePHPStanCompiler\LatteToPhpCompiler;
-use Symplify\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\FooPresenter;
-use Symplify\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\SomeNameControl;
-use Symplify\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
 use Symplify\PHPStanExtensions\DependencyInjection\PHPStanContainerFactory;
 use Symplify\SmartFileSystem\SmartFileInfo;
 use Symplify\SmartFileSystem\SmartFileSystem;

@@ -12,7 +12,7 @@ final class SkipVariableInIf extends Control
     {
         $this->template->render(__DIR__ . '/../Source/variable_with_if.latte', [
             'value' => 1000,
-            'another_value' => 10000
+            'another_value' => 10000,
         ]);
     }
 }

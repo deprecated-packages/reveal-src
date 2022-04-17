@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\Latte\Filters;
+namespace Reveal\LattePHPStanCompiler\Latte\Filters;
 
 use Latte\Runtime\Defaults;
 use ReflectionClass;
 use ReflectionException;
-use Symplify\LattePHPStanCompiler\Contract\ValueObject\CallReferenceInterface;
-use Symplify\LattePHPStanCompiler\Exception\InvalidLatteFilterFormatException;
-use Symplify\LattePHPStanCompiler\ValueObject\DynamicCallReference;
-use Symplify\LattePHPStanCompiler\ValueObject\FunctionCallReference;
-use Symplify\LattePHPStanCompiler\ValueObject\StaticCallReference;
+use Reveal\LattePHPStanCompiler\Contract\ValueObject\CallReferenceInterface;
+use Reveal\LattePHPStanCompiler\Exception\InvalidLatteFilterFormatException;
+use Reveal\LattePHPStanCompiler\ValueObject\DynamicCallReference;
+use Reveal\LattePHPStanCompiler\ValueObject\FunctionCallReference;
+use Reveal\LattePHPStanCompiler\ValueObject\StaticCallReference;
 
 /**
- * @see \Symplify\LattePHPStanCompiler\Tests\Filters\FilterMatcherTest
+ * @see \Reveal\LattePHPStanCompiler\Tests\Filters\FilterMatcherTest
  */
 final class FilterMatcher
 {

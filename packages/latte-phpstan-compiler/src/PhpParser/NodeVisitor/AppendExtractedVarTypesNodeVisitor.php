@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\PhpParser\NodeVisitor;
+namespace Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;

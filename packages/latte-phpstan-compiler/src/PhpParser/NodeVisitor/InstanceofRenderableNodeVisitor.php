@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\PhpParser\NodeVisitor;
+namespace Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor;
 
 use Nette\Application\UI\Renderable;
 use PhpParser\Node;
@@ -12,8 +12,8 @@ use PhpParser\Node\Stmt\Expression;
 use PhpParser\Node\Stmt\If_;
 use PhpParser\NodeTraverser;
 use PhpParser\NodeVisitorAbstract;
+use Reveal\LattePHPStanCompiler\Contract\LatteToPhpCompilerNodeVisitorInterface;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\LattePHPStanCompiler\Contract\LatteToPhpCompilerNodeVisitorInterface;
 
 /**
  * Fixes render() invalid contract

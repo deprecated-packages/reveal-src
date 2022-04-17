@@ -11,7 +11,7 @@ final class RenderWithUnusedVariable extends Control
     public function render()
     {
         $this->template->render(__DIR__ . '/../Source/some_template.latte', [
-            'unused_variable' => 'some_value'
+            'unused_variable' => 'some_value',
         ]);
     }
 }

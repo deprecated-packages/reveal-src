@@ -17,5 +17,4 @@ final class SkipExistingMethodCall extends Control
             'someType' => $someType,
         ]);
     }
-
 }

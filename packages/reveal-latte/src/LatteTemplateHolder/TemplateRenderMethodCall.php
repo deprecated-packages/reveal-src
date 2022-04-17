@@ -7,7 +7,7 @@ namespace Reveal\RevealLatte\LatteTemplateHolder;
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
-use Symplify\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
+use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
 use Reveal\RevealLatte\Contract\LatteTemplateHolderInterface;
 use Reveal\RevealLatte\NodeAnalyzer\LatteTemplateWithParametersMatcher;
 use Reveal\RevealLatte\NodeAnalyzer\TemplateRenderAnalyzer;

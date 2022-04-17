@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\PhpParser\NodeVisitor;
+namespace Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor;
 
 use PhpParser\Comment\Doc;
 use PhpParser\Node;
@@ -14,8 +14,8 @@ use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt\Expression;
 use PhpParser\NodeVisitorAbstract;
 use PHPStan\Type\TypeWithClassName;
+use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
 
 /**
  * Make $_tmp = $this->global->uiControl->getComponent("someName");

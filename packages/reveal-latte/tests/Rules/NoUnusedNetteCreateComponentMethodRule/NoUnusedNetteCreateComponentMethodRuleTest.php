@@ -6,8 +6,8 @@ namespace Reveal\RevealLatte\Tests\Rules\NoUnusedNetteCreateComponentMethodRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 use Reveal\RevealLatte\Rules\NoUnusedNetteCreateComponentMethodRule;
+use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
  * @extends AbstractServiceAwareRuleTestCase<NoUnusedNetteCreateComponentMethodRule>

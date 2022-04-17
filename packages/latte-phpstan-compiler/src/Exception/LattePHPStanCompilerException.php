@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\Exception;
+namespace Reveal\LattePHPStanCompiler\Exception;
 
 use Exception;
 

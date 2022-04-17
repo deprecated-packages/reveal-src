@@ -11,7 +11,7 @@ final class SkipCompleteVariables extends Control
     public function render()
     {
         $this->template->render(__DIR__ . '/../Source/complete_variables.latte', [
-            'used_this' => true
+            'used_this' => true,
         ]);
     }
 }

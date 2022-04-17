@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source;
+namespace Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source;
 
 use Nette\Application\UI\Control;
 

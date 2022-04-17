@@ -1,15 +1,14 @@
 <?php
 
-declare (strict_types=1);
-use Latte\Runtime as LR;
+declare(strict_types=1);
 /** DummyTemplateClass */
 final class DummyTemplateClass extends \Latte\Runtime\Template
 {
-    public function main() : array
+    public function main(): array
     {
         \extract($this->params);
-        /** @var Symplify\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\FooPresenter $presenter */
-        /** @var Symplify\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\FooPresenter $control */
+        /** @var Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\FooPresenter $presenter */
+        /** @var Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\FooPresenter $control */
         /** line in latte file: 1 */
         echo \Latte\Runtime\Filters::escapeHtmlText($presenter->foo);
         echo "\n";
@@ -18,11 +17,12 @@ final class DummyTemplateClass extends \Latte\Runtime\Template
         echo "\n";
         return \get_defined_vars();
     }
-    public function prepare() : void
+
+    public function prepare(): void
     {
         \extract($this->params);
-        /** @var Symplify\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\FooPresenter $presenter */
-        /** @var Symplify\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\FooPresenter $control */
+        /** @var Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\FooPresenter $presenter */
+        /** @var Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\FooPresenter $control */
         \Nette\Bridges\ApplicationLatte\UIRuntime::initialize($this, $this->parentName, $this->blocks);
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\Contract\ValueObject;
+namespace Reveal\LattePHPStanCompiler\Contract\ValueObject;
 
 interface CallReferenceInterface
 {

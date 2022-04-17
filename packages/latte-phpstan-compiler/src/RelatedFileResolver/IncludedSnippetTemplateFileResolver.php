@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\RelatedFileResolver;
+namespace Reveal\LattePHPStanCompiler\RelatedFileResolver;
 
 use PhpParser\Node\Stmt;
 use PhpParser\NodeTraverser;
-use Symplify\LattePHPStanCompiler\NodeVisitor\TemplateIncludesNameNodeVisitor;
+use Reveal\LattePHPStanCompiler\NodeVisitor\TemplateIncludesNameNodeVisitor;
 
 final class IncludedSnippetTemplateFileResolver
 {

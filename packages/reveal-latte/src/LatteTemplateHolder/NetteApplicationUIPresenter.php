@@ -11,12 +11,12 @@ use PhpParser\Node\Stmt\ClassMethod;
 use PHPStan\Analyser\Scope;
 use PHPStan\Node\InClassNode;
 use PHPStan\Type\ObjectType;
-use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\Astral\NodeFinder\SimpleNodeFinder;
-use Symplify\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
+use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
 use Reveal\RevealLatte\Contract\LatteTemplateHolderInterface;
 use Reveal\RevealLatte\NodeAnalyzer\LatteTemplateWithParametersMatcher;
 use Reveal\RevealLatte\TypeAnalyzer\ComponentMapResolver;
+use Symplify\Astral\Naming\SimpleNameResolver;
+use Symplify\Astral\NodeFinder\SimpleNodeFinder;
 use Symplify\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
 
 final class NetteApplicationUIPresenter implements LatteTemplateHolderInterface

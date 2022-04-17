@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\NodeAnalyzer;
+namespace Reveal\LattePHPStanCompiler\NodeAnalyzer;
 
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
-use Symplify\LattePHPStanCompiler\LatteVariableNamesResolver;
+use Reveal\LattePHPStanCompiler\LatteVariableNamesResolver;
 use Symplify\TemplatePHPStanCompiler\NodeAnalyzer\MethodCallArrayResolver;
 
 /**

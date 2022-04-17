@@ -6,8 +6,8 @@ namespace Reveal\RevealLatte\Tests\Rules\NoNetteRenderMissingVariableRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 use Reveal\RevealLatte\Rules\NoNetteRenderMissingVariableRule;
+use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
  * @extends AbstractServiceAwareRuleTestCase<NoNetteRenderMissingVariableRule>

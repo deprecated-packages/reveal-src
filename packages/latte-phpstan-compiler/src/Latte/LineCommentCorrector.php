@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\Latte;
+namespace Reveal\LattePHPStanCompiler\Latte;
 
 final class LineCommentCorrector
 {

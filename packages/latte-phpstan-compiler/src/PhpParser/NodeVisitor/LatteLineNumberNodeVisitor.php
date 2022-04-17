@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\PhpParser\NodeVisitor;
+namespace Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor;
 
 use PhpParser\Comment\Doc;
 use PhpParser\Node;
 use PhpParser\Node\Stmt;
 use PhpParser\NodeVisitorAbstract;
-use Symplify\LattePHPStanCompiler\Latte\LineCommentMatcher;
+use Reveal\LattePHPStanCompiler\Latte\LineCommentMatcher;
 
 final class LatteLineNumberNodeVisitor extends NodeVisitorAbstract
 {

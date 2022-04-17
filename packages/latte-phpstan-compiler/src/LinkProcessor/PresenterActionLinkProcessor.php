@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\LinkProcessor;
+namespace Reveal\LattePHPStanCompiler\LinkProcessor;
 
 use PhpParser\Comment\Doc;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Stmt\Expression;
-use Symplify\LattePHPStanCompiler\Contract\LinkProcessorInterface;
-use Symplify\LattePHPStanCompiler\Nette\PresenterFactoryFaker;
+use Reveal\LattePHPStanCompiler\Contract\LinkProcessorInterface;
+use Reveal\LattePHPStanCompiler\Nette\PresenterFactoryFaker;
 
 /**
  * from: <code> echo \Latte\Runtime\Filters::escapeHtmlAttr($this->global->uiControl->link("Foo:doSomething", ['a']));

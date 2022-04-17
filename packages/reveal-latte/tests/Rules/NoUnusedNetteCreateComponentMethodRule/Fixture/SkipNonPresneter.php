@@ -6,7 +6,7 @@ namespace Reveal\RevealLatte\Tests\Rules\NoUnusedNetteCreateComponentMethodRule\
 
 final class SkipNonPresneter
 {
-    protected function createComponentWhatever()
+    private function createComponentWhatever()
     {
     }
 }

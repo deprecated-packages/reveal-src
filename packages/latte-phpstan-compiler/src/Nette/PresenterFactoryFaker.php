@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\Nette;
+namespace Reveal\LattePHPStanCompiler\Nette;
 
 use Nette\Application\PresenterFactory;
 

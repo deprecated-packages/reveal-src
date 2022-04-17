@@ -17,5 +17,4 @@ final class SomeMissingMethodCall extends Control
             'someType' => $someType,
         ]);
     }
-
 }

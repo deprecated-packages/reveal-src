@@ -11,8 +11,7 @@ final class SkipVariableInBlockControl extends Control
     public function render()
     {
         $this->template->render(__DIR__ . '/../Source/variable_in_block.latte', [
-            'hello' => 'world'
+            'hello' => 'world',
         ]);
     }
-
 }

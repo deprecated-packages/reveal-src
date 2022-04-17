@@ -16,7 +16,7 @@ final class SkipUnionTemplate extends Control
         $templatePath = $random ? $firstLocationUsed : $secondLocationUnused;
 
         $this->template->render($templatePath, [
-            'unionVariable' => 'some_value'
+            'unionVariable' => 'some_value',
         ]);
     }
 }

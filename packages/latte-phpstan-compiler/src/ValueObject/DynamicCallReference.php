@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\ValueObject;
+namespace Reveal\LattePHPStanCompiler\ValueObject;
 
-use Symplify\LattePHPStanCompiler\Contract\ValueObject\CallReferenceInterface;
+use Reveal\LattePHPStanCompiler\Contract\ValueObject\CallReferenceInterface;
 
 final class DynamicCallReference implements CallReferenceInterface
 {

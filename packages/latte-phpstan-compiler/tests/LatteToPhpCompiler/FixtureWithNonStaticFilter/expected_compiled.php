@@ -1,11 +1,10 @@
 <?php
 
-declare (strict_types=1);
-use Latte\Runtime as LR;
+declare(strict_types=1);
 /** DummyTemplateClass */
 final class DummyTemplateClass extends \Latte\Runtime\Template
 {
-    public function main() : array
+    public function main(): array
     {
         \extract($this->params);
         /** @var Nette\Localization\Translator $netteLocalizationTranslatorFilter */
@@ -17,7 +16,8 @@ final class DummyTemplateClass extends \Latte\Runtime\Template
         echo "\n";
         return \get_defined_vars();
     }
-    public function prepare() : void
+
+    public function prepare(): void
     {
         \extract($this->params);
         /** @var Nette\Localization\Translator $netteLocalizationTranslatorFilter */

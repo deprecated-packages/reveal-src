@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler;
+namespace Reveal\LattePHPStanCompiler;
 
 use PhpParser\NodeTraverser;
 use PhpParser\PrettyPrinter\Standard;
+use Reveal\LattePHPStanCompiler\Exception\LattePHPStanCompilerException;
+use Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor\AppendExtractedVarTypesNodeVisitor;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\Astral\PhpParser\SmartPhpParser;
-use Symplify\LattePHPStanCompiler\Exception\LattePHPStanCompilerException;
-use Symplify\LattePHPStanCompiler\PhpParser\NodeVisitor\AppendExtractedVarTypesNodeVisitor;
 use Symplify\TemplatePHPStanCompiler\NodeFactory\VarDocNodeFactory;
 use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 

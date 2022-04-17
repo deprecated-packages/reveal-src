@@ -11,7 +11,7 @@ final class DummyTemplateClass extends \Latte\Runtime\Template
     {
         \extract($this->params);
         /** line in latte file: 1 */
-        echo \Latte\Runtime\Filters::escapeHtmlText(\Symplify\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\StaticFilter::process($var));
+        echo \Latte\Runtime\Filters::escapeHtmlText(\Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\StaticFilter::process($var));
         echo "\n";
         return \get_defined_vars();
     }

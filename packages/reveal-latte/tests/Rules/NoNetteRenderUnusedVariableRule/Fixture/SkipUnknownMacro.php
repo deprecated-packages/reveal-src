@@ -11,7 +11,7 @@ final class SkipUnknownMacro extends Control
     public function render()
     {
         $this->template->render(__DIR__ . '/../Source/unknown_macro.latte', [
-            'use_me' => 'some_value'
+            'use_me' => 'some_value',
         ]);
     }
 }

@@ -11,7 +11,7 @@ final class SkipIncludeVariable extends Control
     public function render()
     {
         $this->template->render(__DIR__ . '/../Source/template_with_include.latte', [
-            'use_me' => 'some_value'
+            'use_me' => 'some_value',
         ]);
     }
 }

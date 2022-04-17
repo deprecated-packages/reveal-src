@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\Contract;
+namespace Reveal\LattePHPStanCompiler\Contract;
 
 use PhpParser\Node\Arg;
 use PhpParser\Node\Stmt\Expression;

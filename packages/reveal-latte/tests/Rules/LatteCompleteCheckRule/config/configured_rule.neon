@@ -36,4 +36,4 @@ services:
             checkAlwaysTrueInstanceof: %checkAlwaysTrueInstanceof%
             treatPhpDocTypesAsCertain: %treatPhpDocTypesAsCertain%
 
-    - Symplify\LattePHPStanCompiler\LinkProcessor\SignalLinkProcessor
+    - Reveal\LattePHPStanCompiler\LinkProcessor\SignalLinkProcessor

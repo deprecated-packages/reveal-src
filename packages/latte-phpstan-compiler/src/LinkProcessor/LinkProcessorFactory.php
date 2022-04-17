@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\LinkProcessor;
+namespace Reveal\LattePHPStanCompiler\LinkProcessor;
 
-use Symplify\LattePHPStanCompiler\Contract\LinkProcessorInterface;
+use Reveal\LattePHPStanCompiler\Contract\LinkProcessorInterface;
 
 final class LinkProcessorFactory
 {

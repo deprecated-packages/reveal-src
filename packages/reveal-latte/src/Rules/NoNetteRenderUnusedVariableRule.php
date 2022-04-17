@@ -8,7 +8,7 @@ use PhpParser\Node;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
-use Symplify\LattePHPStanCompiler\NodeAnalyzer\UnusedNetteTemplateRenderVariableResolver;
+use Reveal\LattePHPStanCompiler\NodeAnalyzer\UnusedNetteTemplateRenderVariableResolver;
 use Reveal\RevealLatte\NodeAnalyzer\TemplateRenderAnalyzer;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;

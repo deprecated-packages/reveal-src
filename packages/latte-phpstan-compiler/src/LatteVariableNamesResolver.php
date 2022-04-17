@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler;
+namespace Reveal\LattePHPStanCompiler;
 
 use PhpParser\Node\Stmt;
 use PhpParser\NodeFinder;
 use PhpParser\NodeTraverser;
+use Reveal\LattePHPStanCompiler\RelatedFileResolver\IncludedSnippetTemplateFileResolver;
+use Reveal\LattePHPStanCompiler\RelatedFileResolver\ParentLayoutTemplateFileResolver;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\LattePHPStanCompiler\RelatedFileResolver\IncludedSnippetTemplateFileResolver;
-use Symplify\LattePHPStanCompiler\RelatedFileResolver\ParentLayoutTemplateFileResolver;
 use Symplify\TemplatePHPStanCompiler\Contract\UsedVariableNamesResolverInterface;
 use Symplify\TemplatePHPStanCompiler\NodeVisitor\TemplateVariableCollectingNodeVisitor;
 use Symplify\TemplatePHPStanCompiler\PhpParser\ParentNodeAwarePhpParser;

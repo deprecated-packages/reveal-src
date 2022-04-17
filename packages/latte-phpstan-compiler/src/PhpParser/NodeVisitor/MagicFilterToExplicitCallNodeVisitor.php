@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\PhpParser\NodeVisitor;
+namespace Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor;
 
 use Nette\Utils\Strings;
 use PhpParser\Node;
@@ -15,12 +15,12 @@ use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name\FullyQualified;
 use PhpParser\NodeVisitorAbstract;
+use Reveal\LattePHPStanCompiler\Contract\LatteToPhpCompilerNodeVisitorInterface;
+use Reveal\LattePHPStanCompiler\Latte\Filters\FilterMatcher;
+use Reveal\LattePHPStanCompiler\ValueObject\DynamicCallReference;
+use Reveal\LattePHPStanCompiler\ValueObject\FunctionCallReference;
+use Reveal\LattePHPStanCompiler\ValueObject\StaticCallReference;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\LattePHPStanCompiler\Contract\LatteToPhpCompilerNodeVisitorInterface;
-use Symplify\LattePHPStanCompiler\Latte\Filters\FilterMatcher;
-use Symplify\LattePHPStanCompiler\ValueObject\DynamicCallReference;
-use Symplify\LattePHPStanCompiler\ValueObject\FunctionCallReference;
-use Symplify\LattePHPStanCompiler\ValueObject\StaticCallReference;
 
 /**
  * Make \Latte\Runtime\Defaults::getFilters() explicit, from: $this->filters->{magic}(...)

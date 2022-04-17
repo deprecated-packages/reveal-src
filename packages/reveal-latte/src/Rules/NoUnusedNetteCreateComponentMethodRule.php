@@ -11,9 +11,9 @@ use PhpParser\Node\Stmt\ClassMethod;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Rules\Rule;
-use Symplify\Astral\Naming\SimpleNameResolver;
 use Reveal\RevealLatte\LatteUsedControlResolver;
 use Reveal\RevealLatte\NodeAnalyzer\UsedLocalComponentNamesResolver;
+use Symplify\Astral\Naming\SimpleNameResolver;
 
 /**
  * @see \Reveal\RevealLatte\Tests\Rules\NoUnusedNetteCreateComponentMethodRule\NoUnusedNetteCreateComponentMethodRuleTest

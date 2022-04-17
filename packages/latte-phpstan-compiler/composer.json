@@ -1,5 +1,5 @@
 {
-    "name": "symplify/latte-phpstan-compiler",
+    "name": "reaveal/latte-phpstan-compiler",
     "type": "phpstan-extension",
     "description": "Compile latte template to PHPStan-compatible PHP code to allow its static analysis",
     "license": "MIT",
@@ -21,12 +21,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Symplify\\LattePHPStanCompiler\\": "src"
+            "Reveal\\LattePHPStanCompiler\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Symplify\\LattePHPStanCompiler\\Tests\\": "tests"
+            "Reveal\\LattePHPStanCompiler\\Tests\\": "tests"
         }
     },
     "extra": {

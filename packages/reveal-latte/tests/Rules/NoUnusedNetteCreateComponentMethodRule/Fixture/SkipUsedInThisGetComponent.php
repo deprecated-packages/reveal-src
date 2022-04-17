@@ -8,12 +8,12 @@ use Nette\Application\UI\Presenter;
 
 final class SkipUsedInThisGetComponent extends Presenter
 {
-    protected function createComponentAnotherComponent()
-    {
-    }
-
     public function renderDefault()
     {
         $this->getComponent('anotherComponent');
+    }
+
+    protected function createComponentAnotherComponent()
+    {
     }
 }

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\Latte;
+namespace Reveal\LattePHPStanCompiler\Latte;
 
 use Nette\Utils\Strings;
 
 /**
- * @see \Symplify\LattePHPStanCompiler\Tests\Latte\LineCommentMatcherTest
+ * @see \Reveal\LattePHPStanCompiler\Tests\Latte\LineCommentMatcherTest
  */
 final class LineCommentMatcher
 {

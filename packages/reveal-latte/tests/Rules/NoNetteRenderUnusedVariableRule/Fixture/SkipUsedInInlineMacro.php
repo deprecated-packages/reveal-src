@@ -11,7 +11,7 @@ final class SkipUsedInInlineMacro extends Control
     public function render()
     {
         $this->template->render(__DIR__ . '/../Source/used_in_inline_macro.latte', [
-            'macro_value' => 'some_value'
+            'macro_value' => 'some_value',
         ]);
     }
 }

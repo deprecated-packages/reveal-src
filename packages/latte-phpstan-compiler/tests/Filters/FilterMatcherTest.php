@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\Tests\Filters;
+namespace Reveal\LattePHPStanCompiler\Tests\Filters;
 
 use Iterator;
 use Latte\Runtime\Filters;
 use Nette\Localization\Translator;
 use PHPUnit\Framework\TestCase;
-use Symplify\LattePHPStanCompiler\Latte\Filters\FilterMatcher;
-use Symplify\LattePHPStanCompiler\ValueObject\DynamicCallReference;
-use Symplify\LattePHPStanCompiler\ValueObject\FunctionCallReference;
-use Symplify\LattePHPStanCompiler\ValueObject\StaticCallReference;
+use Reveal\LattePHPStanCompiler\Latte\Filters\FilterMatcher;
+use Reveal\LattePHPStanCompiler\ValueObject\DynamicCallReference;
+use Reveal\LattePHPStanCompiler\ValueObject\FunctionCallReference;
+use Reveal\LattePHPStanCompiler\ValueObject\StaticCallReference;
 
 final class FilterMatcherTest extends TestCase
 {

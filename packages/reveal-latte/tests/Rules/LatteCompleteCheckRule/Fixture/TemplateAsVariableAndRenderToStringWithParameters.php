@@ -10,7 +10,9 @@ use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\ExampleModel;
 
 final class TemplateAsVariableAndRenderToStringWithParameters extends Control
 {
-    /** @var ExampleModel[] */
+    /**
+     * @var ExampleModel[]
+     */
     private $listOfObjects = [];
 
     public function render(): void

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\PhpParser\NodeVisitor;
+namespace Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor;
 
 use PhpParser\Node;
 use PhpParser\Node\Arg;
@@ -13,11 +13,11 @@ use PhpParser\Node\Expr\PropertyFetch;
 use PhpParser\Node\Expr\StaticCall;
 use PhpParser\Node\Stmt\Echo_;
 use PhpParser\NodeVisitorAbstract;
+use Reveal\LattePHPStanCompiler\Contract\LatteToPhpCompilerNodeVisitorInterface;
+use Reveal\LattePHPStanCompiler\Contract\LinkProcessorInterface;
+use Reveal\LattePHPStanCompiler\LinkProcessor\LinkProcessorFactory;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\Astral\NodeValue\NodeValueResolver;
-use Symplify\LattePHPStanCompiler\Contract\LatteToPhpCompilerNodeVisitorInterface;
-use Symplify\LattePHPStanCompiler\Contract\LinkProcessorInterface;
-use Symplify\LattePHPStanCompiler\LinkProcessor\LinkProcessorFactory;
 
 final class LinkNodeVisitor extends NodeVisitorAbstract implements LatteToPhpCompilerNodeVisitorInterface
 {

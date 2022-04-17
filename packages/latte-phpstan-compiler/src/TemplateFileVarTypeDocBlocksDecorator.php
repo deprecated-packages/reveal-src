@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler;
+namespace Reveal\LattePHPStanCompiler;
 
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Presenter;
@@ -10,9 +10,9 @@ use PhpParser\Node\Expr\Array_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Type\ObjectType;
-use Symplify\LattePHPStanCompiler\Contract\LatteVariableCollectorInterface;
-use Symplify\LattePHPStanCompiler\Latte\Tokens\PhpToLatteLineNumbersResolver;
-use Symplify\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
+use Reveal\LattePHPStanCompiler\Contract\LatteVariableCollectorInterface;
+use Reveal\LattePHPStanCompiler\Latte\Tokens\PhpToLatteLineNumbersResolver;
+use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
 use Symplify\TemplatePHPStanCompiler\TypeAnalyzer\TemplateVariableTypesResolver;
 use Symplify\TemplatePHPStanCompiler\ValueObject\PhpFileContentsWithLineMap;
 use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;

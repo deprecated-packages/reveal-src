@@ -9,7 +9,9 @@ use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\ExampleModel;
 
 final class OneActionPresenter extends Presenter
 {
-    /** @var ExampleModel[] */
+    /**
+     * @var ExampleModel[]
+     */
     private $listOfObjects = [];
 
     public function renderDefault(): void

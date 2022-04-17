@@ -11,13 +11,13 @@ use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\NodeTraverser;
 use PHPStan\Analyser\Scope;
+use Reveal\RevealLatte\NodeVisitor\AssignedParametersVisitor;
+use Reveal\RevealLatte\NodeVisitor\RenderParametersVisitor;
+use Reveal\RevealLatte\NodeVisitor\TemplatePathFinderVisitor;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\Astral\NodeAnalyzer\NetteTypeAnalyzer;
 use Symplify\Astral\NodeFinder\SimpleNodeFinder;
 use Symplify\Astral\NodeValue\NodeValueResolver;
-use Reveal\RevealLatte\NodeVisitor\AssignedParametersVisitor;
-use Reveal\RevealLatte\NodeVisitor\RenderParametersVisitor;
-use Reveal\RevealLatte\NodeVisitor\TemplatePathFinderVisitor;
 use Symplify\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
 
 final class LatteTemplateWithParametersMatcher

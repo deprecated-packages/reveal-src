@@ -6,13 +6,13 @@ namespace Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 use Reveal\RevealLatte\Rules\LatteCompleteCheckRule;
 use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Fixture\ControlWithHandle;
 use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Fixture\InvalidControlRenderArguments;
 use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\ExampleModel;
 use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\FooPresenter;
 use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\SomeTypeWithMethods;
+use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
  * @extends AbstractServiceAwareRuleTestCase<LatteCompleteCheckRule>

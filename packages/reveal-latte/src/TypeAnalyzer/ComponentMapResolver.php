@@ -9,10 +9,10 @@ use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
 use PHPStan\Analyser\Scope;
+use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
+use Reveal\RevealLatte\NodeAnalyzer\ComponentClassMethodTypeAnalyzer;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\Astral\NodeFinder\SimpleNodeFinder;
-use Symplify\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
-use Reveal\RevealLatte\NodeAnalyzer\ComponentClassMethodTypeAnalyzer;
 use Symplify\PHPStanRules\Exception\ShouldNotHappenException;
 
 final class ComponentMapResolver

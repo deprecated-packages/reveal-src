@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler;
+namespace Reveal\LattePHPStanCompiler;
 
 use Latte\Parser;
 use PhpParser\Node\Stmt;
 use PhpParser\NodeTraverser;
 use PhpParser\ParserFactory;
 use PhpParser\PrettyPrinter\Standard;
+use Reveal\LattePHPStanCompiler\Contract\LatteToPhpCompilerNodeVisitorInterface;
+use Reveal\LattePHPStanCompiler\Latte\LineCommentCorrector;
+use Reveal\LattePHPStanCompiler\Latte\UnknownMacroAwareLatteCompiler;
+use Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor\ControlRenderToExplicitCallNodeVisitor;
+use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\LattePHPStanCompiler\Contract\LatteToPhpCompilerNodeVisitorInterface;
-use Symplify\LattePHPStanCompiler\Latte\LineCommentCorrector;
-use Symplify\LattePHPStanCompiler\Latte\UnknownMacroAwareLatteCompiler;
-use Symplify\LattePHPStanCompiler\PhpParser\NodeVisitor\ControlRenderToExplicitCallNodeVisitor;
-use Symplify\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
 use Symplify\PHPStanRules\Exception\ShouldNotHappenException;
 use Symplify\SmartFileSystem\SmartFileSystem;
 use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 
 /**
- * @see \Symplify\LattePHPStanCompiler\Tests\LatteToPhpCompiler\LatteToPhpCompilerTest
+ * @see \Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\LatteToPhpCompilerTest
  */
 final class LatteToPhpCompiler
 {

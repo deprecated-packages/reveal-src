@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\LinkProcessor;
+namespace Reveal\LattePHPStanCompiler\LinkProcessor;
 
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Stmt\Expression;
-use Symplify\LattePHPStanCompiler\Contract\LinkProcessorInterface;
+use Reveal\LattePHPStanCompiler\Contract\LinkProcessorInterface;
 
 /**
  * from: <code> echo \Latte\Runtime\Filters::escapeHtmlAttr($this->global->uiControl->link("doSomething!", ['a']));

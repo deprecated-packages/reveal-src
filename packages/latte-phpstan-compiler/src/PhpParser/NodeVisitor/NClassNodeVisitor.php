@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\PhpParser\NodeVisitor;
+namespace Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor;
 
 use PhpParser\Node;
 use PhpParser\Node\Arg;
@@ -13,7 +13,7 @@ use PhpParser\Node\Expr\Ternary;
 use PhpParser\Node\Name\FullyQualified;
 use PhpParser\Node\Scalar\String_;
 use PhpParser\NodeVisitorAbstract;
-use Symplify\LattePHPStanCompiler\Contract\LatteToPhpCompilerNodeVisitorInterface;
+use Reveal\LattePHPStanCompiler\Contract\LatteToPhpCompilerNodeVisitorInterface;
 
 /**
  * from: <code> echo ($ʟ_tmp = \array_filter(['class1', $var ? 'class2' : \null])) ? ' class="' .

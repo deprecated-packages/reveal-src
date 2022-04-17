@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Symplify\LattePHPStanCompiler\LatteVariableCollector;
+namespace Reveal\LattePHPStanCompiler\LatteVariableCollector;
 
 use PHPStan\Type\ArrayType;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
+use Reveal\LattePHPStanCompiler\Contract\LatteVariableCollectorInterface;
 use stdClass;
-use Symplify\LattePHPStanCompiler\Contract\LatteVariableCollectorInterface;
 use Symplify\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 
 final class DefaultTemplateVariables implements LatteVariableCollectorInterface
