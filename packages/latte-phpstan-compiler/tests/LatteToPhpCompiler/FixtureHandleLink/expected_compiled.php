@@ -1,10 +1,11 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+use Latte\Runtime as LR;
 /** DummyTemplateClass */
 final class DummyTemplateClass extends \Latte\Runtime\Template
 {
-    public function main(): array
+    public function main() : array
     {
         \extract($this->params);
         /** @var Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\SomeNameControl $actualClass */
@@ -14,9 +15,7 @@ final class DummyTemplateClass extends \Latte\Runtime\Template
         echo '">link</a>
 <a href="';
         /** line in latte file: 2 */
-        $actualClass->handleDoSomething('b', [
-            'c' => 'd',
-        ]);
+        $actualClass->handleDoSomething('b', ['c' => 'd']);
         echo '">n:href</a>
 <a href="';
         /** line in latte file: 3 */
@@ -29,8 +28,7 @@ final class DummyTemplateClass extends \Latte\Runtime\Template
 ';
         return \get_defined_vars();
     }
-
-    public function prepare(): void
+    public function prepare() : void
     {
         \extract($this->params);
         /** @var Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\SomeNameControl $actualClass */

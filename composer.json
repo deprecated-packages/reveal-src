@@ -68,8 +68,8 @@
     },
     "replace": {
         "reaveal/latte-phpstan-compiler": "self.version",
-        "reveal/phpstan-latte-rules": "self.version",
         "reveal/phpstan-rules": "self.version",
+        "reveal/reveal-latte": "self.version",
         "reveal/reveal-twig": "self.version",
         "reveal/symfony-phpstan-rules": "self.version",
         "reveal/template-phpstan-compiler": "self.version",

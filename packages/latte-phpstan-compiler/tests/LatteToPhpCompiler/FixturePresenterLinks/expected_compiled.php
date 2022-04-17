@@ -1,10 +1,11 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+use Latte\Runtime as LR;
 /** DummyTemplateClass */
 final class DummyTemplateClass extends \Latte\Runtime\Template
 {
-    public function main(): array
+    public function main() : array
     {
         \extract($this->params);
         /** @var Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\FooPresenter $actualClass */
@@ -16,19 +17,13 @@ final class DummyTemplateClass extends \Latte\Runtime\Template
 <a href="';
         /** line in latte file: 2 */
         /** @var Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\FooPresenter $fooPresenter */
-        $fooPresenter->renderDefault(20, [
-            'c' => 'd',
-        ]);
+        $fooPresenter->renderDefault(20, ['c' => 'd']);
         echo '">n:href</a>
 <a href="';
         /** line in latte file: 3 */
         /** @var Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\FooPresenter $fooPresenter */
-        $fooPresenter->actionGrid(10, [
-            'c' => 'd',
-        ]);
-        $fooPresenter->renderGrid(10, [
-            'c' => 'd',
-        ]);
+        $fooPresenter->actionGrid(10, ['c' => 'd']);
+        $fooPresenter->renderGrid(10, ['c' => 'd']);
         echo '">Two methods absolute link</a>
 <a href="';
         /** line in latte file: 4 */
@@ -53,8 +48,7 @@ final class DummyTemplateClass extends \Latte\Runtime\Template
 ';
         return \get_defined_vars();
     }
-
-    public function prepare(): void
+    public function prepare() : void
     {
         \extract($this->params);
         /** @var Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\FooPresenter $actualClass */

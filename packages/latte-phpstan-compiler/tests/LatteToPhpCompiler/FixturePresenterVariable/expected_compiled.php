@@ -1,10 +1,11 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+use Latte\Runtime as LR;
 /** DummyTemplateClass */
 final class DummyTemplateClass extends \Latte\Runtime\Template
 {
-    public function main(): array
+    public function main() : array
     {
         \extract($this->params);
         /** @var Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\FooPresenter $presenter */
@@ -17,8 +18,7 @@ final class DummyTemplateClass extends \Latte\Runtime\Template
         echo "\n";
         return \get_defined_vars();
     }
-
-    public function prepare(): void
+    public function prepare() : void
     {
         \extract($this->params);
         /** @var Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\FooPresenter $presenter */

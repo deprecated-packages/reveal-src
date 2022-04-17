@@ -1,16 +1,12 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+use Latte\Runtime as LR;
 /** DummyTemplateClass */
 final class DummyTemplateClass extends \Latte\Runtime\Template
 {
-    protected const BLOCKS = [
-        'snippet' => [
-            'name' => 'blockName',
-        ],
-    ];
-
-    public function main(): array
+    protected const BLOCKS = ['snippet' => ['name' => 'blockName']];
+    public function main() : array
     {
         \extract($this->params);
         /** @var string $someName */
@@ -23,24 +19,20 @@ final class DummyTemplateClass extends \Latte\Runtime\Template
 ';
         return \get_defined_vars();
     }
-
-    public function prepare(): void
+    public function prepare() : void
     {
         \extract($this->params);
         /** @var string $someName */
         \Nette\Bridges\ApplicationLatte\UIRuntime::initialize($this, $this->parentName, $this->blocks);
     }
-
-    /**
-     * {snippet name} on line 1
-     */
-    public function blockName(array $ʟ_args): void
+    /** {snippet name} on line 1 */
+    public function blockName(array $ʟ_args) : void
     {
         \extract($this->params);
         /** @var string $someName */
         \extract($ʟ_args);
         unset($ʟ_args);
-        $this->global->snippetDriver->enter('name', 'static');
+        $this->global->snippetDriver->enter("name", 'static');
         try {
             echo '    ';
             /** line in latte file: 2 */

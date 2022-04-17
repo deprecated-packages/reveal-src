@@ -57,7 +57,7 @@ final class LatteToPhpCompilerTest extends TestCase
         string $inputLatteFile,
         array $variablesAndTypes,
         array $componentNamesAndtTypes,
-        string $expectedPhpContent
+        string $expectedPhpContentFile
     ): void {
         $smartFileSystem = new SmartFileSystem();
 
@@ -69,7 +69,11 @@ final class LatteToPhpCompilerTest extends TestCase
             $componentNamesAndtTypes
         );
 
-        $this->assertStringMatchesFormatFile($expectedPhpContent, $phpFileContent);
+        // update test fixture if the content has changed
+        $inputLatteFileInfo = new SmartFileInfo($expectedPhpContentFile);
+        StaticFixtureUpdater::updateFixtureContent($inputLatteFile, $phpFileContent, $inputLatteFileInfo);
+
+        $this->assertStringMatchesFormatFile($expectedPhpContentFile, $phpFileContent);
     }
 
     public function provideDataWithTypesAndControls(): Iterator

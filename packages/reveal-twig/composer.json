@@ -11,6 +11,7 @@
         "symplify/package-builder": "^10.2",
         "symplify/smart-file-system": "^10.2",
         "reveal/twig-phpstan-compiler": "dev-main",
+        "reveal/template-phpstan-compiler": "dev-main",
         "phpstan/phpstan": "^1.4"
     },
     "require-dev": {
