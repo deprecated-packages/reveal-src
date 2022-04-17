@@ -32,6 +32,7 @@ final class DynamicFilterVariables implements LatteVariableCollectorInterface
                 continue;
             }
 
+            /** @var class-string $className */
             $className = $latteFilter[0];
             $methodName = $latteFilter[1];
 

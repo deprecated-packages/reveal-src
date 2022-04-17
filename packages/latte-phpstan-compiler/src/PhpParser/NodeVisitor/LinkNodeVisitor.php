@@ -15,6 +15,7 @@ use PhpParser\Node\Stmt\Echo_;
 use PhpParser\NodeVisitorAbstract;
 use Reveal\LattePHPStanCompiler\Contract\LatteToPhpCompilerNodeVisitorInterface;
 use Reveal\LattePHPStanCompiler\Contract\LinkProcessorInterface;
+use Reveal\LattePHPStanCompiler\Exception\LattePHPStanCompilerException;
 use Reveal\LattePHPStanCompiler\LinkProcessor\LinkProcessorFactory;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\Astral\NodeValue\NodeValueResolver;
@@ -70,6 +71,10 @@ final class LinkNodeVisitor extends NodeVisitorAbstract implements LatteToPhpCom
         $target = $linkArgs[0]->value;
 
         $targetName = $this->nodeValueResolver->resolve($target, '');
+        if (! is_string($targetName)) {
+            throw new LattePHPStanCompilerException();
+        }
+
         $targetName = ltrim($targetName, '/');
 
         $linkProcessor = $this->linkProcessorFactory->create($targetName);

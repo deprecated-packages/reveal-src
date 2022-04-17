@@ -82,6 +82,7 @@ final class FilterMatcher
             throw new InvalidLatteFilterFormatException('Filter should be consist of array ["class", "method"]');
         }
 
+        /** @var class-string $filterClass */
         $filterClass = $filterCallable[0];
         $filterMethod = $filterCallable[1];
 

@@ -49,7 +49,7 @@ final class TemplatePathFinderVisitor extends NodeVisitorAbstract
         }
 
         $path = $this->nodeValueResolver->resolveWithScope($pathArg->value, $this->scope);
-        if ($path) {
+        if (is_string($path)) {
             $this->templatePaths[] = $path;
         }
 
