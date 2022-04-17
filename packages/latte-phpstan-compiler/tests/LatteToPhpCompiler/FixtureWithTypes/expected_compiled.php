@@ -7,7 +7,6 @@ final class DummyTemplateClass extends \Latte\Runtime\Template
     protected const BLOCKS = [
         'snippet' => [
             'name' => 'blockName',
-            
         ],
     ];
 

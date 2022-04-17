@@ -9,9 +9,9 @@ use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Expression;
 use PhpParser\NodeVisitorAbstract;
-use Symplify\Astral\Naming\SimpleNameResolver;
 use Reveal\TemplatePHPStanCompiler\NodeFactory\VarDocNodeFactory;
 use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
+use Symplify\Astral\Naming\SimpleNameResolver;
 
 final class AppendExtractedVarTypesNodeVisitor extends NodeVisitorAbstract
 {

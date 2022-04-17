@@ -44,13 +44,13 @@ final class LatteCompleteCheckRuleTest extends AbstractServiceAwareRuleTestCase
         yield [__DIR__ . '/Fixture/SkipExistingMethodCall.php', []];
         yield [__DIR__ . '/Fixture/SkipVariableInBlockControl.php', []];
 
-        yield [__DIR__ . '/Fixture/GetTemplateAndReplaceExtension.php', $this->createSharedErrorMessages(20)];
-        yield [__DIR__ . '/Fixture/NoAdditionalPropertyRead.php', $this->createSharedErrorMessages(20)];
-        yield [__DIR__ . '/Fixture/PropertyReadTemplate.php', $this->createSharedErrorMessages(24)];
-        yield [__DIR__ . '/Fixture/RenderWithParameters.php', $this->createSharedErrorMessages(17)];
+        yield [__DIR__ . '/Fixture/GetTemplateAndReplaceExtension.php', $this->createSharedErrorMessages(22)];
+        yield [__DIR__ . '/Fixture/NoAdditionalPropertyRead.php', $this->createSharedErrorMessages(22)];
+        yield [__DIR__ . '/Fixture/PropertyReadTemplate.php', $this->createSharedErrorMessages(26)];
+        yield [__DIR__ . '/Fixture/RenderWithParameters.php', $this->createSharedErrorMessages(19)];
         yield [
             __DIR__ . '/Fixture/TemplateAsVariableAndRenderToStringWithParameters.php',
-            $this->createSharedErrorMessages(20),
+            $this->createSharedErrorMessages(22),
         ];
 
         yield [__DIR__ . '/Fixture/OneActionPresenter.php', $this->createSharedErrorMessages(10)];
@@ -63,9 +63,9 @@ final class LatteCompleteCheckRuleTest extends AbstractServiceAwareRuleTestCase
         yield [__DIR__ . '/Fixture/MultiActionsAndRendersPresenter.php', $multiActionsPresenterErrors];
 
         $errorMessages = [
-            ['Variable $nonExistingVariable might not be defined.', 21],
-            ['Call to an undefined method Nette\Security\User::nonExistingMethod().', 21],
-            [sprintf('Call to an undefined method %s::getTitle().', ExampleModel::class), 21],
+            ['Variable $nonExistingVariable might not be defined.', 23],
+            ['Call to an undefined method Nette\Security\User::nonExistingMethod().', 23],
+            [sprintf('Call to an undefined method %s::getTitle().', ExampleModel::class), 23],
         ];
         yield [__DIR__ . '/Fixture/ControlWithForm.php', $errorMessages];
 

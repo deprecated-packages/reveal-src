@@ -9,8 +9,8 @@ use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
 use Reveal\LattePHPStanCompiler\Contract\LatteVariableCollectorInterface;
-use stdClass;
 use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
+use stdClass;
 
 final class DefaultTemplateVariables implements LatteVariableCollectorInterface
 {

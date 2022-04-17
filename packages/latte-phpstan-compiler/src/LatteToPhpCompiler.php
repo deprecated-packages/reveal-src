@@ -14,10 +14,10 @@ use Reveal\LattePHPStanCompiler\Latte\LineCommentCorrector;
 use Reveal\LattePHPStanCompiler\Latte\UnknownMacroAwareLatteCompiler;
 use Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor\ControlRenderToExplicitCallNodeVisitor;
 use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
+use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\PHPStanRules\Exception\ShouldNotHappenException;
 use Symplify\SmartFileSystem\SmartFileSystem;
-use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 
 /**
  * @see \Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\LatteToPhpCompilerTest

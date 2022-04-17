@@ -15,9 +15,9 @@ use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
 use Reveal\RevealLatte\Contract\LatteTemplateHolderInterface;
 use Reveal\RevealLatte\NodeAnalyzer\LatteTemplateWithParametersMatcher;
 use Reveal\RevealLatte\TypeAnalyzer\ComponentMapResolver;
+use Reveal\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\Astral\NodeFinder\SimpleNodeFinder;
-use Reveal\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
 
 final class NetteApplicationUIPresenter implements LatteTemplateHolderInterface
 {

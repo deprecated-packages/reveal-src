@@ -14,11 +14,11 @@ use PHPStan\Analyser\Scope;
 use Reveal\RevealLatte\NodeVisitor\AssignedParametersVisitor;
 use Reveal\RevealLatte\NodeVisitor\RenderParametersVisitor;
 use Reveal\RevealLatte\NodeVisitor\TemplatePathFinderVisitor;
+use Reveal\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\Astral\NodeAnalyzer\NetteTypeAnalyzer;
 use Symplify\Astral\NodeFinder\SimpleNodeFinder;
 use Symplify\Astral\NodeValue\NodeValueResolver;
-use Reveal\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
 
 final class LatteTemplateWithParametersMatcher
 {

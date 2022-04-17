@@ -12,15 +12,15 @@ use PHPStan\Rules\RuleErrorBuilder;
 use Reveal\LattePHPStanCompiler\TemplateFileVarTypeDocBlocksDecorator;
 use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
 use Reveal\RevealLatte\Contract\LatteTemplateHolderInterface;
-use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
-use Symplify\SmartFileSystem\SmartFileSystem;
 use Reveal\TemplatePHPStanCompiler\ErrorSkipper;
 use Reveal\TemplatePHPStanCompiler\PHPStan\FileAnalyserProvider;
 use Reveal\TemplatePHPStanCompiler\Reporting\TemplateErrorsFactory;
 use Reveal\TemplatePHPStanCompiler\Rules\TemplateRulesRegistry;
 use Reveal\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
+use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
+use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
+use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
+use Symplify\SmartFileSystem\SmartFileSystem;
 use Throwable;
 
 /**

@@ -10,10 +10,10 @@ use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use Reveal\LattePHPStanCompiler\NodeAnalyzer\UnusedNetteTemplateRenderVariableResolver;
 use Reveal\RevealLatte\NodeAnalyzer\TemplateRenderAnalyzer;
+use Reveal\TemplatePHPStanCompiler\NodeAnalyzer\TemplateFilePathResolver;
 use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
-use Reveal\TemplatePHPStanCompiler\NodeAnalyzer\TemplateFilePathResolver;
 
 /**
  * @see \Reveal\RevealLatte\Tests\Rules\NoNetteRenderUnusedVariableRule\NoNetteRenderUnusedVariableRuleTest
