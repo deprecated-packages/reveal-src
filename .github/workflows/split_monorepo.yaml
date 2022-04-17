@@ -55,7 +55,7 @@ jobs:
             -   uses: "ramsey/composer-install@v1"
 
             -
-                name: "Downgrade to PHP 7.1"
+                name: "Downgrade to PHP 7.2"
                 run: vendor/bin/rector process packages/${{ matrix.package }}/src packages/${{ matrix.package }}/tests --config build/config/rector-downgrade.php --ansi
 
             -
