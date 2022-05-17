@@ -24,6 +24,10 @@ services:
         tags: [phpstan.rules.rule]
 
     -
+        class: PHPStan\Rules\Methods\CallStaticMethodsRule
+        tags: [phpstan.rules.rule]
+
+    -
         class: PHPStan\Rules\Variables\DefinedVariableRule
         tags: [phpstan.rules.rule]
         arguments:

@@ -63,6 +63,8 @@ final class LatteCompleteCheckRuleTest extends AbstractServiceAwareRuleTestCase
         yield [__DIR__ . '/Fixture/MultiActionsAndRendersPresenter.php', $multiActionsPresenterErrors];
 
         $errorMessages = [
+            ['Static method Latte\Runtime\Filters::date() invoked with 3 parameters, 1-2 required.', 23],
+            ['Parameter #2 $format of static method Latte\Runtime\Filters::date() expects string|null, int given.', 23],
             ['Variable $nonExistingVariable might not be defined.', 23],
             ['Call to an undefined method Nette\Security\User::nonExistingMethod().', 23],
             [sprintf('Call to an undefined method %s::getTitle().', ExampleModel::class), 23],
@@ -102,6 +104,8 @@ final class LatteCompleteCheckRuleTest extends AbstractServiceAwareRuleTestCase
     private function createSharedErrorMessages(int $phpLine): array
     {
         return [
+            ['Static method Latte\Runtime\Filters::date() invoked with 3 parameters, 1-2 required.', $phpLine],
+            ['Parameter #2 $format of static method Latte\Runtime\Filters::date() expects string|null, int given.', $phpLine],
             ['Variable $nonExistingVariable might not be defined.', $phpLine],
             ['Call to an undefined method Nette\Security\User::nonExistingMethod().', $phpLine],
             [sprintf('Call to an undefined method %s::getTitle().', ExampleModel::class), $phpLine],
