@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Fixture;
 
 use Nette\Application\UI\Control;
-use Nette\Application\UI\Form;
 
 final class SpecialFilters extends Control
 {
