@@ -5,12 +5,8 @@ declare(strict_types=1);
 namespace Reveal\TemplatePHPStanCompiler\Rules;
 
 use PhpParser\Node;
-use PhpParser\Node\Expr\MethodCall;
-use PHPStan\Rules\FunctionCallParametersCheck;
-use PHPStan\Rules\Methods\CallMethodsRule;
 use PHPStan\Rules\Registry;
 use PHPStan\Rules\Rule;
-use Symplify\PackageBuilder\Reflection\PrivatesAccessor;
 use Symplify\PHPStanRules\Rules\ForbiddenFuncCallRule;
 use Symplify\PHPStanRules\Rules\NoDynamicNameRule;
 use Symplify\RuleDocGenerator\Contract\DocumentedRuleInterface;
@@ -41,25 +37,7 @@ final class TemplateRulesRegistry extends Registry
      */
     public function getRules(string $nodeType): array
     {
-        $activeRules = parent::getRules($nodeType);
-
-        // only fix in a weird test case setup
-        if (defined('PHPUNIT_COMPOSER_INSTALL') && $nodeType === MethodCall::class) {
-            $privatesAccessor = new PrivatesAccessor();
-
-            foreach ($activeRules as $activeRule) {
-                if (! $activeRule instanceof CallMethodsRule) {
-                    continue;
-                }
-
-                /** @var CallMethodsRule $activeRule */
-                /** @var FunctionCallParametersCheck $check */
-                $check = $privatesAccessor->getPrivateProperty($activeRule, 'parametersCheck');
-                $privatesAccessor->setPrivateProperty($check, 'checkArgumentTypes', true);
-            }
-        }
-
-        return $activeRules;
+        return parent::getRules($nodeType);
     }
 
     /**

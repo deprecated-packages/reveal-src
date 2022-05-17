@@ -4,6 +4,7 @@ includes:
 parameters:
     # needed to enable missing method rule bellow
     checkThisOnly: false
+    checkFunctionArgumentTypes: true
     checkArgumentsPassedByReference: true
     checkMissingTypehints: true
     checkExtraArguments: true
