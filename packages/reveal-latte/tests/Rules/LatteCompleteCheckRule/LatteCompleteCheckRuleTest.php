@@ -91,6 +91,8 @@ final class LatteCompleteCheckRuleTest extends AbstractServiceAwareRuleTestCase
             ],
         ];
         yield [__DIR__ . '/Fixture/ControlWithHandle.php', $errorMessages];
+
+        yield [__DIR__ . '/Fixture/SpecialFilters.php', []];
     }
 
     protected function getRule(): Rule
