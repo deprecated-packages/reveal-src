@@ -6,7 +6,7 @@
     "require": {
         "php": ">=8.1",
         "phpstan/phpstan": "^1.8.0",
-        "latte/latte": "^2.11",
+        "latte/latte": "^2.11|^3.0",
         "symplify/astral": "^11.0",
         "symplify/rule-doc-generator-contracts": "^11.0",
         "symplify/package-builder": "^11.0",

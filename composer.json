@@ -5,7 +5,7 @@
     "description": "Reveal Static bugs in Configs Files and Templates",
     "require": {
         "php": ">=8.1",
-        "latte/latte": "^2.11",
+        "latte/latte": "^2.11|^3.0",
         "nette/utils": "^3.2",
         "phpstan/phpstan": "^1.8.0",
         "symfony/console": "^6.1",
