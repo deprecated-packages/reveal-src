@@ -2,15 +2,12 @@
 
 declare(strict_types=1);
 
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symplify\MonorepoBuilder\ValueObject\Option;
+use Symplify\MonorepoBuilder\Config\MBConfig;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $parameters = $containerConfigurator->parameters();
-
-    $parameters->set(Option::PACKAGE_DIRECTORIES, [
+return static function (MBConfig $mbConfig): void {
+    $mbConfig->packageDirectories([
         __DIR__ . '/packages',
     ]);
 
-    $parameters->set(Option::DEFAULT_BRANCH_NAME, 'main');
+    $mbConfig->defaultBranch('main');
 };
