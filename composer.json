@@ -36,7 +36,6 @@
     "autoload": {
         "psr-4": {
             "Reveal\\LattePHPStanCompiler\\": "packages/latte-phpstan-compiler/src",
-            "Reveal\\PHPStanRules\\": "packages/phpstan-rules/src",
             "Reveal\\RevealLatte\\": "packages/reveal-latte/src",
             "Reveal\\RevealTwig\\": "packages/reveal-twig/src",
             "Reveal\\SymfonyPHPStanRules\\": "packages/symfony-phpstan-rules/src",
@@ -47,7 +46,6 @@
     "autoload-dev": {
         "psr-4": {
             "Reveal\\LattePHPStanCompiler\\Tests\\": "packages/latte-phpstan-compiler/tests",
-            "Reveal\\PHPStanRules\\Tests\\": "packages/phpstan-rules/tests",
             "Reveal\\RevealLatte\\Tests\\": "packages/reveal-latte/tests",
             "Reveal\\RevealTwig\\Tests\\": "packages/reveal-twig/tests",
             "Reveal\\SymfonyPHPStanRules\\Tests\\": "packages/symfony-phpstan-rules/tests",

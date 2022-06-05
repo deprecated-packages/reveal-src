@@ -6,7 +6,7 @@ declare(strict_types=1);
 // before: "php": "^8.1"
 // after: "php": ">=7.2"
 
-// usage: php bin/update-composer-json.php packages/phpstan-rules/composer.json
+// usage: php bin/update-composer-json.php packages/some-package/composer.json
 
 $composerJsonFilePath = $argv[1];
 
