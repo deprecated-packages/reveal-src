@@ -32,3 +32,4 @@ parameters:
         -
             message: '#Cannot access an offset on mixed#'
             path: packages/latte-phpstan-compiler/src/LinkProcessor/PresenterActionLinkProcessor.php
+        - '#Method Reveal\\TemplatePHPStanCompiler\\PHPStan\\PHPStanServicesFactory\:\:createPHPStanParser\(\) should return PHPStan\\Parser\\Parser but returns mixed#'
