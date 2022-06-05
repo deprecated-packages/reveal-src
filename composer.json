@@ -1,6 +1,7 @@
 {
     "name": "reveal/reveal",
     "license": "MIT",
+    "bin": ["bin/reveal"],
     "description": "Reveal Static bugs in Configs Files and Templates",
     "require": {
         "php": ">=8.1",
@@ -10,19 +11,21 @@
         "nette/di": "^3.0",
         "nette/utils": "^3.2",
         "phpstan/phpstan": "^1.7.10",
+        "symfony/console": "^6.1",
+        "symfony/dependency-injection": "^6.1",
         "symplify/astral": "^10.2",
         "symplify/package-builder": "^10.2",
         "symplify/rule-doc-generator-contracts": "^10.2",
         "symplify/smart-file-system": "^10.2",
         "twig/twig": "^3.4",
-        "webmozart/assert": "^1.10"
+        "webmozart/assert": "^1.11"
     },
     "require-dev": {
         "nette/forms": "^3.1",
         "nette/security": "^3.1",
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-webmozart-assert": "^1.1",
-        "phpunit/phpunit": "^7.5|^9.5",
+        "phpunit/phpunit": "^9.5",
         "rector/rector": "^0.13.4",
         "symfony/framework-bundle": "^6.1",
         "symplify/easy-ci": "^10.2",
@@ -35,6 +38,7 @@
     },
     "autoload": {
         "psr-4": {
+            "Reveal\\": "src",
             "Reveal\\LattePHPStanCompiler\\": "packages/latte-phpstan-compiler/src",
             "Reveal\\RevealLatte\\": "packages/reveal-latte/src",
             "Reveal\\RevealTwig\\": "packages/reveal-twig/src",
@@ -62,15 +66,6 @@
         "propagate": "vendor/bin/monorepo-builder propagate --ansi",
         "validate-monorepo": "vendor/bin/monorepo-builder validate --ansi",
         "release": "vendor/bin/monorepo-builder release patch --ansi"
-    },
-    "replace": {
-        "reveal/latte-phpstan-compiler": "0.1",
-        "reveal/phpstan-rules": "0.1",
-        "reveal/reveal-latte": "0.1",
-        "reveal/reveal-twig": "0.1",
-        "reveal/symfony-phpstan-rules": "0.1",
-        "reveal/template-phpstan-compiler": "0.1",
-        "reveal/twig-phpstan-compiler": "0.1"
     },
     "config": {
         "sort-packages": true,
