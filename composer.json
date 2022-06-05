@@ -42,7 +42,6 @@
             "Reveal\\LattePHPStanCompiler\\": "packages/latte-phpstan-compiler/src",
             "Reveal\\RevealLatte\\": "packages/reveal-latte/src",
             "Reveal\\RevealTwig\\": "packages/reveal-twig/src",
-            "Reveal\\SymfonyPHPStanRules\\": "packages/symfony-phpstan-rules/src",
             "Reveal\\TemplatePHPStanCompiler\\": "packages/template-phpstan-compiler/src",
             "Reveal\\TwigPHPStanCompiler\\": "packages/twig-phpstan-compiler/src"
         }
@@ -52,7 +51,6 @@
             "Reveal\\LattePHPStanCompiler\\Tests\\": "packages/latte-phpstan-compiler/tests",
             "Reveal\\RevealLatte\\Tests\\": "packages/reveal-latte/tests",
             "Reveal\\RevealTwig\\Tests\\": "packages/reveal-twig/tests",
-            "Reveal\\SymfonyPHPStanRules\\Tests\\": "packages/symfony-phpstan-rules/tests",
             "Reveal\\TemplatePHPStanCompiler\\Tests\\": "packages/template-phpstan-compiler/tests",
             "Reveal\\TwigPHPStanCompiler\\Tests\\": "packages/twig-phpstan-compiler/tests"
         }
