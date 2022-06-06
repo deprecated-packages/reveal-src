@@ -62,9 +62,6 @@ jobs:
             # 5. copy repository meta files
             -   run: |
                     cp -R build/target-repository/. reveal-prefixed-downgraded
-                    cp -R templates reveal-prefixed-downgraded/
-                    cp CONTRIBUTING.md reveal-prefixed-downgraded/
-                    cp preload.php reveal-prefixed-downgraded/
 
             # 6. clone remote repository, so we can push it
             -
