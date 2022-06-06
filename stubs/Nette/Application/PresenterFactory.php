@@ -14,7 +14,7 @@ class PresenterFactory
     {
     }
 
-    public function formatPresenterClass()
+    public function formatPresenterClass(string $className)
     {
     }
 }
