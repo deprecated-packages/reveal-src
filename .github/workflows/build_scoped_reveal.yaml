@@ -11,9 +11,6 @@ on:
 
 jobs:
     build_scoped_reveal:
-        # Don't run on forks.
-        if: github.repository == 'reveal/reveal-src'
-
         runs-on: ubuntu-latest
         timeout-minutes: 10
 
