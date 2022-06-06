@@ -13,4 +13,8 @@ class PresenterFactory
     public function setMapping(array $mapping)
     {
     }
+
+    public function formatPresenterClass()
+    {
+    }
 }
