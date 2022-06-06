@@ -31,18 +31,18 @@ return [
             return $content;
         },
 
-        // scoper missed PSR-4 autodiscovery in Symfony
-//        function (string $filePath, string $prefix, string $content): string {
-//            if (! \str_ends_with($filePath, 'config.php') && ! \str_ends_with($filePath, 'services.php')) {
-//                return $content;
-//            }
-//
-//            // skip "Rector\\" namespace
-//            if (\str_contains($content, '$services->load(\'Reveal')) {
-//                return $content;
-//            }
-//
-//            return Strings::replace($content, '#services\->load\(\'#', "services->load('" . $prefix . '\\');
-//        },
+        // scoper missed PSR-4 autodiscovery in Symfony - still needed
+        function (string $filePath, string $prefix, string $content): string {
+            if (! \str_ends_with($filePath, 'config.php') && ! \str_ends_with($filePath, 'services.php')) {
+                return $content;
+            }
+
+            // skip "Rector\\" namespace
+            if (\str_contains($content, '$services->load(\'Reveal')) {
+                return $content;
+            }
+
+            return Strings::replace($content, '#services\->load\(\'#', "services->load('" . $prefix . '\\');
+        },
     ],
 ];
