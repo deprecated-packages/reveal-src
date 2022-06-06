@@ -14,4 +14,9 @@ final class Option
      * @var string
      */
     public const AUTOLOAD_FILE = 'autoload-file';
+
+    /**
+     * @var string
+     */
+    public const TWIG_PROVIDER = 'twig-provider';
 }
