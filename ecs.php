@@ -8,6 +8,7 @@ use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 return static function (ECSConfig $ecsConfig): void {
     $ecsConfig->paths([
         __DIR__ . '/ecs.php',
+        __DIR__ . '/scoper.php',
         __DIR__ . '/packages',
     ]);
 

@@ -67,6 +67,7 @@
     },
     "config": {
         "sort-packages": true,
+        "platform-check": false,
         "allow-plugins": {
             "phpstan/extension-installer": true
         }
