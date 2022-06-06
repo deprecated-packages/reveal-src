@@ -41,7 +41,8 @@
             "Reveal\\RevealTwig\\": "packages/reveal-twig/src",
             "Reveal\\TemplatePHPStanCompiler\\": "packages/template-phpstan-compiler/src",
             "Reveal\\TwigPHPStanCompiler\\": "packages/twig-phpstan-compiler/src"
-        }
+        },
+        "classmap": ["stubs"]
     },
     "autoload-dev": {
         "psr-4": {

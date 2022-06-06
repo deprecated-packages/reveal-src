@@ -71,7 +71,7 @@ final class TemplateFileVarTypeDocBlocksDecorator
             $objectType = new ObjectType($classReflection->getName());
             $variablesAndTypes[] = new VariableAndType('actualClass', $objectType);
 
-            if ($objectType->isInstanceOf(Presenter::class)->yes()) {
+            if ($objectType->isInstanceOf('Nette\Application\UI\Presenter')->yes()) {
                 $variablesAndTypes[] = new VariableAndType('presenter', $objectType);
             }
 

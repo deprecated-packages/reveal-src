@@ -45,7 +45,7 @@ final class InstanceofRenderableNodeVisitor extends NodeVisitorAbstract implemen
 
         if (! $this->simpleNameResolver->isNames(
             $instanceof->class,
-            ['Nette\Application\UI\IRenderable', Renderable::class]
+            ['Nette\Application\UI\IRenderable', 'Nette\Application\UI\Renderable']
         )) {
             return null;
         }

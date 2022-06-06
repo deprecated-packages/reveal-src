@@ -121,7 +121,7 @@ final class LatteToPhpCompilerTest extends TestCase
         ];
 
         $variablesAndTypes = [
-            new VariableAndType('presenter', new ObjectType(Presenter::class)),
+            new VariableAndType('presenter', new ObjectType('Nette\Application\UI\Presenter')),
             new VariableAndType('presenter', new ObjectType(FooPresenter::class)),
             new VariableAndType('control', new ObjectType(FooPresenter::class)),
         ];
