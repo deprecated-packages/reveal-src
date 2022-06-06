@@ -49,7 +49,7 @@ rm -rf "$BUILD_DIRECTORY"
 note "Copy metafiles like composer.json, .github etc to repository"
 rm -f "$RESULT_DIRECTORY/composer.json"
 
-# make bin/rector runnable without "php"
+# make bin/reveal runnable without "php"
 chmod 777 "$RESULT_DIRECTORY/bin/reveal"
 chmod 777 "$RESULT_DIRECTORY/bin/reveal.php"
 

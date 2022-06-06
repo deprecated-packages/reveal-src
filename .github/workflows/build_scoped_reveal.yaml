@@ -58,27 +58,27 @@ jobs:
                     php-version: 7.2
                     coverage: none
             -   run: composer global require php-parallel-lint/php-parallel-lint
-            -   run: /home/runner/.composer/vendor/bin/parallel-lint rector-prefixed-downgraded --exclude rector-prefixed-downgraded/stubs --exclude rector-prefixed-downgraded/vendor/tracy/tracy/examples --exclude rector-prefixed-downgraded/vendor/ssch/typo3-rector/templates/maker --exclude rector-prefixed-downgraded/vendor/rector/rector-generator/templates --exclude rector-prefixed-downgraded/vendor/symfony/contracts/Cache --exclude rector-prefixed-downgraded/vendor/symfony/contracts/HttpClient/Test
+            -   run: /home/runner/.composer/vendor/bin/parallel-lint reveal-prefixed-downgraded --exclude reveal-prefixed-downgraded/stubs --exclude reveal-prefixed-downgraded/vendor/tracy/tracy/examples --exclude reveal-prefixed-downgraded/vendor/rector/rector-generator/templates --exclude reveal-prefixed-downgraded/vendor/symfony/contracts/Cache --exclude reveal-prefixed-downgraded/vendor/symfony/contracts/HttpClient/Test
 
             # 5. copy repository meta files
             -   run: |
-                    cp -R build/target-repository/. rector-prefixed-downgraded
-                    cp -R templates rector-prefixed-downgraded/
-                    cp CONTRIBUTING.md rector-prefixed-downgraded/
-                    cp preload.php rector-prefixed-downgraded/
+                    cp -R build/target-repository/. reveal-prefixed-downgraded
+                    cp -R templates reveal-prefixed-downgraded/
+                    cp CONTRIBUTING.md reveal-prefixed-downgraded/
+                    cp preload.php reveal-prefixed-downgraded/
 
             # 6. clone remote repository, so we can push it
             -
                 uses: "actions/checkout@v3"
                 with:
-                    repository: rectorphp/rector
+                    repository: revealphp/reveal
                     path: remote-repository
                     token: ${{ secrets.ACCESS_TOKEN }}
 
             # remove remote files, to avoid piling up dead code in remote repository
-            -   run: rm -rf remote-repository/.github remote-repository/e2e remote-repository/config remote-repository/src remote-repository/rules remote-repository/packages remote-repository/vendor remote-repository/stubs-rector
+            -   run: rm -rf remote-repository/.github remote-repository/config remote-repository/src remote-repository/packages remote-repository/vendor
 
-            -   run: cp -a rector-prefixed-downgraded/. remote-repository
+            -   run: cp -a reveal-prefixed-downgraded/. remote-repository
 
             # 7. setup git
             -
@@ -116,4 +116,4 @@ jobs:
                     git push --quiet origin ${GITHUB_REF#refs/tags/}
 
             # run bare run test
-            -   run: cd remote-repository && bin/rector list --ansi && cd ..
+            -   run: cd remote-repository && bin/reveal --ansi && cd ..
