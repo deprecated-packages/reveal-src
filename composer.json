@@ -39,7 +39,6 @@
     "autoload": {
         "psr-4": {
             "Reveal\\": ["src", "packages"],
-            "Reveal\\RevealTwig\\": "packages/reveal-twig/src",
             "Reveal\\TemplatePHPStanCompiler\\": "packages/template-phpstan-compiler/src",
             "Reveal\\TwigPHPStanCompiler\\": "packages/twig-phpstan-compiler/src"
         }
@@ -47,7 +46,6 @@
     "autoload-dev": {
         "psr-4": {
             "Reveal\\Tests\\": "packages-tests",
-            "Reveal\\RevealTwig\\Tests\\": "packages/RevealTWIG/tests",
             "Reveal\\TemplatePHPStanCompiler\\Tests\\": "packages/TemplatePHPStanCompiler/tests",
             "Reveal\\TwigPHPStanCompiler\\Tests\\": "packages/TWIGPHPStanCompiler/tests"
         }
