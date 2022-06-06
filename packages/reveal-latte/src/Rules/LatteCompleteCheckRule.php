@@ -17,7 +17,6 @@ use Reveal\TemplatePHPStanCompiler\PHPStan\FileAnalyserProvider;
 use Reveal\TemplatePHPStanCompiler\Reporting\TemplateErrorsFactory;
 use Reveal\TemplatePHPStanCompiler\Rules\TemplateRulesRegistry;
 use Reveal\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
-use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Symplify\SmartFileSystem\SmartFileSystem;
@@ -28,7 +27,7 @@ use Throwable;
  *
  * @inspired at https://github.com/efabrica-team/phpstan-latte/blob/main/src/Rule/ControlLatteRule.php#L56
  */
-final class LatteCompleteCheckRule extends AbstractSymplifyRule
+final class LatteCompleteCheckRule implements Rule
 {
     /**
      * @var string
@@ -63,18 +62,15 @@ final class LatteCompleteCheckRule extends AbstractSymplifyRule
         $this->templateRulesRegistry = new TemplateRulesRegistry($rules);
     }
 
-    /**
-     * @return array<class-string<Node>>
-     */
-    public function getNodeTypes(): array
+    public function getNodeType(): string
     {
-        return [Node::class];
+        return Node::class;
     }
 
     /**
      * @return RuleError[]
      */
-    public function process(Node $node, Scope $scope): array
+    public function processNode(Node $node, Scope $scope): array
     {
         $errors = [];
         foreach ($this->latteTemplateHolders as $latteTemplateHolder) {
