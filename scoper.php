@@ -14,6 +14,8 @@ $timestamp = $dateTime->format('Ymd');
 // see https://github.com/humbug/php-scoper
 return [
     'prefix' => 'RevealPrefix' . $timestamp,
+    // @see https://github.com/humbug/php-scoper/blob/master/docs/configuration.md#exposed-symbols
+    'expose-classes' => ['Reveal\\', '/regex/'],
     'patchers' => [
         // fixes https://github.com/rectorphp/rector/issues/7017
         function (string $filePath, string $prefix, string $content): string {
