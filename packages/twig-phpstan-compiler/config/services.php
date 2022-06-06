@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use PhpParser\PrettyPrinter\Standard;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symplify\Astral\PhpParser\SmartPhpParser;
 
@@ -21,5 +22,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ]);
 
     $services->set(SmartPhpParser::class);
-    $services->set(\PhpParser\PrettyPrinter\Standard::class);
+    $services->set(Standard::class);
 };
