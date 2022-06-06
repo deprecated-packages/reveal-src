@@ -32,25 +32,25 @@ return [
         },
 
         // fixes https://github.com/rectorphp/rector/issues/6007
-        function (string $filePath, string $prefix, string $content): string {
-            if (! \str_contains($filePath, 'vendor/')) {
-                return $content;
-            }
-
-            // @see https://regex101.com/r/lBV8IO/2
-            $fqcnReservedPattern = sprintf('#(\\\\)?%s\\\\(parent|self|static)#m', $prefix);
-            $matches = Strings::matchAll($content, $fqcnReservedPattern);
-
-            if ($matches === []) {
-                return $content;
-            }
-
-            foreach ($matches as $match) {
-                $content = str_replace($match[0], $match[2], $content);
-            }
-
-            return $content;
-        },
+//        function (string $filePath, string $prefix, string $content): string {
+//            if (! \str_contains($filePath, 'vendor/')) {
+//                return $content;
+//            }
+//
+//            // @see https://regex101.com/r/lBV8IO/2
+//            $fqcnReservedPattern = sprintf('#(\\\\)?%s\\\\(parent|self|static)#m', $prefix);
+//            $matches = Strings::matchAll($content, $fqcnReservedPattern);
+//
+//            if ($matches === []) {
+//                return $content;
+//            }
+//
+//            foreach ($matches as $match) {
+//                $content = str_replace($match[0], $match[2], $content);
+//            }
+//
+//            return $content;
+//        },
 
         // scoper missed PSR-4 autodiscovery in Symfony
         function (string $filePath, string $prefix, string $content): string {
