@@ -54,7 +54,7 @@ jobs:
                     php-version: 7.2
                     coverage: none
             -   run: composer global require php-parallel-lint/php-parallel-lint
-            -   run: /home/runner/.composer/vendor/bin/parallel-lint reveal-prefixed-downgraded --exclude reveal-prefixed-downgraded/vendor/tracy/tracy/examples --exclude reveal-prefixed-downgraded/vendor/rector/rector-generator/templates --exclude reveal-prefixed-downgraded/vendor/symfony/contracts/Cache --exclude reveal-prefixed-downgraded/vendor/symfony/contracts/HttpClient/Test --exclude vendor/symfony/string/Resources/functions.php
+            -   run: /home/runner/.composer/vendor/bin/parallel-lint reveal-prefixed-downgraded --exclude reveal-prefixed-downgraded/vendor/tracy/tracy/examples --exclude reveal-prefixed-downgraded/vendor/rector/rector-generator/templates --exclude reveal-prefixed-downgraded/vendor/symfony/contracts/Cache --exclude reveal-prefixed-downgraded/vendor/symfony/contracts/HttpClient/Test --exclude reveal-build/vendor/symfony/string/Resources/functions.php
 
             # 5. copy repository meta files
             -   run: |
