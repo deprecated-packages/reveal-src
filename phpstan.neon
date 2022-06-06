@@ -21,7 +21,9 @@ parameters:
         # known type in tests
         -
             message: '#Cannot cast mixed to string#'
-            path: packages/twig-phpstan-compiler/tests/TwigToPhpCompiler/
+            paths:
+                - packages/
+
         - '#Parameter \#1 \$path of function dirname expects string, string\|false given#'
         - '#Method Reveal\\LattePHPStanCompiler\\NodeVisitor\\ParentLayoutNameNodeVisitor\:\:matchParentLayoutName\(\) should return string\|null but returns mixed#'
         - '#Method Reveal\\LattePHPStanCompiler\\NodeVisitor\\TemplateIncludesNameNodeVisitor\:\:matchIncludedTemplateName\(\) should return string\|null but returns mixed#'
@@ -31,5 +33,6 @@ parameters:
 
         -
             message: '#Cannot access an offset on mixed#'
-            path: packages/latte-phpstan-compiler/src/LinkProcessor/PresenterActionLinkProcessor.php
+            path: packages
+
         - '#Method Reveal\\TemplatePHPStanCompiler\\PHPStan\\PHPStanServicesFactory\:\:createPHPStanParser\(\) should return PHPStan\\Parser\\Parser but returns mixed#'

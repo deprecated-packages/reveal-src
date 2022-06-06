@@ -10,7 +10,7 @@ use Symplify\PackageBuilder\Console\Style\SymfonyStyleFactory;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
-    $containerConfigurator->import(__DIR__ . '/../packages/twig-phpstan-compiler/config/services.php');
+    $containerConfigurator->import(__DIR__ . '/../packages/TWIGPHPStanCompiler/config/services.php');
 
     $services = $containerConfigurator->services();
     $services->defaults()

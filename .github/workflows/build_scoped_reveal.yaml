@@ -36,7 +36,7 @@ jobs:
             # 1. copy files to $NESTED_DIRECTORY directory Exclude the scoped/nested directories to prevent rsync from copying in a loop
             -  run: rsync --exclude reveal-build -av * reveal-build --quiet
 
-            -  run: rm -rf reveal-build/packages/latte-phpstan-compiler/tests reveal-build/packages/reveal-latte/tests reveal-build/packages/reveal-twig/tests reveal-build/packages/template-phpstan-compiler/tests reveal-build/packages/twig-phpstan-compiler/tests
+            -  run: rm -rf reveal-build/packages/LattePHPStanCompiler/tests reveal-build/packages/RevealLatte/tests reveal-build/packages/RevealTWIG/tests reveal-build/packages/TemplatePHPStanCompiler/tests reveal-build/packages/TWIGPHPStanCompiler/tests
 
             # to add rector to local directory
             -  run: composer install --ansi

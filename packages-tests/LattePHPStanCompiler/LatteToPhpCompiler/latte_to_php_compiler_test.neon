@@ -1,0 +1,10 @@
+parameters:
+    latteFilters:
+        customFilter: [Reveal\Tests\LattePHPStanCompiler\LatteToPhpCompiler\Source\StaticFilter, process]
+        translate: [Nette\Localization\Translator, translate]
+        asdf: qwerty
+    presenterFactoryMapping:
+        *: Reveal\Tests\LattePHPStanCompiler\LatteToPhpCompiler\Source\*Presenter
+
+services:
+    - Reveal\LattePHPStanCompiler\LinkProcessor\SignalLinkProcessor

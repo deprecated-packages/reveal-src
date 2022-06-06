@@ -38,8 +38,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Reveal\\": "src",
-            "Reveal\\LattePHPStanCompiler\\": "packages/latte-phpstan-compiler/src",
+            "Reveal\\": ["src", "packages"],
             "Reveal\\RevealLatte\\": "packages/reveal-latte/src",
             "Reveal\\RevealTwig\\": "packages/reveal-twig/src",
             "Reveal\\TemplatePHPStanCompiler\\": "packages/template-phpstan-compiler/src",
@@ -48,11 +47,12 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Reveal\\LattePHPStanCompiler\\Tests\\": "packages/latte-phpstan-compiler/tests",
-            "Reveal\\RevealLatte\\Tests\\": "packages/reveal-latte/tests",
-            "Reveal\\RevealTwig\\Tests\\": "packages/reveal-twig/tests",
-            "Reveal\\TemplatePHPStanCompiler\\Tests\\": "packages/template-phpstan-compiler/tests",
-            "Reveal\\TwigPHPStanCompiler\\Tests\\": "packages/twig-phpstan-compiler/tests"
+            "Reveal\\Tests\\": "packages-tests",
+            "Reveal\\LattePHPStanCompiler\\Tests\\": "packages/LattePHPStanCompiler/tests",
+            "Reveal\\RevealLatte\\Tests\\": "packages/RevealLatte/tests",
+            "Reveal\\RevealTwig\\Tests\\": "packages/RevealTWIG/tests",
+            "Reveal\\TemplatePHPStanCompiler\\Tests\\": "packages/TemplatePHPStanCompiler/tests",
+            "Reveal\\TwigPHPStanCompiler\\Tests\\": "packages/TWIGPHPStanCompiler/tests"
         }
     },
     "scripts": {

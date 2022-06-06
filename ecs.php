@@ -14,8 +14,8 @@ return static function (ECSConfig $ecsConfig): void {
 
     $ecsConfig->skip([
         '*/Source/*',
-        __DIR__ . '/packages/twig-phpstan-compiler/tests/TwigToPhpCompiler/FixtureWithTypes/',
-        __DIR__ . '/packages/latte-phpstan-compiler/tests/LatteToPhpCompiler/Fixture*',
+        __DIR__ . '/packages/TWIGPHPStanCompiler/tests/TwigToPhpCompiler/FixtureWithTypes/',
+        __DIR__ . '/packages/LattePHPStanCompiler/tests/LatteToPhpCompiler/Fixture*',
     ]);
 
     // run and fix, one by one
