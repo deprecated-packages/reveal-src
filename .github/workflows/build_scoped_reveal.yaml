@@ -31,12 +31,16 @@ jobs:
                 env:
                     COMPOSER_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
-            -   run: composer install --ansi
+            -   run: composer install --no-dev --ansi
 
             # 1. copy files to $NESTED_DIRECTORY directory Exclude the scoped/nested directories to prevent rsync from copying in a loop
             -  run: rsync --exclude reveal-build -av * reveal-build --quiet
 
             -  run: rm -rf reveal-build/packages/latte-phpstan-compiler/tests reveal-build/packages/reveal-latte/tests reveal-build/packages/reveal-twig/tests reveal-build/packages/template-phpstan-compiler/tests reveal-build/packages/twig-phpstan-compiler/tests
+
+            # to add rector to local directory
+            -   run: composer install --no-dev --ansi
+
 
             # 2. downgrade
             -   run: php -d memory_limit=-1 vendor/bin/rector process reveal-build/bin reveal-build/config reveal-build/src reveal-build/packages reveal-build/vendor --config build/config/rector-downgrade.php --ansi
