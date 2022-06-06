@@ -41,9 +41,7 @@ jobs:
             # to add rector to local directory
             -  run: composer install --ansi
 
-            # 2. downgrade functions, for some reason are skipped
-            -  run: php -d memory_limit=-1 vendor/bin/rector process reveal-build/vendor/symfony/string/Resources/functions.php --config build/config/rector-downgrade.php --ansi --no-diffs
-
+            # 2. downgrade
             -  run: php -d memory_limit=-1 vendor/bin/rector process reveal-build/bin reveal-build/config reveal-build/src reveal-build/packages reveal-build/vendor --config build/config/rector-downgrade.php --ansi --no-diffs
 
             # 3. prefix classes
