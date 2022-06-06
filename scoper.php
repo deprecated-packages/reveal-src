@@ -16,6 +16,7 @@ return [
     'prefix' => 'RevealPrefix' . $timestamp,
     // @see https://github.com/humbug/php-scoper/blob/master/docs/configuration.md#exposed-symbols
     'expose-namespaces' => ['Reveal'],
+    'expose-classes' => ['PHPStan\Rules\Rule'],
     'expose-functions' => ['u', 'b', 's'],
     'patchers' => [
         // fixes https://github.com/rectorphp/rector/issues/7017
