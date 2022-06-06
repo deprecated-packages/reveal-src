@@ -42,7 +42,7 @@ jobs:
             -  run: composer install --ansi
 
             # 2. downgrade
-            -  run: php -d memory_limit=-1 vendor/bin/rector process reveal-build/bin reveal-build/config reveal-build/src reveal-build/packages reveal-build/vendor --config build/config/rector-downgrade.php --ansi
+            -  run: php -d memory_limit=-1 vendor/bin/rector process reveal-build/bin reveal-build/config reveal-build/src reveal-build/packages reveal-build/vendor --config build/config/rector-downgrade.php --ansi --no-diffs
 
             # 3. prefix classes
             -   run: sh build/build-reveal-scoped.sh reveal-build reveal-prefixed-downgraded
