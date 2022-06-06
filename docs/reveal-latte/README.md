@@ -4,7 +4,7 @@
 
 Rules for static analysis of Latte templates and Latte render() methods
 
-- See [Rules Overview](docs/rules_overview.md)
+- See [Rules Overview](rules_overview.md)
 
 ## Install
 
@@ -18,7 +18,7 @@ composer require reveal/reveal-latte --dev
 
 ## Configuration
 
-[LatteCompleteCheckRule](docs/rules_overview.md) can check usage of all [default latte filters](https://github.com/nette/latte/blob/master/src/Latte/Runtime/Defaults.php#L21). If you use some additional filters, register them in your phpstan.neon as `latteFilters` parameter. Use array `[className, methodName]` for static and dynamic method calls, and simple string for function calls:
+[LatteCompleteCheckRule](rules_overview.md) can check usage of all [default latte filters](https://github.com/nette/latte/blob/master/src/Latte/Runtime/Defaults.php#L21). If you use some additional filters, register them in your phpstan.neon as `latteFilters` parameter. Use array `[className, methodName]` for static and dynamic method calls, and simple string for function calls:
 ```neon
 parameters:
     latteFilters:
@@ -29,7 +29,7 @@ parameters:
 
 <br>
 
-With application mapping registered in phpstan.neon [LatteCompleteCheckRule](docs/rules_overview.md) can also check if your links are correct:
+With application mapping registered in phpstan.neon [LatteCompleteCheckRule](rules_overview.md) can also check if your links are correct:
 ```neon
 parameters:
     presenterFactoryMapping:

@@ -39,17 +39,27 @@
     "autoload": {
         "psr-4": {
             "Reveal\\": ["src", "packages"],
+<<<<<<< HEAD
             "Reveal\\RevealLatte\\": "packages/reveal-latte/src",
             "Reveal\\RevealTwig\\": "packages/reveal-twig/src",
             "Reveal\\TemplatePHPStanCompiler\\": "packages/template-phpstan-compiler/src",
             "Reveal\\TwigPHPStanCompiler\\": "packages/twig-phpstan-compiler/src"
+<<<<<<< HEAD
         }
+=======
+        },
+        "classmap": ["stubs"]
+=======
+            "Reveal\\RevealTwig\\": "packages/RevealTWIG/src",
+            "Reveal\\TemplatePHPStanCompiler\\": "packages/TemplatePHPStanCompiler/src",
+            "Reveal\\TwigPHPStanCompiler\\": "packages/TWIGPHPStanCompiler/src"
+        }
+>>>>>>> move RevealLatte to packages structure
+>>>>>>> move RevealLatte to packages structure
     },
     "autoload-dev": {
         "psr-4": {
             "Reveal\\Tests\\": "packages-tests",
-            "Reveal\\LattePHPStanCompiler\\Tests\\": "packages/LattePHPStanCompiler/tests",
-            "Reveal\\RevealLatte\\Tests\\": "packages/RevealLatte/tests",
             "Reveal\\RevealTwig\\Tests\\": "packages/RevealTWIG/tests",
             "Reveal\\TemplatePHPStanCompiler\\Tests\\": "packages/TemplatePHPStanCompiler/tests",
             "Reveal\\TwigPHPStanCompiler\\Tests\\": "packages/TWIGPHPStanCompiler/tests"
