@@ -10,7 +10,7 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Registry;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleError;
-use Reveal\RevealTwig\NodeAnalyzer\SymfonyRenderWithParametersMatcher;
+use Reveal\RevealTWIG\NodeAnalyzer\SymfonyRenderWithParametersMatcher;
 use Reveal\TemplatePHPStanCompiler\ErrorSkipper;
 use Reveal\TemplatePHPStanCompiler\PHPStan\FileAnalyserProvider;
 use Reveal\TemplatePHPStanCompiler\Reporting\TemplateErrorsFactory;

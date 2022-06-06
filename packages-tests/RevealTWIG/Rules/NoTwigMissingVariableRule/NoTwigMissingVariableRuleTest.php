@@ -6,7 +6,7 @@ namespace Reveal\RevealTwig\Tests\Rules\NoTwigMissingVariableRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
-use Reveal\RevealTwig\Rules\NoTwigMissingVariableRule;
+use Reveal\RevealTWIG\Rules\NoTwigMissingVariableRule;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Reveal\RevealTwig\NodeAnalyzer;
+namespace Reveal\RevealTWIG\NodeAnalyzer;
 
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\Array_;

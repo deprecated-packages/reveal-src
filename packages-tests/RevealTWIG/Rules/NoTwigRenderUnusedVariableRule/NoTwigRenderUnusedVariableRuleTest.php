@@ -6,7 +6,7 @@ namespace Reveal\RevealTwig\Tests\Rules\NoTwigRenderUnusedVariableRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
-use Reveal\RevealTwig\Rules\NoTwigRenderUnusedVariableRule;
+use Reveal\RevealTWIG\Rules\NoTwigRenderUnusedVariableRule;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**

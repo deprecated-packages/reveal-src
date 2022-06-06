@@ -6,7 +6,7 @@ namespace Reveal\RevealTwig\Tests\Rules\TwigCompleteCheckRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
-use Reveal\RevealTwig\Rules\TwigCompleteCheckRule;
+use Reveal\RevealTWIG\Rules\TwigCompleteCheckRule;
 use Reveal\RevealTwig\Tests\Rules\TwigCompleteCheckRule\Source\SomeType;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 

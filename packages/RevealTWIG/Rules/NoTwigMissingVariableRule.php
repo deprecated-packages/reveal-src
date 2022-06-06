@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Reveal\RevealTwig\Rules;
+namespace Reveal\RevealTWIG\Rules;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
-use Reveal\RevealTwig\NodeAnalyzer\SymfonyRenderWithParametersMatcher;
+use Reveal\RevealTWIG\NodeAnalyzer\SymfonyRenderWithParametersMatcher;
 use Reveal\TwigPHPStanCompiler\NodeAnalyzer\MissingTwigTemplateRenderVariableResolver;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
