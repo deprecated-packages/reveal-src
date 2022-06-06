@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler;
 
 use Iterator;
-use Nette\Application\UI\Presenter;
 use Nette\Localization\Translator;
 use PHPStan\DependencyInjection\Container;
 use PHPStan\Type\ObjectType;

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor;
 
-use Nette\Application\UI\Renderable;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Instanceof_;
 use PhpParser\Node\Expr\MethodCall;
