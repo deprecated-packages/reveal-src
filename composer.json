@@ -56,8 +56,8 @@
         }
     },
     "replace": {
-        "polyfill-ctype": "*",
-        "polyfill-intl-grapheme": "*"
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-intl-grapheme": "*"
     },
     "scripts": {
         "check-cs": "vendor/bin/ecs check --ansi",
