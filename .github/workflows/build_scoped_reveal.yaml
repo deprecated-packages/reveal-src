@@ -31,7 +31,7 @@ jobs:
                 env:
                     COMPOSER_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
-            -   run: composer install --no-dev --ansi
+            -   run: composer install --ansi
 
             # 1. copy files to $NESTED_DIRECTORY directory Exclude the scoped/nested directories to prevent rsync from copying in a loop
             -  run: rsync --exclude reveal-build -av * reveal-build --quiet
