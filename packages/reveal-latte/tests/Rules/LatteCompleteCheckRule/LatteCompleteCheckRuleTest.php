@@ -10,7 +10,7 @@ use Reveal\RevealLatte\Rules\LatteCompleteCheckRule;
 use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Fixture\ControlWithHandle;
 use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Fixture\InvalidControlRenderArguments;
 use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\ExampleModel;
-use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\FooPresenter;
+use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\Modules\FooModule\FirstFooPresenter;
 use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\SomeTypeWithMethods;
 use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
@@ -86,7 +86,7 @@ final class LatteCompleteCheckRuleTest extends AbstractServiceAwareRuleTestCase
             ],
             ['Call to an undefined method ' . ControlWithHandle::class . '::handleUnknown().', 18],
             [
-                'Parameter #2 $add of method ' . FooPresenter::class . '::renderDefault() expects array|null, string given.',
+                'Parameter #2 $add of method ' . FirstFooPresenter::class . '::renderDefault() expects array|null, string given.',
                 18,
             ],
         ];

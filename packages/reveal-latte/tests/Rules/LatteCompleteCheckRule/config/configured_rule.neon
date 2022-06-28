@@ -12,7 +12,7 @@ parameters:
     reportMagicMethods: true
 
     presenterFactoryMapping:
-        *: Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\*Presenter
+        *: Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\Modules\*Module\*Presenter
 
 services:
     -
