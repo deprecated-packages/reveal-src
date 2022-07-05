@@ -68,7 +68,7 @@ final class MagicFilterToExplicitCallNodeVisitor extends NodeVisitorAbstract imp
         $args = $node->args;
 
         // Add FilterInfo for special filters
-        if (in_array($filterName, ['striphtml', 'striptags', 'strip', 'indent', 'repeat', 'replace', 'trim'], true)) {
+        if (in_array($filterName, ['striphtml', 'stripHtml', 'striptags', 'stripTags', 'strip', 'indent', 'repeat', 'replace', 'trim'], true)) {
             $args = array_merge([
                 new Arg(new Variable('ʟ_fi')),
             ], $args);
