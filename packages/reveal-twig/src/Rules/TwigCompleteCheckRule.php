@@ -7,6 +7,7 @@ namespace Reveal\RevealTwig\Rules;
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
+use PHPStan\Collectors\Registry as CollectorsRegistry;
 use PHPStan\Rules\Registry;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleError;
@@ -60,6 +61,7 @@ final class TwigCompleteCheckRule implements Rule
         private ErrorSkipper $errorSkipper,
         private TemplateVariableTypesResolver $templateVariableTypesResolver,
         private TemplateErrorsFactory $templateErrorsFactory,
+        private CollectorsRegistry $collectorRegistry,
     ) {
         $this->registry = new Registry($rules);
     }
@@ -165,7 +167,7 @@ CODE_SAMPLE
         $fileAnalyser = $this->fileAnalyserProvider->provide();
 
         // 6. analyse temporary PHP file with full PHPStan rules
-        $fileAnalyserResult = $fileAnalyser->analyseFile($tmpFilePath, [], $this->registry, null);
+        $fileAnalyserResult = $fileAnalyser->analyseFile($tmpFilePath, [], $this->registry, $this->collectorRegistry, null);
         $ruleErrors = $this->errorSkipper->skipErrors($fileAnalyserResult->getErrors(), self::ERROR_IGNORES);
 
         return $this->templateErrorsFactory->createErrors(

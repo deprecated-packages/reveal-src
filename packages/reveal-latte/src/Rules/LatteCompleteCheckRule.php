@@ -6,6 +6,7 @@ namespace Reveal\RevealLatte\Rules;
 
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
+use PHPStan\Collectors\Registry as CollectorsRegistry;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleError;
 use PHPStan\Rules\RuleErrorBuilder;
@@ -56,6 +57,7 @@ final class LatteCompleteCheckRule implements Rule
         private ErrorSkipper $errorSkipper,
         private TemplateErrorsFactory $templateErrorsFactory,
         private FileAnalyserProvider $fileAnalyserProvider,
+        private CollectorsRegistry $collectorsRegistry,
     ) {
         // limit rule here, as template class can contain a lot of allowed Latte magic
         // get missing method + missing property etc. rule
@@ -174,7 +176,7 @@ CODE_SAMPLE
         $fileAnalyser = $this->fileAnalyserProvider->provide();
 
         // to include generated class
-        $fileAnalyserResult = $fileAnalyser->analyseFile($tmpFilePath, [], $this->templateRulesRegistry, null);
+        $fileAnalyserResult = $fileAnalyser->analyseFile($tmpFilePath, [], $this->templateRulesRegistry, $this->collectorsRegistry, null);
 
         // remove errors related to just created class, that cannot be autoloaded
         $errors = $this->errorSkipper->skipErrors($fileAnalyserResult->getErrors(), self::USELESS_ERRORS_IGNORES);
