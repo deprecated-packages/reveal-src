@@ -9,7 +9,7 @@
         "nette/application": "^3.1",
         "latte/latte": "^2.11",
         "phpstan/phpstan": ">=1.5.6 <=1.7.15",
-        "symplify/astral": "^10.0",
+        "symplify/astral": ">=10.0 <10.3",
         "symplify/package-builder": "^10.2",
         "reveal/template-phpstan-compiler": "^0.2"
     },

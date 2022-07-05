@@ -7,7 +7,7 @@
         "php": ">=8.1",
         "phpstan/phpstan": ">=1.5.6 <=1.7.15",
         "latte/latte": "^2.11",
-        "symplify/astral": "^10.0",
+        "symplify/astral": ">=10.0 <10.3",
         "symplify/rule-doc-generator-contracts": "^10.2",
         "symplify/package-builder": "^10.2",
         "symplify/smart-file-system": "^10.2",
