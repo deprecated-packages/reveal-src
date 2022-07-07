@@ -59,8 +59,6 @@ final class LatteCompleteCheckRuleTest extends RuleTestCase
 
         $multiActionsPresenterErrors = array_merge(
             $this->createSharedErrorMessages(10),
-            $this->createSharedErrorMessages(10),
-            $this->createSharedErrorMessages(10),
         );
         yield [__DIR__ . '/Fixture/MultiActionsAndRendersPresenter.php', $multiActionsPresenterErrors];
 
