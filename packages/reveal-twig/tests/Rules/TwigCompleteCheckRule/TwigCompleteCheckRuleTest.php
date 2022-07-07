@@ -6,14 +6,14 @@ namespace Reveal\RevealTwig\Tests\Rules\TwigCompleteCheckRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Reveal\RevealTwig\Rules\TwigCompleteCheckRule;
 use Reveal\RevealTwig\Tests\Rules\TwigCompleteCheckRule\Source\SomeType;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends AbstractServiceAwareRuleTestCase<TwigCompleteCheckRule>
+ * @extends \PHPStan\Testing\RuleTestCase<TwigCompleteCheckRule>
  */
-final class TwigCompleteCheckRuleTest extends AbstractServiceAwareRuleTestCase
+final class TwigCompleteCheckRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()
@@ -41,8 +41,18 @@ final class TwigCompleteCheckRuleTest extends AbstractServiceAwareRuleTestCase
         yield [__DIR__ . '/Fixture/SkipApp.php', []];
     }
 
+    /**
+     * @return string[]
+     */
+    public static function getAdditionalConfigFiles(): array
+    {
+        return [
+            __DIR__ . '/config/configured_rule.neon',
+        ];
+    }
+
     protected function getRule(): Rule
     {
-        return $this->getRuleFromConfig(TwigCompleteCheckRule::class, __DIR__ . '/config/configured_rule.neon');
+        return self::getContainer()->getByType(TwigCompleteCheckRule::class);
     }
 }

@@ -6,13 +6,13 @@ namespace Reveal\RevealTwig\Tests\Rules\NoTwigMissingVariableRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Reveal\RevealTwig\Rules\NoTwigMissingVariableRule;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends AbstractServiceAwareRuleTestCase<NoTwigMissingVariableRule>
+ * @extends RuleTestCase<NoTwigMissingVariableRule>
  */
-final class NoTwigMissingVariableRuleTest extends AbstractServiceAwareRuleTestCase
+final class NoTwigMissingVariableRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()
@@ -34,8 +34,16 @@ final class NoTwigMissingVariableRuleTest extends AbstractServiceAwareRuleTestCa
         yield [__DIR__ . '/Fixture/SkipTemplateSetVariable.php', []];
     }
 
+    /**
+     * @return string[]
+     */
+    public static function getAdditionalConfigFiles(): array
+    {
+        return [__DIR__ . '/config/configured_rule.neon'];
+    }
+
     protected function getRule(): Rule
     {
-        return $this->getRuleFromConfig(NoTwigMissingVariableRule::class, __DIR__ . '/config/configured_rule.neon');
+        return self::getContainer()->getByType(NoTwigMissingVariableRule::class);
     }
 }

@@ -9,6 +9,7 @@ use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Expr\ArrayItem;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Stmt\Class_;
+use PhpParser\NodeFinder;
 use PhpParser\NodeTraverser;
 use PHPStan\Analyser\Scope;
 use Reveal\RevealLatte\NodeVisitor\AssignedParametersVisitor;
@@ -17,16 +18,15 @@ use Reveal\RevealLatte\NodeVisitor\TemplatePathFinderVisitor;
 use Reveal\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\Astral\NodeAnalyzer\NetteTypeAnalyzer;
-use Symplify\Astral\NodeFinder\SimpleNodeFinder;
 use Symplify\Astral\NodeValue\NodeValueResolver;
 
 final class LatteTemplateWithParametersMatcher
 {
     public function __construct(
-        private SimpleNodeFinder $simpleNodeFinder,
+        private NodeFinder $nodeFinder,
         private SimpleNameResolver $simpleNameResolver,
-        private NetteTypeAnalyzer $netteTypeAnalyzer,
-        private NodeValueResolver $nodeValueResolver,
+        private NetteTypeAnalyzer  $netteTypeAnalyzer,
+        private NodeValueResolver  $nodeValueResolver,
     ) {
     }
 
@@ -35,7 +35,7 @@ final class LatteTemplateWithParametersMatcher
      */
     public function match(MethodCall $methodCall, Scope $scope): array
     {
-        $class = $this->simpleNodeFinder->findFirstParentByType($methodCall, Class_::class);
+        $class = $this->nodeFinder->findFirstParentByType($methodCall, Class_::class);
         if (! $class instanceof Class_) {
             return [];
         }

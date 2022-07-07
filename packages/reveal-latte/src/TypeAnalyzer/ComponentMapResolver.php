@@ -8,11 +8,11 @@ use Nette\Utils\Strings;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
+use PhpParser\NodeFinder;
 use PHPStan\Analyser\Scope;
 use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
 use Reveal\RevealLatte\NodeAnalyzer\ComponentClassMethodTypeAnalyzer;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\Astral\NodeFinder\SimpleNodeFinder;
 use Symplify\PHPStanRules\Exception\ShouldNotHappenException;
 
 final class ComponentMapResolver
@@ -20,7 +20,7 @@ final class ComponentMapResolver
     public function __construct(
         private SimpleNameResolver $simpleNameResolver,
         private ComponentClassMethodTypeAnalyzer $componentClassMethodTypeAnalyzer,
-        private SimpleNodeFinder $simpleNodeFinder
+        private NodeFinder $nodeFinder
     ) {
     }
 
@@ -29,7 +29,8 @@ final class ComponentMapResolver
      */
     public function resolveFromMethodCall(MethodCall $methodCall, Scope $scope): array
     {
-        $class = $this->simpleNodeFinder->findFirstParentByType($methodCall, Class_::class);
+        // pass Class_ first
+        $class = $this->nodeFinder->findFirstParentByType($methodCall, Class_::class);
         if (! $class instanceof Class_) {
             return [];
         }
@@ -42,7 +43,7 @@ final class ComponentMapResolver
      */
     public function resolveFromClassMethod(ClassMethod $classMethod, Scope $scope): array
     {
-        $class = $this->simpleNodeFinder->findFirstParentByType($classMethod, Class_::class);
+        $class = $this->nodeFinder->findFirstParentByType($classMethod, Class_::class);
         if (! $class instanceof Class_) {
             return [];
         }

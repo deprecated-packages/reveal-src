@@ -6,13 +6,13 @@ namespace Reveal\RevealLatte\Tests\Rules\NoUnusedNetteCreateComponentMethodRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Reveal\RevealLatte\Rules\NoUnusedNetteCreateComponentMethodRule;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends AbstractServiceAwareRuleTestCase<NoUnusedNetteCreateComponentMethodRule>
+ * @extends RuleTestCase<NoUnusedNetteCreateComponentMethodRule>
  */
-final class NoUnusedNetteCreateComponentMethodRuleTest extends AbstractServiceAwareRuleTestCase
+final class NoUnusedNetteCreateComponentMethodRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()
@@ -36,11 +36,18 @@ final class NoUnusedNetteCreateComponentMethodRuleTest extends AbstractServiceAw
         yield [__DIR__ . '/Fixture/UnusedCreateComponentMethod.php', [[$errorMessage, 11]]];
     }
 
+    /**
+     * @return string[]
+     */
+    public static function getAdditionalConfigFiles(): array
+    {
+        return [
+            __DIR__ . '/config/configured_rule.neon',
+        ];
+    }
+
     protected function getRule(): Rule
     {
-        return $this->getRuleFromConfig(
-            NoUnusedNetteCreateComponentMethodRule::class,
-            __DIR__ . '/config/configured_rule.neon'
-        );
+        return self::getContainer()->getByType(NoUnusedNetteCreateComponentMethodRule::class);
     }
 }
