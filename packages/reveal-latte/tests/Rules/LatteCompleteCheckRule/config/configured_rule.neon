@@ -13,6 +13,8 @@ parameters:
 
     presenterFactoryMapping:
         *: Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\*Presenter
+        Foo: Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\Modules\FooModule\*Presenter
+        Bar: Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\Modules\BarModule\*Presenter
 
 services:
     -

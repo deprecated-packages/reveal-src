@@ -37,12 +37,13 @@ final class PresenterActionLinkProcessor implements LinkProcessorInterface
      */
     public function createLinkExpressions(string $targetName, array $linkParams, array $attributes): array
     {
-        $actionParts = explode(':', $targetName);
-        $actionName = array_pop($actionParts);
-        $presenterName = implode('', $actionParts);
+        $targetNameParts = explode(':', $targetName);
+        $actionName = array_pop($targetNameParts);
+        $presenterWithModule = implode(':', $targetNameParts);
+        $presenterName = implode('', $targetNameParts);
         $presenterVariableName = lcfirst($presenterName) . 'Presenter';
         $presenterFactory = $this->presenterFactoryFaker->getPresenterFactory();
-        $presenterClassName = $presenterFactory->formatPresenterClass($presenterName);
+        $presenterClassName = $presenterFactory->formatPresenterClass($presenterWithModule);
 
         $variable = new Variable($presenterVariableName);
         $methodNames = $this->prepareMethodNames($presenterClassName, $actionName);
