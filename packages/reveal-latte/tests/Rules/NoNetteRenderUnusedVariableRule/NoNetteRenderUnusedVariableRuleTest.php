@@ -6,13 +6,13 @@ namespace Reveal\RevealLatte\Tests\Rules\NoNetteRenderUnusedVariableRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Reveal\RevealLatte\Rules\NoNetteRenderUnusedVariableRule;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends AbstractServiceAwareRuleTestCase<NoNetteRenderUnusedVariableRule>
+ * @extends RuleTestCase<NoNetteRenderUnusedVariableRule>
  */
-final class NoNetteRenderUnusedVariableRuleTest extends AbstractServiceAwareRuleTestCase
+final class NoNetteRenderUnusedVariableRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()
@@ -41,11 +41,16 @@ final class NoNetteRenderUnusedVariableRuleTest extends AbstractServiceAwareRule
         yield [__DIR__ . '/Fixture/SkipUnionTemplate.php', []];
     }
 
+    /**
+     * @return string[]
+     */
+    public static function getAdditionalConfigFiles(): array
+    {
+        return [__DIR__ . '/config/configured_rule.neon'];
+    }
+
     protected function getRule(): Rule
     {
-        return $this->getRuleFromConfig(
-            NoNetteRenderUnusedVariableRule::class,
-            __DIR__ . '/config/configured_rule.neon'
-        );
+        return self::getContainer()->getByType(NoNetteRenderUnusedVariableRule::class);
     }
 }

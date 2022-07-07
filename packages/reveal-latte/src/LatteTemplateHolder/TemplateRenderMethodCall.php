@@ -47,6 +47,6 @@ final class TemplateRenderMethodCall implements LatteTemplateHolderInterface
      */
     public function findComponentNamesAndTypes(Node $node, Scope $scope): array
     {
-        return $this->componentMapResolver->resolveFromMethodCall($node, $scope);
+        return $this->componentMapResolver->resolveFromMethodCall($scope);
     }
 }

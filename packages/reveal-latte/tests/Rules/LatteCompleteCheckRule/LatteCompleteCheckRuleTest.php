@@ -6,6 +6,7 @@ namespace Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Reveal\RevealLatte\Rules\LatteCompleteCheckRule;
 use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Fixture\ControlWithHandle;
 use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Fixture\InvalidControlRenderArguments;
@@ -14,12 +15,11 @@ use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\FooPresenter;
 use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\Modules\BarModule\FirstBarPresenter;
 use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\Modules\FooModule\FirstFooPresenter;
 use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\SomeTypeWithMethods;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends AbstractServiceAwareRuleTestCase<LatteCompleteCheckRule>
+ * @extends RuleTestCase<LatteCompleteCheckRule>
  */
-final class LatteCompleteCheckRuleTest extends AbstractServiceAwareRuleTestCase
+final class LatteCompleteCheckRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()
@@ -59,8 +59,6 @@ final class LatteCompleteCheckRuleTest extends AbstractServiceAwareRuleTestCase
 
         $multiActionsPresenterErrors = array_merge(
             $this->createSharedErrorMessages(10),
-            $this->createSharedErrorMessages(10),
-            $this->createSharedErrorMessages(10),
         );
         yield [__DIR__ . '/Fixture/MultiActionsAndRendersPresenter.php', $multiActionsPresenterErrors];
 
@@ -76,10 +74,6 @@ final class LatteCompleteCheckRuleTest extends AbstractServiceAwareRuleTestCase
         $errorMessages = [
             [
                 'Method ' . ControlWithHandle::class . '::handleDoSomething() invoked with 3 parameters, 1-2 required.',
-                18,
-            ],
-            [
-                'Parameter #2 $bar of method ' . ControlWithHandle::class . '::handleDoSomething() expects array|null, string given.',
                 18,
             ],
             [
@@ -105,9 +99,19 @@ final class LatteCompleteCheckRuleTest extends AbstractServiceAwareRuleTestCase
         yield [__DIR__ . '/Fixture/SpecialFilters.php', []];
     }
 
+    /**
+     * @return string[]
+     */
+    public static function getAdditionalConfigFiles(): array
+    {
+        return [
+            __DIR__ . '/config/configured_rule.neon',
+        ];
+    }
+
     protected function getRule(): Rule
     {
-        return $this->getRuleFromConfig(LatteCompleteCheckRule::class, __DIR__ . '/config/configured_rule.neon');
+        return self::getContainer()->getByType(LatteCompleteCheckRule::class);
     }
 
     /**

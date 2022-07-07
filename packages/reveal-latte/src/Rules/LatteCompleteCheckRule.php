@@ -7,6 +7,8 @@ namespace Reveal\RevealLatte\Rules;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Collectors\Registry as CollectorsRegistry;
+use PHPStan\Rules\FileRuleError;
+use PHPStan\Rules\LineRuleError;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleError;
 use PHPStan\Rules\RuleErrorBuilder;
@@ -95,7 +97,14 @@ final class LatteCompleteCheckRule implements Rule
             }
         }
 
-        return $errors;
+        $uniqueErrorsByHash = [];
+        foreach ($errors as $error) {
+            /** @var RuleError&FileRuleError&LineRuleError $error */
+            $errorHash = $error->getMessage() . $error->getFile() . $error->getLine();
+            $uniqueErrorsByHash[$errorHash] = $error;
+        }
+
+        return $uniqueErrorsByHash;
     }
 
     public function getRuleDefinition(): RuleDefinition

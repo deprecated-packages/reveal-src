@@ -12,29 +12,37 @@ use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\NodeFinder;
+use PHPStan\Analyser\Scope;
+use PHPStan\Reflection\ClassReflection;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\Astral\ValueObject\AttributeKey;
+use Symplify\Astral\Reflection\ReflectionParser;
 
 final class UsedLocalComponentNamesResolver
 {
     public function __construct(
         private SimpleNameResolver $simpleNameResolver,
-        private NodeFinder $nodeFinder
+        private NodeFinder $nodeFinder,
+        private ReflectionParser $reflectionParser
     ) {
     }
 
     /**
      * @return string[]
      */
-    public function resolveFromClassMethod(ClassMethod $classMethod): array
+    public function resolveFromClassMethod(ClassMethod $classMethod, Scope $scope): array
     {
-        $parent = $classMethod->getAttribute(AttributeKey::PARENT);
-        if (! $parent instanceof Class_) {
+        $classReflection = $scope->getClassReflection();
+        if (! $classReflection instanceof ClassReflection) {
             return [];
         }
 
-        $getComponentNames = $this->resolveThisGetComponentArguments($parent);
-        $dimFetchNames = $this->resolveDimFetchArguments($parent);
+        $class = $this->reflectionParser->parseClassReflection($classReflection);
+        if (! $class instanceof Class_) {
+            return [];
+        }
+
+        $getComponentNames = $this->resolveThisGetComponentArguments($class);
+        $dimFetchNames = $this->resolveDimFetchArguments($class);
 
         return array_merge($getComponentNames, $dimFetchNames);
     }
