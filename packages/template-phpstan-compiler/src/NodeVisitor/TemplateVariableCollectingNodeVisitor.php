@@ -13,7 +13,6 @@ use PhpParser\Node\Stmt\Foreach_;
 use PhpParser\NodeFinder;
 use PhpParser\NodeVisitorAbstract;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\Astral\ValueObject\AttributeKey;
 
 /**
  * @api
@@ -89,14 +88,55 @@ final class TemplateVariableCollectingNodeVisitor extends NodeVisitorAbstract
         /** @var Variable[] $variables */
         $variables = $this->nodeFinder->findInstanceOf((array) $classMethod->stmts, Variable::class);
 
+        $assignCreatedVariableNames = $this->resolveJustCreatedVariableNamesFromAssigns($classMethod);
+        $foreachCreatedVariableNames = $this->resolveJustCreatedVariableNamesFromForeach($classMethod);
+
+        $createdVariableNames = array_merge($assignCreatedVariableNames, $foreachCreatedVariableNames);
+
         foreach ($variables as $variable) {
             $variableName = $this->simpleNameResolver->getName($variable);
             if ($variableName === null) {
                 continue;
             }
 
-            if ($this->isJustCreatedVariable($variable)) {
-                $this->justCreatedVariableNames[] = $variableName;
+            if (in_array($variableName, $justCreatedVariableNames, true)) {
+                continue;
+            }
+
+            $variableNames[] = $variableName;
+        }
+
+        $this->justCreatedVariableNames = $justCreatedVariableNames;
+
+        return $variableNames;
+    }
+
+//    private function isJustCreatedVariable(Assign $assign): bool
+//    {
+//        if (! $parent instanceof Foreach_) {
+//            return false;
+//        }
+//
+//        return $parent->valueVar === $variable;
+//    }
+
+    /**
+     * @return string[]
+     */
+    private function resolveJustCreatedVariableNamesFromAssigns(ClassMethod $classMethod): array
+    {
+        $variableNames = [];
+
+        /** @var Assign[] $variables */
+        $assigns = $this->nodeFinder->findInstanceOf((array)$classMethod->stmts, Assign::class);
+
+        foreach ($assigns as $assign) {
+            if (!$assign->var instanceof Variable) {
+                continue;
+            }
+
+            $variableName = $this->simpleNameResolver->getName($assign->var);
+            if ($variableName === null) {
                 continue;
             }
 
@@ -106,17 +146,29 @@ final class TemplateVariableCollectingNodeVisitor extends NodeVisitorAbstract
         return $variableNames;
     }
 
-    private function isJustCreatedVariable(Variable $variable): bool
+    /**
+     * @return string[]
+     */
+    private function resolveJustCreatedVariableNamesFromForeach(ClassMethod $classMethod): array
     {
-        $parent = $variable->getAttribute(AttributeKey::PARENT);
-        if ($parent instanceof Assign && $parent->var === $variable) {
-            return true;
+        $variableNames = [];
+
+        /** @var Foreach_[] $foreaches */
+        $foreaches = $this->nodeFinder->findInstanceOf((array)$classMethod->stmts, Foreach_::class);
+
+        foreach ($foreaches as $foreach) {
+            if (! $foreach->valueVar instanceof Variable) {
+                continue;
+            }
+
+            $variableName = $this->simpleNameResolver->getName($foreach->valueVar);
+            if ($variableName === null) {
+                continue;
+            }
+
+            $variableNames[] = $variableName;
         }
 
-        if (! $parent instanceof Foreach_) {
-            return false;
-        }
-
-        return $parent->valueVar === $variable;
+        return $variableNames;
     }
 }

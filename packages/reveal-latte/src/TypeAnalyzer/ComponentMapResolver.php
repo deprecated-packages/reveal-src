@@ -5,14 +5,15 @@ declare(strict_types=1);
 namespace Reveal\RevealLatte\TypeAnalyzer;
 
 use Nette\Utils\Strings;
-use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\NodeFinder;
 use PHPStan\Analyser\Scope;
+use PHPStan\Reflection\ClassReflection;
 use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
 use Reveal\RevealLatte\NodeAnalyzer\ComponentClassMethodTypeAnalyzer;
 use Symplify\Astral\Naming\SimpleNameResolver;
+use Symplify\Astral\Reflection\ReflectionParser;
 use Symplify\PHPStanRules\Exception\ShouldNotHappenException;
 
 final class ComponentMapResolver
@@ -20,17 +21,23 @@ final class ComponentMapResolver
     public function __construct(
         private SimpleNameResolver $simpleNameResolver,
         private ComponentClassMethodTypeAnalyzer $componentClassMethodTypeAnalyzer,
-        private NodeFinder $nodeFinder
+        private NodeFinder $nodeFinder,
+        private ReflectionParser $reflectionParser
     ) {
     }
 
     /**
      * @return ComponentNameAndType[]
      */
-    public function resolveFromMethodCall(MethodCall $methodCall, Scope $scope): array
+    public function resolveFromMethodCall(Scope $scope): array
     {
+        $classReflection = $scope->getClassReflection();
+        if (! $classReflection instanceof ClassReflection) {
+            return [];
+        }
+
         // pass Class_ first
-        $class = $this->nodeFinder->findFirstParentByType($methodCall, Class_::class);
+        $class = $this->reflectionParser->parseClassReflection($classReflection);
         if (! $class instanceof Class_) {
             return [];
         }

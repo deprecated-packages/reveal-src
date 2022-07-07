@@ -17,12 +17,10 @@ use Reveal\RevealLatte\NodeAnalyzer\LatteTemplateWithParametersMatcher;
 use Reveal\RevealLatte\TypeAnalyzer\ComponentMapResolver;
 use Reveal\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\Astral\NodeFinder\SimpleNodeFinder;
 
 final class NetteApplicationUIPresenter implements LatteTemplateHolderInterface
 {
     public function __construct(
-        private SimpleNodeFinder $simpleNodeFinder,
         private SimpleNameResolver $simpleNameResolver,
         private LatteTemplateWithParametersMatcher $latteTemplateWithParametersMatcher,
         private ComponentMapResolver $componentMapResolver,
