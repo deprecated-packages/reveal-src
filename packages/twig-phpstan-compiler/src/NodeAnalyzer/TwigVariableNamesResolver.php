@@ -6,7 +6,7 @@ namespace Reveal\TwigPHPStanCompiler\NodeAnalyzer;
 
 use PhpParser\NodeTraverser;
 use Reveal\TemplatePHPStanCompiler\Contract\UsedVariableNamesResolverInterface;
-use Reveal\TemplatePHPStanCompiler\NodeVisitor\VariableCollectingNodeVisitor;
+use Reveal\TemplatePHPStanCompiler\NodeVisitor\TwigVariableCollectingNodeVisitor;
 use Reveal\TemplatePHPStanCompiler\PhpParser\ParentNodeAwarePhpParser;
 use Reveal\TwigPHPStanCompiler\TwigToPhpCompiler;
 use Symplify\Astral\Naming\SimpleNameResolver;
@@ -30,7 +30,7 @@ final class TwigVariableNamesResolver implements UsedVariableNamesResolverInterf
 
         $stmts = $this->parentNodeAwarePhpParser->parsePhpContent($phpFileContents);
 
-        $variableCollectingNodeVisitor = new VariableCollectingNodeVisitor(
+        $variableCollectingNodeVisitor = new TwigVariableCollectingNodeVisitor(
             ['context', 'macros', 'this', '_parent', 'loop', 'tmp'],
             $this->simpleNameResolver,
         );

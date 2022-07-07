@@ -5,18 +5,15 @@ declare(strict_types=1);
 namespace Reveal\TemplatePHPStanCompiler\NodeVisitor;
 
 use PhpParser\Node;
-use PhpParser\Node\Expr\Assign;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Stmt;
-use PhpParser\Node\Stmt\Foreach_;
 use PhpParser\NodeVisitorAbstract;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\Astral\ValueObject\AttributeKey;
 
 /**
  * @api
  */
-final class VariableCollectingNodeVisitor extends NodeVisitorAbstract
+final class TwigVariableCollectingNodeVisitor extends NodeVisitorAbstract
 {
     /**
      * @var string[]
@@ -86,19 +83,5 @@ final class VariableCollectingNodeVisitor extends NodeVisitorAbstract
         // reset to avoid used variable name in next analysed file
         $this->userVariableNames = [];
         $this->justCreatedVariableNames = [];
-    }
-
-    private function isJustCreatedVariable(Variable $variable): bool
-    {
-        $parent = $variable->getAttribute(AttributeKey::PARENT);
-        if ($parent instanceof Assign && $parent->var === $variable) {
-            return true;
-        }
-
-        if (! $parent instanceof Foreach_) {
-            return false;
-        }
-
-        return $parent->valueVar === $variable;
     }
 }
