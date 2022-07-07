@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\Modules\FooModule;
+namespace Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source;
 
-class FirstFooPresenter
+use Nette\Application\UI\Presenter;
+
+final class FooPresenter extends Presenter
 {
     public function renderDefault(int $limit, ?array $add = null): void
     {
