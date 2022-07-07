@@ -25,8 +25,8 @@ final class LatteTemplateWithParametersMatcher
     public function __construct(
         private NodeFinder $nodeFinder,
         private SimpleNameResolver $simpleNameResolver,
-        private NetteTypeAnalyzer  $netteTypeAnalyzer,
-        private NodeValueResolver  $nodeValueResolver,
+        private NetteTypeAnalyzer $netteTypeAnalyzer,
+        private NodeValueResolver $nodeValueResolver,
     ) {
     }
 
