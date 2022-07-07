@@ -90,7 +90,7 @@ final class LatteVariableCollectingNodeVisitor extends NodeVisitorAbstract
         /** @var Variable[] $variables */
         $variables = $this->nodeFinder->findInstanceOf((array) $classMethod->stmts, Variable::class);
 
-        $createdVariableNames = $this->createdVariableNamesResolver->resolveCreatedVariableNames($classMethod);
+        $createdVariableNames = $this->createdVariableNamesResolver->resolve($classMethod);
 
         foreach ($variables as $variable) {
             $variableName = $this->simpleNameResolver->getName($variable);

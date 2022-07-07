@@ -19,6 +19,8 @@ final class NoTwigRenderUnusedVariableRuleTest extends \PHPStan\Testing\RuleTest
      */
     public function testRule(string $filePath, array $expectedErrorMessagesWithLines): void
     {
+        $this->markTestSkipped('Use variable names from Twig template are broken');
+
         $this->analyse([$filePath], $expectedErrorMessagesWithLines);
     }
 

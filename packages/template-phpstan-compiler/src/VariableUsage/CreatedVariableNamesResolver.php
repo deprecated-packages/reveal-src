@@ -22,7 +22,7 @@ final class CreatedVariableNamesResolver
     /**
      * @return string[]
      */
-    public function resolveCreatedVariableNames(ClassMethod $classMethod): array
+    public function resolve(ClassMethod $classMethod): array
     {
         $assignCreatedVariableNames = $this->resolveJustCreatedVariableNamesFromAssigns($classMethod);
         $foreachCreatedVariableNames = $this->resolveJustCreatedVariableNamesFromForeach($classMethod);
@@ -37,7 +37,7 @@ final class CreatedVariableNamesResolver
     {
         $variableNames = [];
 
-        /** @var Assign[] $variables */
+        /** @var Assign[] $assigns */
         $assigns = $this->nodeFinder->findInstanceOf((array) $classMethod->stmts, Assign::class);
 
         foreach ($assigns as $assign) {

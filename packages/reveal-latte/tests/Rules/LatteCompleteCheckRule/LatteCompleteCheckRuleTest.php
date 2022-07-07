@@ -82,10 +82,6 @@ final class LatteCompleteCheckRuleTest extends RuleTestCase
                 'Parameter #2 $bar of method ' . ControlWithHandle::class . '::handleDoSomething() expects array|null, string given.',
                 18,
             ],
-            [
-                'Parameter #2 $bar of method ' . ControlWithHandle::class . '::handleDoSomething() expects array|null, string given.',
-                18,
-            ],
             ['Call to an undefined method ' . ControlWithHandle::class . '::handleUnknown().', 18],
             [
                 'Parameter #2 $add of method ' . FooPresenter::class . '::renderDefault() expects array|null, string given.',

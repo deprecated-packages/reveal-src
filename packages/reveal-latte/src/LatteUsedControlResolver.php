@@ -8,7 +8,6 @@ use Nette\Utils\Strings;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
 use Symfony\Component\Finder\Finder;
-use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\SmartFileSystem\Finder\FinderSanitizer;
 use Symplify\SmartFileSystem\SmartFileInfo;
 
@@ -36,7 +35,6 @@ final class LatteUsedControlResolver
     private array $layoutUsedComponentNames = [];
 
     public function __construct(
-        private SimpleNameResolver $simpleNameResolver,
         private FinderSanitizer $finderSanitizer
     ) {
     }

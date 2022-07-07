@@ -9,7 +9,6 @@ use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Expr\ArrayItem;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Stmt\Class_;
-use PhpParser\NodeFinder;
 use PhpParser\NodeTraverser;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
@@ -25,7 +24,6 @@ use Symplify\Astral\Reflection\ReflectionParser;
 final class LatteTemplateWithParametersMatcher
 {
     public function __construct(
-        private NodeFinder $nodeFinder,
         private SimpleNameResolver $simpleNameResolver,
         private NetteTypeAnalyzer $netteTypeAnalyzer,
         private NodeValueResolver $nodeValueResolver,

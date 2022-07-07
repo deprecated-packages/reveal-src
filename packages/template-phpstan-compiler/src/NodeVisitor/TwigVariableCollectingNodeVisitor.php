@@ -7,7 +7,10 @@ namespace Reveal\TemplatePHPStanCompiler\NodeVisitor;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Stmt;
+use PhpParser\NodeFinder;
 use PhpParser\NodeVisitorAbstract;
+use PHPStan\Node\ClassMethod;
+use Reveal\TemplatePHPStanCompiler\VariableUsage\CreatedVariableNamesResolver;
 use Symplify\Astral\Naming\SimpleNameResolver;
 
 /**
@@ -25,6 +28,8 @@ final class TwigVariableCollectingNodeVisitor extends NodeVisitorAbstract
      */
     private array $justCreatedVariableNames = [];
 
+    private CreatedVariableNamesResolver $createdVariableNamesResolver;
+
     /**
      * @param array<string> $defaultVariableNames
      */
@@ -32,6 +37,7 @@ final class TwigVariableCollectingNodeVisitor extends NodeVisitorAbstract
         private array $defaultVariableNames,
         private SimpleNameResolver $simpleNameResolver,
     ) {
+        $this->createdVariableNamesResolver = new CreatedVariableNamesResolver(new NodeFinder(), $simpleNameResolver);
     }
 
     /**
@@ -47,21 +53,23 @@ final class TwigVariableCollectingNodeVisitor extends NodeVisitorAbstract
 
     public function enterNode(Node $node): Node|null
     {
-        if (! $node instanceof Variable) {
+        if (! $node instanceof ClassMethod) {
             return null;
         }
 
-        $variableName = $this->simpleNameResolver->getName($node);
-        if ($variableName === null) {
-            return null;
-        }
+        $this->justCreatedVariableNames = $this->createdVariableNamesResolver->resolve($node);
 
-        if ($this->isJustCreatedVariable($node)) {
-            $this->justCreatedVariableNames[] = $variableName;
-            return null;
-        }
+        $nodeFinder = new NodeFinder();
+        $variables = $nodeFinder->findInstanceOf($node, Variable::class);
 
-        $this->userVariableNames[] = $variableName;
+        foreach ($variables as $variable) {
+            $variableName = $this->simpleNameResolver->getName($variable);
+            if (! is_string($variableName)) {
+                continue;
+            }
+
+            $this->userVariableNames[] = $variableName;
+        }
 
         return null;
     }

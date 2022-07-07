@@ -6,8 +6,6 @@ namespace Reveal\RevealLatte\TypeAnalyzer;
 
 use Nette\Utils\Strings;
 use PhpParser\Node\Stmt\Class_;
-use PhpParser\Node\Stmt\ClassMethod;
-use PhpParser\NodeFinder;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
 use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
@@ -21,7 +19,6 @@ final class ComponentMapResolver
     public function __construct(
         private SimpleNameResolver $simpleNameResolver,
         private ComponentClassMethodTypeAnalyzer $componentClassMethodTypeAnalyzer,
-        private NodeFinder $nodeFinder,
         private ReflectionParser $reflectionParser
     ) {
     }
@@ -38,19 +35,6 @@ final class ComponentMapResolver
 
         // pass Class_ first
         $class = $this->reflectionParser->parseClassReflection($classReflection);
-        if (! $class instanceof Class_) {
-            return [];
-        }
-
-        return $this->resolveComponentNamesAndTypes($class, $scope);
-    }
-
-    /**
-     * @return ComponentNameAndType[]
-     */
-    public function resolveFromClassMethod(ClassMethod $classMethod, Scope $scope): array
-    {
-        $class = $this->nodeFinder->findFirstParentByType($classMethod, Class_::class);
         if (! $class instanceof Class_) {
             return [];
         }
