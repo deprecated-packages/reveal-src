@@ -6,13 +6,13 @@ namespace Reveal\RevealLatte\Tests\Rules\NoNetteRenderMissingVariableRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Reveal\RevealLatte\Rules\NoNetteRenderMissingVariableRule;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends AbstractServiceAwareRuleTestCase<NoNetteRenderMissingVariableRule>
+ * @extends RuleTestCase<NoNetteRenderMissingVariableRule>
  */
-final class NoNetteRenderMissingVariableRuleTest extends AbstractServiceAwareRuleTestCase
+final class NoNetteRenderMissingVariableRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()
@@ -36,11 +36,16 @@ final class NoNetteRenderMissingVariableRuleTest extends AbstractServiceAwareRul
         yield [__DIR__ . '/Fixture/SkipCompleteVariables.php', []];
     }
 
+    /**
+     * @return string[]
+     */
+    public static function getAdditionalConfigFiles(): array
+    {
+        return [__DIR__ . '/config/configured_rule.neon'];
+    }
+
     protected function getRule(): Rule
     {
-        return $this->getRuleFromConfig(
-            NoNetteRenderMissingVariableRule::class,
-            __DIR__ . '/config/configured_rule.neon'
-        );
+        return self::getContainer()->getByType(NoNetteRenderMissingVariableRule::class);
     }
 }

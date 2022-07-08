@@ -10,6 +10,7 @@ use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
 use PHPStan\Analyser\Scope;
 use PHPStan\Node\InClassNode;
+use PHPStan\Reflection\ClassReflection;
 use PHPStan\Type\ObjectType;
 use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
 use Reveal\RevealLatte\Contract\LatteTemplateHolderInterface;
@@ -17,15 +18,15 @@ use Reveal\RevealLatte\NodeAnalyzer\LatteTemplateWithParametersMatcher;
 use Reveal\RevealLatte\TypeAnalyzer\ComponentMapResolver;
 use Reveal\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\Astral\NodeFinder\SimpleNodeFinder;
+use Symplify\Astral\Reflection\ReflectionParser;
 
 final class NetteApplicationUIPresenter implements LatteTemplateHolderInterface
 {
     public function __construct(
-        private SimpleNodeFinder $simpleNodeFinder,
         private SimpleNameResolver $simpleNameResolver,
         private LatteTemplateWithParametersMatcher $latteTemplateWithParametersMatcher,
         private ComponentMapResolver $componentMapResolver,
+        private ReflectionParser $reflectionParser,
     ) {
     }
 
@@ -100,7 +101,12 @@ final class NetteApplicationUIPresenter implements LatteTemplateHolderInterface
 
     private function findTemplateFilePath(ClassMethod $classMethod, Scope $scope): ?string
     {
-        $class = $this->simpleNodeFinder->findFirstParentByType($classMethod, Class_::class);
+        $classReflection = $scope->getClassReflection();
+        if (! $classReflection instanceof ClassReflection) {
+            return null;
+        }
+
+        $class = $this->reflectionParser->parseClassReflection($classReflection);
         if (! $class instanceof Class_) {
             return null;
         }

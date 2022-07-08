@@ -5,18 +5,18 @@ declare(strict_types=1);
 namespace Reveal\TemplatePHPStanCompiler\NodeVisitor;
 
 use PhpParser\Node;
-use PhpParser\Node\Expr\Assign;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Stmt;
-use PhpParser\Node\Stmt\Foreach_;
+use PhpParser\NodeFinder;
 use PhpParser\NodeVisitorAbstract;
+use PHPStan\Node\ClassMethod;
+use Reveal\TemplatePHPStanCompiler\VariableUsage\CreatedVariableNamesResolver;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\Astral\ValueObject\AttributeKey;
 
 /**
  * @api
  */
-final class VariableCollectingNodeVisitor extends NodeVisitorAbstract
+final class TwigVariableCollectingNodeVisitor extends NodeVisitorAbstract
 {
     /**
      * @var string[]
@@ -28,6 +28,8 @@ final class VariableCollectingNodeVisitor extends NodeVisitorAbstract
      */
     private array $justCreatedVariableNames = [];
 
+    private CreatedVariableNamesResolver $createdVariableNamesResolver;
+
     /**
      * @param array<string> $defaultVariableNames
      */
@@ -35,6 +37,7 @@ final class VariableCollectingNodeVisitor extends NodeVisitorAbstract
         private array $defaultVariableNames,
         private SimpleNameResolver $simpleNameResolver,
     ) {
+        $this->createdVariableNamesResolver = new CreatedVariableNamesResolver(new NodeFinder(), $simpleNameResolver);
     }
 
     /**
@@ -50,21 +53,23 @@ final class VariableCollectingNodeVisitor extends NodeVisitorAbstract
 
     public function enterNode(Node $node): Node|null
     {
-        if (! $node instanceof Variable) {
+        if (! $node instanceof ClassMethod) {
             return null;
         }
 
-        $variableName = $this->simpleNameResolver->getName($node);
-        if ($variableName === null) {
-            return null;
-        }
+        $this->justCreatedVariableNames = $this->createdVariableNamesResolver->resolve($node);
 
-        if ($this->isJustCreatedVariable($node)) {
-            $this->justCreatedVariableNames[] = $variableName;
-            return null;
-        }
+        $nodeFinder = new NodeFinder();
+        $variables = $nodeFinder->findInstanceOf($node, Variable::class);
 
-        $this->userVariableNames[] = $variableName;
+        foreach ($variables as $variable) {
+            $variableName = $this->simpleNameResolver->getName($variable);
+            if (! is_string($variableName)) {
+                continue;
+            }
+
+            $this->userVariableNames[] = $variableName;
+        }
 
         return null;
     }
@@ -86,19 +91,5 @@ final class VariableCollectingNodeVisitor extends NodeVisitorAbstract
         // reset to avoid used variable name in next analysed file
         $this->userVariableNames = [];
         $this->justCreatedVariableNames = [];
-    }
-
-    private function isJustCreatedVariable(Variable $variable): bool
-    {
-        $parent = $variable->getAttribute(AttributeKey::PARENT);
-        if ($parent instanceof Assign && $parent->var === $variable) {
-            return true;
-        }
-
-        if (! $parent instanceof Foreach_) {
-            return false;
-        }
-
-        return $parent->valueVar === $variable;
     }
 }

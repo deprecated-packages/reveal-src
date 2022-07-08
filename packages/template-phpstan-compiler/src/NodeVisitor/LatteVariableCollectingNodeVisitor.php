@@ -5,20 +5,18 @@ declare(strict_types=1);
 namespace Reveal\TemplatePHPStanCompiler\NodeVisitor;
 
 use PhpParser\Node;
-use PhpParser\Node\Expr\Assign;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Stmt;
 use PhpParser\Node\Stmt\ClassMethod;
-use PhpParser\Node\Stmt\Foreach_;
 use PhpParser\NodeFinder;
 use PhpParser\NodeVisitorAbstract;
+use Reveal\TemplatePHPStanCompiler\VariableUsage\CreatedVariableNamesResolver;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\Astral\ValueObject\AttributeKey;
 
 /**
  * @api
  */
-final class TemplateVariableCollectingNodeVisitor extends NodeVisitorAbstract
+final class LatteVariableCollectingNodeVisitor extends NodeVisitorAbstract
 {
     /**
      * @var string[]
@@ -28,7 +26,9 @@ final class TemplateVariableCollectingNodeVisitor extends NodeVisitorAbstract
     /**
      * @var string[]
      */
-    private array $justCreatedVariableNames = [];
+    private array $createdVariableNames = [];
+
+    private CreatedVariableNamesResolver $createdVariableNamesResolver;
 
     /**
      * @param array<string> $defaultVariableNames
@@ -40,6 +40,7 @@ final class TemplateVariableCollectingNodeVisitor extends NodeVisitorAbstract
         private SimpleNameResolver $simpleNameResolver,
         private NodeFinder $nodeFinder,
     ) {
+        $this->createdVariableNamesResolver = new CreatedVariableNamesResolver($nodeFinder, $simpleNameResolver);
     }
 
     /**
@@ -50,7 +51,7 @@ final class TemplateVariableCollectingNodeVisitor extends NodeVisitorAbstract
     {
         // reset to avoid used variable name in next analysed file
         $this->userVariableNames = [];
-        $this->justCreatedVariableNames = [];
+        $this->createdVariableNames = [];
 
         return $nodes;
     }
@@ -74,7 +75,7 @@ final class TemplateVariableCollectingNodeVisitor extends NodeVisitorAbstract
      */
     public function getUsedVariableNames(): array
     {
-        $removedVariableNames = array_merge($this->defaultVariableNames, $this->justCreatedVariableNames);
+        $removedVariableNames = array_merge($this->defaultVariableNames, $this->createdVariableNames);
 
         return array_diff($this->userVariableNames, $removedVariableNames);
     }
@@ -89,34 +90,23 @@ final class TemplateVariableCollectingNodeVisitor extends NodeVisitorAbstract
         /** @var Variable[] $variables */
         $variables = $this->nodeFinder->findInstanceOf((array) $classMethod->stmts, Variable::class);
 
+        $createdVariableNames = $this->createdVariableNamesResolver->resolve($classMethod);
+
         foreach ($variables as $variable) {
             $variableName = $this->simpleNameResolver->getName($variable);
             if ($variableName === null) {
                 continue;
             }
 
-            if ($this->isJustCreatedVariable($variable)) {
-                $this->justCreatedVariableNames[] = $variableName;
+            if (in_array($variableName, $createdVariableNames, true)) {
                 continue;
             }
 
             $variableNames[] = $variableName;
         }
 
+        $this->createdVariableNames = $createdVariableNames;
+
         return $variableNames;
-    }
-
-    private function isJustCreatedVariable(Variable $variable): bool
-    {
-        $parent = $variable->getAttribute(AttributeKey::PARENT);
-        if ($parent instanceof Assign && $parent->var === $variable) {
-            return true;
-        }
-
-        if (! $parent instanceof Foreach_) {
-            return false;
-        }
-
-        return $parent->valueVar === $variable;
     }
 }

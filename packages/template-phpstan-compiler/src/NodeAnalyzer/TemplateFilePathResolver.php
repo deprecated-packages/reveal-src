@@ -24,7 +24,7 @@ final class TemplateFilePathResolver
      */
     public function resolveExistingFilePaths(Expr $expr, Scope $scope, string $templateSuffix): array
     {
-        $resolvedValue = $this->nodeValueResolver->resolveWithScope($expr, $scope);
+        $resolvedValue = $this->nodeValueResolver->resolve($expr, $scope->getFile());
 
         $possibleTemplateFilePaths = $this->arrayizeStrings($resolvedValue);
         if ($possibleTemplateFilePaths === []) {

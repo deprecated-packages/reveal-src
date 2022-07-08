@@ -5,25 +5,24 @@ declare(strict_types=1);
 namespace Reveal\TwigPHPStanCompiler\Tests\TwigToPhpCompiler;
 
 use Iterator;
-use PHPStan\DependencyInjection\Container;
+use PHPStan\Testing\PHPStanTestCase;
 use PHPStan\Type\StringType;
-use PHPUnit\Framework\TestCase;
 use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Reveal\TwigPHPStanCompiler\TwigToPhpCompiler;
 use Symplify\EasyTesting\DataProvider\StaticFixtureFinder;
 use Symplify\EasyTesting\DataProvider\StaticFixtureUpdater;
 use Symplify\EasyTesting\StaticFixtureSplitter;
-use Symplify\PHPStanExtensions\DependencyInjection\PHPStanContainerFactory;
 use Symplify\SmartFileSystem\SmartFileInfo;
 
-final class TwigToPhpCompilerTest extends TestCase
+final class TwigToPhpCompilerTest extends PHPStanTestCase
 {
     private TwigToPhpCompiler $twigToPhpCompiler;
 
     protected function setUp(): void
     {
-        $container = $this->createContainer();
-        $this->twigToPhpCompiler = $container->getByType(TwigToPhpCompiler::class);
+        parent::setUp();
+
+        $this->twigToPhpCompiler = self::getContainer()->getByType(TwigToPhpCompiler::class);
     }
 
     /**
@@ -71,15 +70,15 @@ final class TwigToPhpCompilerTest extends TestCase
         return StaticFixtureFinder::yieldDirectoryExclusively(__DIR__ . '/Fixture', '*.twig');
     }
 
-    private function createContainer(): Container
+    /**
+     * @return string[]
+     */
+    public static function getAdditionalConfigFiles(): array
     {
-        $configs = [
+        return [
             __DIR__ . '/../../../../packages/twig-phpstan-compiler/config/services.neon',
             __DIR__ . '/../../../../vendor/symplify/astral/config/services.neon',
             __DIR__ . '/../../../../packages/template-phpstan-compiler/config/services.neon',
         ];
-
-        $phpStanContainerFactory = new PHPStanContainerFactory();
-        return $phpStanContainerFactory->createContainer($configs);
     }
 }
