@@ -26,9 +26,6 @@ parameters:
         - '#Method Reveal\\LattePHPStanCompiler\\NodeVisitor\\ParentLayoutNameNodeVisitor\:\:matchParentLayoutName\(\) should return string\|null but returns mixed#'
         - '#Method Reveal\\LattePHPStanCompiler\\NodeVisitor\\TemplateIncludesNameNodeVisitor\:\:matchIncludedTemplateName\(\) should return string\|null but returns mixed#'
 
-        # lost autoload?
-        - '#Class PhpCsFixer\\Fixer\\PhpUnit\\PhpUnitStrictFixer not found#'
-
         -
             message: '#Cannot access an offset on mixed#'
             path: packages/latte-phpstan-compiler/src/LinkProcessor/PresenterActionLinkProcessor.php
