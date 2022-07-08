@@ -12,10 +12,13 @@ use PhpParser\PrettyPrinter\Standard;
 use Reveal\LattePHPStanCompiler\Contract\LatteToPhpCompilerNodeVisitorInterface;
 use Reveal\LattePHPStanCompiler\Latte\LineCommentCorrector;
 use Reveal\LattePHPStanCompiler\Latte\UnknownMacroAwareLatteCompiler;
+use Reveal\LattePHPStanCompiler\Nette\PresenterFactoryFaker;
 use Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor\ControlRenderToExplicitCallNodeVisitor;
+use Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor\PreprocessLinkNodeVisitor;
 use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
 use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Symplify\Astral\Naming\SimpleNameResolver;
+use Symplify\Astral\NodeValue\NodeValueResolver;
 use Symplify\PHPStanRules\Exception\ShouldNotHappenException;
 use Symplify\SmartFileSystem\SmartFileSystem;
 
@@ -35,6 +38,8 @@ final class LatteToPhpCompiler
         private Standard $printerStandard,
         private LineCommentCorrector $lineCommentCorrector,
         private LatteVarTypeDocBlockDecorator $latteVarTypeDocBlockDecorator,
+        private NodeValueResolver $nodeValueResolver,
+        private PresenterFactoryFaker $presenterFactoryFaker,
         private array $nodeVisitors,
     ) {
     }
@@ -57,7 +62,7 @@ final class LatteToPhpCompiler
 
         $phpStmts = $this->parsePhpContentToPhpStmts($rawPhpContent);
 
-        $this->decorateStmts($phpStmts, $componentNamesAndtTypes);
+        $this->decorateStmts($phpStmts, $variablesAndTypes, $componentNamesAndtTypes);
         $phpContent = $this->printerStandard->prettyPrintFile($phpStmts);
 
         return $this->latteVarTypeDocBlockDecorator->decorateLatteContentWithTypes($phpContent, $variablesAndTypes);
@@ -89,9 +94,10 @@ final class LatteToPhpCompiler
 
     /**
      * @param Stmt[] $phpStmts
+     * @param VariableAndType[] $variablesAndTypes
      * @param ComponentNameAndType[] $componentNamesAndTypes
      */
-    private function decorateStmts(array $phpStmts, array $componentNamesAndTypes): void
+    private function decorateStmts(array $phpStmts, array $variablesAndTypes, array $componentNamesAndTypes): void
     {
         $nodeTraverser = new NodeTraverser();
 
@@ -100,6 +106,14 @@ final class LatteToPhpCompiler
             $componentNamesAndTypes
         );
         $nodeTraverser->addVisitor($controlRenderToExplicitCallNodeVisitor);
+
+        $preprocessLinkNodeVisitor = new PreprocessLinkNodeVisitor(
+            $this->simpleNameResolver,
+            $this->nodeValueResolver,
+            $this->presenterFactoryFaker,
+            $variablesAndTypes
+        );
+        $nodeTraverser->addVisitor($preprocessLinkNodeVisitor);
 
         foreach ($this->nodeVisitors as $nodeVisitor) {
             $nodeTraverser->addVisitor($nodeVisitor);
