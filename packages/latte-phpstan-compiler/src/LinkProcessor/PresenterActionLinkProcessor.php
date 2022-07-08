@@ -37,7 +37,6 @@ final class PresenterActionLinkProcessor implements LinkProcessorInterface
      */
     public function createLinkExpressions(string $targetName, array $linkParams, array $attributes): array
     {
-        $targetName = ltrim($targetName, ':');
         $targetNameParts = explode(':', $targetName);
         $actionName = array_pop($targetNameParts);
         $presenterWithModule = implode(':', $targetNameParts);

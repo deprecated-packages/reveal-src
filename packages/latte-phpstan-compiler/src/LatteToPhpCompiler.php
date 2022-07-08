@@ -12,13 +12,11 @@ use PhpParser\PrettyPrinter\Standard;
 use Reveal\LattePHPStanCompiler\Contract\LatteToPhpCompilerNodeVisitorInterface;
 use Reveal\LattePHPStanCompiler\Latte\LineCommentCorrector;
 use Reveal\LattePHPStanCompiler\Latte\UnknownMacroAwareLatteCompiler;
-use Reveal\LattePHPStanCompiler\Nette\PresenterFactoryFaker;
 use Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor\ControlRenderToExplicitCallNodeVisitor;
-use Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor\PreprocessLinkNodeVisitor;
+use Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor\LinkNodeVisitor;
 use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
 use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Symplify\Astral\Naming\SimpleNameResolver;
-use Symplify\Astral\NodeValue\NodeValueResolver;
 use Symplify\PHPStanRules\Exception\ShouldNotHappenException;
 use Symplify\SmartFileSystem\SmartFileSystem;
 
@@ -38,8 +36,6 @@ final class LatteToPhpCompiler
         private Standard $printerStandard,
         private LineCommentCorrector $lineCommentCorrector,
         private LatteVarTypeDocBlockDecorator $latteVarTypeDocBlockDecorator,
-        private NodeValueResolver $nodeValueResolver,
-        private PresenterFactoryFaker $presenterFactoryFaker,
         private array $nodeVisitors,
     ) {
     }
@@ -107,15 +103,10 @@ final class LatteToPhpCompiler
         );
         $nodeTraverser->addVisitor($controlRenderToExplicitCallNodeVisitor);
 
-        $preprocessLinkNodeVisitor = new PreprocessLinkNodeVisitor(
-            $this->simpleNameResolver,
-            $this->nodeValueResolver,
-            $this->presenterFactoryFaker,
-            $variablesAndTypes
-        );
-        $nodeTraverser->addVisitor($preprocessLinkNodeVisitor);
-
         foreach ($this->nodeVisitors as $nodeVisitor) {
+            if ($nodeVisitor instanceof LinkNodeVisitor) {
+                $nodeVisitor->setVariablesAndTypes($variablesAndTypes);
+            }
             $nodeTraverser->addVisitor($nodeVisitor);
         }
 
