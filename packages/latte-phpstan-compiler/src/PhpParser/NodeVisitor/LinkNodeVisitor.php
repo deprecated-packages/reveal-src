@@ -17,7 +17,7 @@ use Reveal\LattePHPStanCompiler\Contract\LatteToPhpCompilerNodeVisitorInterface;
 use Reveal\LattePHPStanCompiler\Contract\LinkProcessorInterface;
 use Reveal\LattePHPStanCompiler\Exception\LattePHPStanCompilerException;
 use Reveal\LattePHPStanCompiler\LinkProcessor\LinkProcessorFactory;
-use Reveal\LattePHPStanCompiler\Nette\PresenterFactoryFaker;
+use Reveal\LattePHPStanCompiler\Nette\LinkDestinationProcessor;
 use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\Astral\NodeValue\NodeValueResolver;
@@ -35,7 +35,7 @@ final class LinkNodeVisitor extends NodeVisitorAbstract implements LatteToPhpCom
         private SimpleNameResolver $simpleNameResolver,
         private NodeValueResolver $nodeValueResolver,
         private LinkProcessorFactory $linkProcessorFactory,
-        private PresenterFactoryFaker $presenterFactoryFaker,
+        private LinkDestinationProcessor $linkDestinationProcessor,
     ) {
     }
 
@@ -104,7 +104,8 @@ final class LinkNodeVisitor extends NodeVisitorAbstract implements LatteToPhpCom
             throw new LattePHPStanCompilerException();
         }
 
-        $targetName = $this->remapTarget($targetName);
+        $actualClassType = $this->actualclass ? $this->actualclass->getTypeAsString() : null;
+        $targetName = $this->linkDestinationProcessor->process($targetName, $actualClassType);
         $linkProcessor = $this->linkProcessorFactory->create($targetName);
         if (! $linkProcessor instanceof LinkProcessorInterface) {
             return null;
@@ -152,43 +153,5 @@ final class LinkNodeVisitor extends NodeVisitorAbstract implements LatteToPhpCom
         }
 
         return $linkParams;
-    }
-
-    private function remapTarget(string $targetName): string
-    {
-        $targetName = ltrim($targetName, '/:');
-
-        if (str_ends_with($targetName, '!')) {
-            return $targetName;
-        }
-
-        $targetNameParts = explode(':', $targetName);
-        if (count($targetNameParts) === 3) {
-            return $targetName;
-        }
-
-        if ($this->actualclass === null) {
-            return $targetName;
-        }
-
-        $presenterFactory = $this->presenterFactoryFaker->getPresenterFactory();
-        $presenterName = @$presenterFactory->unformatPresenterClass($this->actualclass->getTypeAsString());
-
-        if ($presenterName === null) {
-            return $targetName;
-        }
-
-        if (count($targetNameParts) === 1) {
-            return $presenterName . ':' . $targetName;
-        }
-
-        $presenterNameParts = explode(':', $presenterName, 2);
-
-        $module = isset($presenterNameParts[1]) ? $presenterNameParts[0] : null;
-        if ($module) {
-            return $module . ':' . $targetName;
-        }
-
-        return $targetName;
     }
 }

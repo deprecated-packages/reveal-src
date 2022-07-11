@@ -1,0 +1,5 @@
+parameters:
+    presenterFactoryMapping:
+        *: Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\*Presenter
+        Foo: Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\Modules\FooModule\*Presenter
+        Bar: Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\Modules\BarModule\*Presenter
