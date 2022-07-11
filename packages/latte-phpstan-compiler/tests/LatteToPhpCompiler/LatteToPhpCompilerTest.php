@@ -11,6 +11,7 @@ use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
 use Reveal\LattePHPStanCompiler\LatteToPhpCompiler;
 use Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\FooPresenter;
+use Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\Modules\FooModule\FirstFooPresenter;
 use Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\SomeNameControl;
 use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
 use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
@@ -116,6 +117,14 @@ final class LatteToPhpCompilerTest extends PHPStanTestCase
             $variablesAndTypes,
             [],
             __DIR__ . '/FixturePresenterLinks/expected_compiled.php',
+        ];
+
+        $variablesAndTypes = [new VariableAndType('actualClass', new ObjectType(FirstFooPresenter::class))];
+        yield [
+            __DIR__ . '/FixtureModulePresenterLinks/input_file.latte',
+            $variablesAndTypes,
+            [],
+            __DIR__ . '/FixtureModulePresenterLinks/expected_compiled.php',
         ];
 
         $variablesAndTypes = [

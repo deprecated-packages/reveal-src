@@ -13,6 +13,7 @@ use Reveal\LattePHPStanCompiler\Contract\LatteToPhpCompilerNodeVisitorInterface;
 use Reveal\LattePHPStanCompiler\Latte\LineCommentCorrector;
 use Reveal\LattePHPStanCompiler\Latte\UnknownMacroAwareLatteCompiler;
 use Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor\ControlRenderToExplicitCallNodeVisitor;
+use Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor\LinkNodeVisitor;
 use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
 use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Symplify\Astral\Naming\SimpleNameResolver;
@@ -57,7 +58,7 @@ final class LatteToPhpCompiler
 
         $phpStmts = $this->parsePhpContentToPhpStmts($rawPhpContent);
 
-        $this->decorateStmts($phpStmts, $componentNamesAndtTypes);
+        $this->decorateStmts($phpStmts, $variablesAndTypes, $componentNamesAndtTypes);
         $phpContent = $this->printerStandard->prettyPrintFile($phpStmts);
 
         return $this->latteVarTypeDocBlockDecorator->decorateLatteContentWithTypes($phpContent, $variablesAndTypes);
@@ -89,9 +90,10 @@ final class LatteToPhpCompiler
 
     /**
      * @param Stmt[] $phpStmts
+     * @param VariableAndType[] $variablesAndTypes
      * @param ComponentNameAndType[] $componentNamesAndTypes
      */
-    private function decorateStmts(array $phpStmts, array $componentNamesAndTypes): void
+    private function decorateStmts(array $phpStmts, array $variablesAndTypes, array $componentNamesAndTypes): void
     {
         $nodeTraverser = new NodeTraverser();
 
@@ -102,6 +104,9 @@ final class LatteToPhpCompiler
         $nodeTraverser->addVisitor($controlRenderToExplicitCallNodeVisitor);
 
         foreach ($this->nodeVisitors as $nodeVisitor) {
+            if ($nodeVisitor instanceof LinkNodeVisitor) {
+                $nodeVisitor->setVariablesAndTypes($variablesAndTypes);
+            }
             $nodeTraverser->addVisitor($nodeVisitor);
         }
 

@@ -17,16 +17,45 @@ use Reveal\LattePHPStanCompiler\Contract\LatteToPhpCompilerNodeVisitorInterface;
 use Reveal\LattePHPStanCompiler\Contract\LinkProcessorInterface;
 use Reveal\LattePHPStanCompiler\Exception\LattePHPStanCompilerException;
 use Reveal\LattePHPStanCompiler\LinkProcessor\LinkProcessorFactory;
+use Reveal\LattePHPStanCompiler\Nette\LinkDestinationProcessor;
+use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\Astral\NodeValue\NodeValueResolver;
 
 final class LinkNodeVisitor extends NodeVisitorAbstract implements LatteToPhpCompilerNodeVisitorInterface
 {
+    /**
+     * @var VariableAndType[]
+     */
+    private array $variablesAndTypes = [];
+
+    private ?VariableAndType $actualclass = null;
+
     public function __construct(
         private SimpleNameResolver $simpleNameResolver,
         private NodeValueResolver $nodeValueResolver,
         private LinkProcessorFactory $linkProcessorFactory,
+        private LinkDestinationProcessor $linkDestinationProcessor,
     ) {
+    }
+
+    /**
+     * @param VariableAndType[] $variablesAndTypes
+     */
+    public function setVariablesAndTypes(array $variablesAndTypes): void
+    {
+        $this->variablesAndTypes = $variablesAndTypes;
+    }
+
+    public function beforeTraverse(array $nodes)
+    {
+        // finding $actualClass
+        foreach ($this->variablesAndTypes as $variableAndType) {
+            if ($variableAndType->getVariable() === 'actualClass') {
+                $this->actualclass = $variableAndType;
+            }
+        }
+        return null;
     }
 
     /**
@@ -75,8 +104,8 @@ final class LinkNodeVisitor extends NodeVisitorAbstract implements LatteToPhpCom
             throw new LattePHPStanCompilerException();
         }
 
-        $targetName = ltrim($targetName, '/');
-
+        $actualClassType = $this->actualclass ? $this->actualclass->getTypeAsString() : null;
+        $targetName = $this->linkDestinationProcessor->process($targetName, $actualClassType);
         $linkProcessor = $this->linkProcessorFactory->create($targetName);
         if (! $linkProcessor instanceof LinkProcessorInterface) {
             return null;
