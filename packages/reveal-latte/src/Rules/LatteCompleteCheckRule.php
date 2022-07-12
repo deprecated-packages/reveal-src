@@ -99,8 +99,13 @@ final class LatteCompleteCheckRule implements Rule
 
         $uniqueErrorsByHash = [];
         foreach ($errors as $error) {
-            /** @var RuleError&FileRuleError&LineRuleError $error */
-            $errorHash = $error->getMessage() . $error->getFile() . $error->getLine();
+            $errorHash = $error->getMessage();
+            if ($error instanceof FileRuleError) {
+                $errorHash .= $error->getFile();
+            }
+            if ($error instanceof LineRuleError) {
+                $errorHash .= $error->getLine();
+            }
             $uniqueErrorsByHash[$errorHash] = $error;
         }
 
@@ -169,9 +174,8 @@ CODE_SAMPLE
                 $scope,
                 $componentNamesAndTypes
             );
-        } catch (Throwable) {
-            // missing include/layout template or something else went wrong → we cannot analyse template here
-            $errorMessage = sprintf('Template file "%s" does not exist', $templateFilePath);
+        } catch (Throwable $throwable) {
+            $errorMessage = $throwable->getMessage();
             $ruleError = RuleErrorBuilder::message($errorMessage)->build();
             return [$ruleError];
         }
