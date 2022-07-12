@@ -15,7 +15,17 @@ $timestamp = $dateTime->format('Ymd');
 return [
     'prefix' => 'RevealPrefix' . $timestamp,
     // @see https://github.com/humbug/php-scoper/blob/master/docs/configuration.md#exposed-symbols - regex format
-    'exclude-namespaces' => ['#^PHPStan#', '#^Reveal#', '#^PhpParser#'],
+    'exclude-namespaces' => [
+        '#^PHPStan#',
+        '#^Reveal#',
+        '#^PhpParser#',
+        '#^Symplify\\\\Astral#',
+        '#^Symplify\\\\SmartFileSystem#',
+        '#^Symplify\\\\PackageBuilder#',
+    ],
+    'exclude-classes' => [
+        'Latte\Parser',
+    ],
     'expose-functions' => ['u', 'b', 's', 'trigger_deprecation'],
     'patchers' => [
         // fixes https://github.com/rectorphp/rector/issues/7017 - still needed 2022-06
