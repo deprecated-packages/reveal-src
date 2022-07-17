@@ -23,18 +23,15 @@ return [
         '#^Symplify\\\\SmartFileSystem#',
         '#^Symplify\\\\PackageBuilder#',
     ],
-    'exclude-classes' => [
-        'Latte\Parser',
-    ],
     'expose-functions' => ['u', 'b', 's', 'trigger_deprecation'],
     'patchers' => [
         // fixes https://github.com/rectorphp/rector/issues/7017 - still needed 2022-06
         function (string $filePath, string $prefix, string $content): string {
-            if (str_ends_with($filePath, 'vendor/symfony/string/ByteString.php')) {
+            if (\str_ends_with($filePath, 'vendor/symfony/string/ByteString.php')) {
                 return Strings::replace($content, '#' . $prefix . '\\\\\\\\1_\\\\\\\\2#', '\\\\1_\\\\2');
             }
 
-            if (str_ends_with($filePath, 'vendor/symfony/string/AbstractUnicodeString.php')) {
+            if (\str_ends_with($filePath, 'vendor/symfony/string/AbstractUnicodeString.php')) {
                 return Strings::replace($content, '#' . $prefix . '\\\\\\\\1_\\\\\\\\2#', '\\\\1_\\\\2');
             }
 
@@ -53,6 +50,15 @@ return [
             }
 
             return Strings::replace($content, '#services\->load\(\'#', "services->load('" . $prefix . '\\');
+        },
+
+        // latte services
+        function (string $filePath, string $prefix, string $content): string {
+            if (! \str_ends_with($filePath, 'config.neon') && ! \str_ends_with($filePath, 'services.neon')) {
+                return $content;
+            }
+
+            return Strings::replace($content, '#- Latte\\\\#', "- $prefix\\Latte\\");
         },
     ],
 ];
