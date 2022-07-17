@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Reveal\RevealLatte\Rules;
 
-use Nette\Application\UI\Presenter;
 use Nette\Utils\Strings;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\ClassMethod;
@@ -63,7 +62,7 @@ final class NoUnusedNetteCreateComponentMethodRule implements Rule
             return [];
         }
 
-        $localUsedControlMethodNames = $this->usedLocalComponentNamesResolver->resolveFromClassMethod($node);
+        $localUsedControlMethodNames = $this->usedLocalComponentNamesResolver->resolveFromClassMethod($node, $scope);
         if (in_array($controlName, $localUsedControlMethodNames, true)) {
             return [];
         }
@@ -111,7 +110,7 @@ final class NoUnusedNetteCreateComponentMethodRule implements Rule
             return true;
         }
 
-        if (! $classReflection->isSubclassOf(Presenter::class)) {
+        if (! $classReflection->isSubclassOf('Nette\Application\UI\Presenter')) {
             return true;
         }
 

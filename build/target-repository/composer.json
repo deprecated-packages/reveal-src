@@ -1,0 +1,10 @@
+{
+    "name": "reveal/reveal",
+    "license": "MIT",
+    "bin": ["bin/reveal"],
+    "description": "Reveal Static bugs in Configs Files and Templates",
+    "require": {
+        "php": ">=7.2",
+        "phpstan/phpstan": "^1.7.10"
+    }
+}

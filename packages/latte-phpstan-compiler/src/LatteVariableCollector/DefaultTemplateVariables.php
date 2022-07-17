@@ -22,6 +22,7 @@ final class DefaultTemplateVariables implements LatteVariableCollectorInterface
         $variablesAndTypes = [];
         $variablesAndTypes[] = new VariableAndType('baseUrl', new StringType());
         $variablesAndTypes[] = new VariableAndType('basePath', new StringType());
+        $variablesAndTypes[] = new VariableAndType('ʟ_fi', new ObjectType('Latte\Runtime\FilterInfo'));
 
         // nette\security bridge
         $variablesAndTypes[] = new VariableAndType('user', new ObjectType('Nette\Security\User'));

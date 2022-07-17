@@ -5,32 +5,31 @@ declare(strict_types=1);
 namespace Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler;
 
 use Iterator;
-use Nette\Application\UI\Presenter;
 use Nette\Localization\Translator;
-use PHPStan\DependencyInjection\Container;
+use PHPStan\Testing\PHPStanTestCase;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
-use PHPUnit\Framework\TestCase;
 use Reveal\LattePHPStanCompiler\LatteToPhpCompiler;
 use Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\FooPresenter;
+use Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\Modules\FooModule\FirstFooPresenter;
 use Reveal\LattePHPStanCompiler\Tests\LatteToPhpCompiler\Source\SomeNameControl;
 use Reveal\LattePHPStanCompiler\ValueObject\ComponentNameAndType;
 use Reveal\TemplatePHPStanCompiler\ValueObject\VariableAndType;
 use Symplify\EasyTesting\DataProvider\StaticFixtureFinder;
 use Symplify\EasyTesting\DataProvider\StaticFixtureUpdater;
 use Symplify\EasyTesting\StaticFixtureSplitter;
-use Symplify\PHPStanExtensions\DependencyInjection\PHPStanContainerFactory;
 use Symplify\SmartFileSystem\SmartFileInfo;
 use Symplify\SmartFileSystem\SmartFileSystem;
 
-final class LatteToPhpCompilerTest extends TestCase
+final class LatteToPhpCompilerTest extends PHPStanTestCase
 {
     private LatteToPhpCompiler $latteToPhpCompiler;
 
     protected function setUp(): void
     {
-        $container = $this->createContainer();
-        $this->latteToPhpCompiler = $container->getByType(LatteToPhpCompiler::class);
+        parent::setUp();
+
+        $this->latteToPhpCompiler = self::getContainer()->getByType(LatteToPhpCompiler::class);
     }
 
     /**
@@ -120,8 +119,16 @@ final class LatteToPhpCompilerTest extends TestCase
             __DIR__ . '/FixturePresenterLinks/expected_compiled.php',
         ];
 
+        $variablesAndTypes = [new VariableAndType('actualClass', new ObjectType(FirstFooPresenter::class))];
+        yield [
+            __DIR__ . '/FixtureModulePresenterLinks/input_file.latte',
+            $variablesAndTypes,
+            [],
+            __DIR__ . '/FixtureModulePresenterLinks/expected_compiled.php',
+        ];
+
         $variablesAndTypes = [
-            new VariableAndType('presenter', new ObjectType(Presenter::class)),
+            new VariableAndType('presenter', new ObjectType('Nette\Application\UI\Presenter')),
             new VariableAndType('presenter', new ObjectType(FooPresenter::class)),
             new VariableAndType('control', new ObjectType(FooPresenter::class)),
         ];
@@ -141,17 +148,16 @@ final class LatteToPhpCompilerTest extends TestCase
         return StaticFixtureFinder::yieldDirectoryExclusively(__DIR__ . '/Fixture', '*.latte');
     }
 
-    private function createContainer(): Container
+    /**
+     * @return string[]
+     */
+    public static function getAdditionalConfigFiles(): array
     {
-        $configs = [
+        return [
             __DIR__ . '/../../../../packages/template-phpstan-compiler/config/services.neon',
             __DIR__ . '/../../../../packages/latte-phpstan-compiler/config/services.neon',
-            //__DIR__ . '/../../../../packages/phpstan-rules/config/services/services.neon',
             __DIR__ . '/../../../../vendor/symplify/astral/config/services.neon',
             __DIR__ . '/latte_to_php_compiler_test.neon',
         ];
-
-        $phpStanContainerFactory = new PHPStanContainerFactory();
-        return $phpStanContainerFactory->createContainer($configs);
     }
 }

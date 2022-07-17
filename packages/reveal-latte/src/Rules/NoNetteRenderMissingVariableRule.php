@@ -8,17 +8,17 @@ use PhpParser\Node;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
 use Reveal\LattePHPStanCompiler\NodeAnalyzer\MissingLatteTemplateRenderVariableResolver;
 use Reveal\RevealLatte\NodeAnalyzer\TemplateRenderAnalyzer;
 use Reveal\TemplatePHPStanCompiler\NodeAnalyzer\TemplateFilePathResolver;
-use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @see \Reveal\RevealLatte\Tests\Rules\NoNetteRenderMissingVariableRule\NoNetteRenderMissingVariableRuleTest
  */
-final class NoNetteRenderMissingVariableRule extends AbstractSymplifyRule
+final class NoNetteRenderMissingVariableRule implements Rule
 {
     /**
      * @var string
@@ -32,19 +32,16 @@ final class NoNetteRenderMissingVariableRule extends AbstractSymplifyRule
     ) {
     }
 
-    /**
-     * @return array<class-string<Node>>
-     */
-    public function getNodeTypes(): array
+    public function getNodeType(): string
     {
-        return [MethodCall::class];
+        return MethodCall::class;
     }
 
     /**
      * @param MethodCall $node
      * @return string[]
      */
-    public function process(Node $node, Scope $scope): array
+    public function processNode(Node $node, Scope $scope): array
     {
         if (! $this->templateRenderAnalyzer->isNetteTemplateRenderMethodCall($node, $scope)) {
             return [];

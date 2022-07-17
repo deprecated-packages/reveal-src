@@ -3,5 +3,5 @@
 <?php
 
 // line 1
-echo \call_user_func_array($this->env->getFilter('unknown_filter')->getCallable(), [$value]);
+echo $this->env->getFilter('unknown_filter')->getCallable()($value);
 echo "\n";

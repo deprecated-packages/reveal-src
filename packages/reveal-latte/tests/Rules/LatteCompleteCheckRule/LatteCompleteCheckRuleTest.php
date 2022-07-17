@@ -6,18 +6,20 @@ namespace Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule;
 
 use Iterator;
 use PHPStan\Rules\Rule;
+use PHPStan\Testing\RuleTestCase;
 use Reveal\RevealLatte\Rules\LatteCompleteCheckRule;
 use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Fixture\ControlWithHandle;
 use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Fixture\InvalidControlRenderArguments;
 use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\ExampleModel;
 use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\FooPresenter;
+use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\Modules\BarModule\FirstBarPresenter;
+use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\Modules\FooModule\FirstFooPresenter;
 use Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\SomeTypeWithMethods;
-use Symplify\PHPStanExtensions\Testing\AbstractServiceAwareRuleTestCase;
 
 /**
- * @extends AbstractServiceAwareRuleTestCase<LatteCompleteCheckRule>
+ * @extends RuleTestCase<LatteCompleteCheckRule>
  */
-final class LatteCompleteCheckRuleTest extends AbstractServiceAwareRuleTestCase
+final class LatteCompleteCheckRuleTest extends RuleTestCase
 {
     /**
      * @dataProvider provideData()
@@ -61,12 +63,12 @@ final class LatteCompleteCheckRuleTest extends AbstractServiceAwareRuleTestCase
 
         $multiActionsPresenterErrors = array_merge(
             $this->createSharedErrorMessages(10),
-            $this->createSharedErrorMessages(10),
-            $this->createSharedErrorMessages(10),
         );
         yield [__DIR__ . '/Fixture/MultiActionsAndRendersPresenter.php', $multiActionsPresenterErrors];
 
         $errorMessages = [
+            ['Static method Latte\Runtime\Filters::date() invoked with 3 parameters, 1-2 required.', 23],
+            ['Parameter #2 $format of static method Latte\Runtime\Filters::date() expects string|null, int given.', 23],
             ['Variable $nonExistingVariable might not be defined.', 23],
             ['Call to an undefined method Nette\Security\User::nonExistingMethod().', 23],
             [sprintf('Call to an undefined method %s::getTitle().', ExampleModel::class), 23],
@@ -82,22 +84,38 @@ final class LatteCompleteCheckRuleTest extends AbstractServiceAwareRuleTestCase
                 'Parameter #2 $bar of method ' . ControlWithHandle::class . '::handleDoSomething() expects array|null, string given.',
                 18,
             ],
-            [
-                'Parameter #2 $bar of method ' . ControlWithHandle::class . '::handleDoSomething() expects array|null, string given.',
-                18,
-            ],
             ['Call to an undefined method ' . ControlWithHandle::class . '::handleUnknown().', 18],
             [
                 'Parameter #2 $add of method ' . FooPresenter::class . '::renderDefault() expects array|null, string given.',
                 18,
             ],
+            [
+                'Parameter #2 $add of method ' . FirstFooPresenter::class . '::renderDefault() expects array|null, string given.',
+                18,
+            ],
+            [
+                'Parameter #2 $add of method ' . FirstBarPresenter::class . '::actionDefault() expects array|null, string given.',
+                18,
+            ],
         ];
         yield [__DIR__ . '/Fixture/ControlWithHandle.php', $errorMessages];
+
+        yield [__DIR__ . '/Fixture/SpecialFilters.php', []];
+    }
+
+    /**
+     * @return string[]
+     */
+    public static function getAdditionalConfigFiles(): array
+    {
+        return [
+            __DIR__ . '/config/configured_rule.neon',
+        ];
     }
 
     protected function getRule(): Rule
     {
-        return $this->getRuleFromConfig(LatteCompleteCheckRule::class, __DIR__ . '/config/configured_rule.neon');
+        return self::getContainer()->getByType(LatteCompleteCheckRule::class);
     }
 
     /**
@@ -106,6 +124,8 @@ final class LatteCompleteCheckRuleTest extends AbstractServiceAwareRuleTestCase
     private function createSharedErrorMessages(int $phpLine): array
     {
         return [
+            ['Static method Latte\Runtime\Filters::date() invoked with 3 parameters, 1-2 required.', $phpLine],
+            ['Parameter #2 $format of static method Latte\Runtime\Filters::date() expects string|null, int given.', $phpLine],
             ['Variable $nonExistingVariable might not be defined.', $phpLine],
             ['Call to an undefined method Nette\Security\User::nonExistingMethod().', $phpLine],
             [sprintf('Call to an undefined method %s::getTitle().', ExampleModel::class), $phpLine],

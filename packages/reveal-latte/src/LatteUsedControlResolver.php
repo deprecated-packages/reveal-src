@@ -6,8 +6,8 @@ namespace Reveal\RevealLatte;
 
 use Nette\Utils\Strings;
 use PHPStan\Analyser\Scope;
+use PHPStan\Reflection\ClassReflection;
 use Symfony\Component\Finder\Finder;
-use Symplify\Astral\Naming\SimpleNameResolver;
 use Symplify\SmartFileSystem\Finder\FinderSanitizer;
 use Symplify\SmartFileSystem\SmartFileInfo;
 
@@ -35,7 +35,6 @@ final class LatteUsedControlResolver
     private array $layoutUsedComponentNames = [];
 
     public function __construct(
-        private SimpleNameResolver $simpleNameResolver,
         private FinderSanitizer $finderSanitizer
     ) {
     }
@@ -98,7 +97,12 @@ final class LatteUsedControlResolver
 
     private function resolveSuffixlessPresenterShortName(Scope $scope): ?string
     {
-        $shortClassName = $this->simpleNameResolver->resolveShortNameFromScope($scope);
+        $classReflection = $scope->getClassReflection();
+        if (! $classReflection instanceof ClassReflection) {
+            return null;
+        }
+
+        $shortClassName = Strings::after($classReflection->getName(), '\\', -1);
         if ($shortClassName === null) {
             return null;
         }

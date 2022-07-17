@@ -6,6 +6,9 @@ namespace Reveal\RevealLatte\Rules;
 
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
+use PHPStan\Collectors\Registry as CollectorsRegistry;
+use PHPStan\Rules\FileRuleError;
+use PHPStan\Rules\LineRuleError;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleError;
 use PHPStan\Rules\RuleErrorBuilder;
@@ -17,7 +20,6 @@ use Reveal\TemplatePHPStanCompiler\PHPStan\FileAnalyserProvider;
 use Reveal\TemplatePHPStanCompiler\Reporting\TemplateErrorsFactory;
 use Reveal\TemplatePHPStanCompiler\Rules\TemplateRulesRegistry;
 use Reveal\TemplatePHPStanCompiler\ValueObject\RenderTemplateWithParameters;
-use Symplify\PHPStanRules\Rules\AbstractSymplifyRule;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Symplify\SmartFileSystem\SmartFileSystem;
@@ -28,7 +30,7 @@ use Throwable;
  *
  * @inspired at https://github.com/efabrica-team/phpstan-latte/blob/main/src/Rule/ControlLatteRule.php#L56
  */
-final class LatteCompleteCheckRule extends AbstractSymplifyRule
+final class LatteCompleteCheckRule implements Rule
 {
     /**
      * @var string
@@ -57,24 +59,22 @@ final class LatteCompleteCheckRule extends AbstractSymplifyRule
         private ErrorSkipper $errorSkipper,
         private TemplateErrorsFactory $templateErrorsFactory,
         private FileAnalyserProvider $fileAnalyserProvider,
+        private CollectorsRegistry $collectorsRegistry,
     ) {
         // limit rule here, as template class can contain a lot of allowed Latte magic
         // get missing method + missing property etc. rule
         $this->templateRulesRegistry = new TemplateRulesRegistry($rules);
     }
 
-    /**
-     * @return array<class-string<Node>>
-     */
-    public function getNodeTypes(): array
+    public function getNodeType(): string
     {
-        return [Node::class];
+        return Node::class;
     }
 
     /**
      * @return RuleError[]
      */
-    public function process(Node $node, Scope $scope): array
+    public function processNode(Node $node, Scope $scope): array
     {
         $errors = [];
         foreach ($this->latteTemplateHolders as $latteTemplateHolder) {
@@ -97,7 +97,19 @@ final class LatteCompleteCheckRule extends AbstractSymplifyRule
             }
         }
 
-        return $errors;
+        $uniqueErrorsByHash = [];
+        foreach ($errors as $error) {
+            $errorHash = $error->getMessage();
+            if ($error instanceof FileRuleError) {
+                $errorHash .= $error->getFile();
+            }
+            if ($error instanceof LineRuleError) {
+                $errorHash .= $error->getLine();
+            }
+            $uniqueErrorsByHash[$errorHash] = $error;
+        }
+
+        return $uniqueErrorsByHash;
     }
 
     public function getRuleDefinition(): RuleDefinition
@@ -162,9 +174,8 @@ CODE_SAMPLE
                 $scope,
                 $componentNamesAndTypes
             );
-        } catch (Throwable) {
-            // missing include/layout template or something else went wrong → we cannot analyse template here
-            $errorMessage = sprintf('Template file "%s" does not exist', $templateFilePath);
+        } catch (Throwable $throwable) {
+            $errorMessage = $throwable->getMessage();
             $ruleError = RuleErrorBuilder::message($errorMessage)->build();
             return [$ruleError];
         }
@@ -178,7 +189,7 @@ CODE_SAMPLE
         $fileAnalyser = $this->fileAnalyserProvider->provide();
 
         // to include generated class
-        $fileAnalyserResult = $fileAnalyser->analyseFile($tmpFilePath, [], $this->templateRulesRegistry, null);
+        $fileAnalyserResult = $fileAnalyser->analyseFile($tmpFilePath, [], $this->templateRulesRegistry, $this->collectorsRegistry, null);
 
         // remove errors related to just created class, that cannot be autoloaded
         $errors = $this->errorSkipper->skipErrors($fileAnalyserResult->getErrors(), self::USELESS_ERRORS_IGNORES);

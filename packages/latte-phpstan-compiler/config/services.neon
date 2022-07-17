@@ -27,6 +27,7 @@ services:
 
     - Reveal\LattePHPStanCompiler\LinkProcessor\LinkProcessorFactory
     - Reveal\LattePHPStanCompiler\LinkProcessor\PresenterActionLinkProcessor
+    - Reveal\LattePHPStanCompiler\Nette\LinkDestinationProcessor
 
     # latte lines
     - Reveal\LattePHPStanCompiler\Latte\LineCommentCorrector

@@ -6,6 +6,7 @@ namespace Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor;
 
 use Nette\Utils\Strings;
 use PhpParser\Node;
+use PhpParser\Node\Arg;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Expr\MethodCall;
@@ -64,11 +65,20 @@ final class MagicFilterToExplicitCallNodeVisitor extends NodeVisitorAbstract imp
 
         $callReference = $this->filterMatcher->match($filterName);
 
+        $args = $node->args;
+
+        // Add FilterInfo for special filters
+        if (in_array($filterName, ['striphtml', 'stripHtml', 'striptags', 'stripTags', 'strip', 'indent', 'repeat', 'replace', 'trim'], true)) {
+            $args = array_merge([
+                new Arg(new Variable('ʟ_fi')),
+            ], $args);
+        }
+
         if ($callReference instanceof StaticCallReference) {
             return new StaticCall(
                 new FullyQualified($callReference->getClass()),
                 new Identifier($callReference->getMethod()),
-                $node->args
+                $args
             );
         }
 
@@ -78,12 +88,12 @@ final class MagicFilterToExplicitCallNodeVisitor extends NodeVisitorAbstract imp
             return new MethodCall(
                 new Variable($variableName),
                 new Identifier($callReference->getMethod()),
-                $node->args
+                $args
             );
         }
 
         if ($callReference instanceof FunctionCallReference) {
-            return new FuncCall(new FullyQualified($callReference->getFunction()), $node->args);
+            return new FuncCall(new FullyQualified($callReference->getFunction()), $args);
         }
 
         return null;

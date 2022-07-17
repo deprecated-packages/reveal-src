@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Reveal\TemplatePHPStanCompiler\PHPStan;
 
 use PHPStan\Analyser\FileAnalyser;
-use PHPStan\DependencyInjection\DerivativeContainerFactory;
+use PHPStan\DependencyInjection\ContainerFactory;
+use function getcwd;
 
 /**
  * @api
@@ -18,18 +19,19 @@ final class FileAnalyserProvider
 {
     private FileAnalyser|null $fileAnalyser = null;
 
-    public function __construct(
-        private DerivativeContainerFactory $derivativeContainerFactory
-    ) {
-    }
-
     public function provide(): FileAnalyser
     {
         if ($this->fileAnalyser instanceof FileAnalyser) {
             return $this->fileAnalyser;
         }
 
-        $container = $this->derivativeContainerFactory->create([__DIR__ . '/../../config/php-parser.neon']);
+        /** Inspiration @see https://github.com/rectorphp/rector-src/blob/main/packages/NodeTypeResolver/DependencyInjection/PHPStanServicesFactory.php $containerFactory */
+        $containerFactory = new ContainerFactory(getcwd());
+        $additionalConfigs = [
+            __DIR__ . '/../../config/php-parser.neon',
+        ];
+
+        $container = $containerFactory->create(\sys_get_temp_dir(), $additionalConfigs, []);
         $fileAnalyser = $container->getByType(FileAnalyser::class);
 
         $this->fileAnalyser = $fileAnalyser;

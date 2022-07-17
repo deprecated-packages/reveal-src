@@ -4,6 +4,7 @@ includes:
 parameters:
     # needed to enable missing method rule bellow
     checkThisOnly: false
+    checkFunctionArgumentTypes: true
     checkArgumentsPassedByReference: true
     checkMissingTypehints: true
     checkExtraArguments: true
@@ -12,6 +13,8 @@ parameters:
 
     presenterFactoryMapping:
         *: Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\*Presenter
+        Foo: Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\Modules\FooModule\*Presenter
+        Bar: Reveal\RevealLatte\Tests\Rules\LatteCompleteCheckRule\Source\Modules\BarModule\*Presenter
 
 services:
     -
@@ -20,6 +23,10 @@ services:
 
     -
         class: PHPStan\Rules\Methods\CallMethodsRule
+        tags: [phpstan.rules.rule]
+
+    -
+        class: PHPStan\Rules\Methods\CallStaticMethodsRule
         tags: [phpstan.rules.rule]
 
     -

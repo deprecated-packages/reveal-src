@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Reveal\LattePHPStanCompiler\PhpParser\NodeVisitor;
 
-use Nette\Application\UI\Renderable;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Instanceof_;
 use PhpParser\Node\Expr\MethodCall;
@@ -45,7 +44,7 @@ final class InstanceofRenderableNodeVisitor extends NodeVisitorAbstract implemen
 
         if (! $this->simpleNameResolver->isNames(
             $instanceof->class,
-            ['Nette\Application\UI\IRenderable', Renderable::class]
+            ['Nette\Application\UI\IRenderable', 'Nette\Application\UI\Renderable']
         )) {
             return null;
         }

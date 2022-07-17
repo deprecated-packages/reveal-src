@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Reveal\LattePHPStanCompiler;
 
 use Nette\Application\UI\Control;
-use Nette\Application\UI\Presenter;
 use PhpParser\Node\Expr\Array_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
@@ -71,7 +70,7 @@ final class TemplateFileVarTypeDocBlocksDecorator
             $objectType = new ObjectType($classReflection->getName());
             $variablesAndTypes[] = new VariableAndType('actualClass', $objectType);
 
-            if ($objectType->isInstanceOf(Presenter::class)->yes()) {
+            if ($objectType->isInstanceOf('Nette\Application\UI\Presenter')->yes()) {
                 $variablesAndTypes[] = new VariableAndType('presenter', $objectType);
             }
 
