@@ -56,7 +56,7 @@ final class LatteCompleteCheckRuleTest extends RuleTestCase
         ];
         yield [
             __DIR__ . '/Fixture/RenderUsingEngineWithArrayParams.php',
-            $this->createSharedErrorMessages(20),
+            $this->createSharedErrorMessages(21),
         ];
 
         yield [__DIR__ . '/Fixture/OneActionPresenter.php', $this->createSharedErrorMessages(10)];
